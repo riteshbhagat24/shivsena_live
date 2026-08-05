@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivsena LIVE — Homepage Wireframe v1.0 | Futuready Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   SHIVSENA LIVE — HOMEPAGE WIREFRAME
+   Design system tokens
+   ═══════════════════════════════════════════════ */
+:root{
+  /* brand */
+  --org:#F58220; --org-d:#D96A10; --org-l:#FFF4EA; --org-b:#FBD4AE;
+  --ink:#222222; --ink2:#454545; --ink3:#6B6B6B; --muted:#8C8C8C;
+  --white:#FFFFFF; --grey:#F7F7F7; --grey2:#EFEFEF;
+  --line:#E4E4E4; --line2:#F0F0F0;
+  /* wireframe chrome */
+  --canvas:#D8DCE2; --canvas2:#C9CED6;
+  --frame:#79808B;
+  --ph:#E9E9E9; --phl:#D4D4D4; --pht:#A2A2A2;
+  /* type */
+  --fd:'Mukta','Noto Sans Devanagari',sans-serif;
+  --fb:'Noto Sans Devanagari','Mukta',sans-serif;
+  --fu:'Inter',sans-serif;
+  --fm:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--canvas);
+  background-image:radial-gradient(circle at 1px 1px,rgba(0,0,0,.055) 1px,transparent 0);
+  background-size:22px 22px;
+  font-family:var(--fd);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  padding:56px 0 90px 218px;
+  min-width:1960px;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+/* ═══════ FIGMA-STYLE TOP BAR ═══════ */
+.figbar{
+  position:fixed;top:0;left:0;right:0;height:56px;z-index:900;
+  background:#1E1E1E;color:#E7E7E7;display:flex;align-items:center;
+  padding:0 20px;gap:20px;border-bottom:1px solid #000;
+}
+.figbar .fb-logo{display:flex;align-items:center;gap:9px;font-family:var(--fu);font-weight:700;font-size:12.5px;letter-spacing:.02em;}
+.figbar .fb-logo b{width:20px;height:20px;border-radius:5px;background:var(--org);display:grid;place-items:center;font-size:11px;color:#fff;}
+.figbar .fb-file{font-family:var(--fu);font-size:12px;color:#9A9A9A;}
+.figbar .fb-file span{color:#fff;font-weight:600;}
+.fb-tabs{display:flex;gap:4px;margin-left:14px;}
+.fb-tabs a{font-family:var(--fu);font-size:11.5px;font-weight:500;color:#9A9A9A;padding:6px 12px;border-radius:6px;transition:.15s;}
+.fb-tabs a:hover{background:#2E2E2E;color:#fff;}
+.fb-tabs a.on{background:var(--org);color:#fff;font-weight:600;}
+.fb-right{margin-left:auto;display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:10.5px;color:#8A8A8A;}
+.fb-right .chip{background:#2E2E2E;padding:4px 9px;border-radius:5px;color:#C9C9C9;}
+.fb-right .chip.o{background:rgba(245,130,32,.18);color:#F9A45C;}
+
+/* ═══════ LEFT INDEX RAIL ═══════ */
+.rail{
+  position:fixed;left:0;top:56px;bottom:0;width:218px;z-index:850;
+  background:#252525;border-right:1px solid #000;overflow-y:auto;padding:16px 0 40px;
+}
+.rail::-webkit-scrollbar{width:6px;}
+.rail::-webkit-scrollbar-thumb{background:#3D3D3D;border-radius:3px;}
+.rail h4{font-family:var(--fm);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E6E6E;padding:12px 18px 7px;}
+.rail a{display:flex;align-items:center;gap:9px;padding:6.5px 18px;font-family:var(--fu);font-size:11.5px;color:#B4B4B4;transition:.15s;}
+.rail a:hover{background:#2F2F2F;color:#fff;}
+.rail a i{font-family:var(--fm);font-size:9.5px;color:#5E5E5E;font-style:normal;min-width:16px;}
+.rail a.grp{color:#fff;font-weight:600;}
+.rail .rdiv{height:1px;background:#333;margin:10px 18px;}
+.rail .rnote{margin:12px 14px 0;padding:11px 12px;background:#2C2C2C;border-left:2px solid var(--org);border-radius:0 6px 6px 0;}
+.rail .rnote p{font-family:var(--fm);font-size:9.5px;line-height:1.6;color:#9C9C9C;}
+.rail .rnote b{color:#F9A45C;}
+
+/* ═══════ FRAME / ARTBOARD ═══════ */
+.canvas{width:1440px;margin:0 auto;position:relative;}
+.frame-label{
+  display:flex;align-items:center;gap:10px;margin:0 0 10px 2px;
+  font-family:var(--fm);font-size:11.5px;font-weight:600;color:var(--frame);letter-spacing:.02em;
+}
+.frame-label .fi{width:13px;height:13px;border:1.6px solid var(--frame);border-radius:2px;display:block;}
+.frame-label .sz{color:#9399A3;font-weight:400;}
+.frame-label .badge{margin-left:6px;font-size:9.5px;background:rgba(245,130,32,.16);color:var(--org-d);padding:2.5px 7px;border-radius:4px;letter-spacing:.08em;}
+.frame{
+  width:1440px;background:var(--white);
+  box-shadow:0 4px 26px rgba(0,0,0,.14),0 1px 3px rgba(0,0,0,.08);
+  margin-bottom:14px;position:relative;
+}
+.frame-foot{
+  display:flex;justify-content:space-between;margin:0 2px 56px;
+  font-family:var(--fm);font-size:10.5px;color:#8A9099;
+}
+
+/* ═══════ WIREFRAME UTILITIES ═══════ */
+.wrap{max-width:1344px;margin:0 auto;padding:0 8px;}
+
+/* image placeholder */
+.ph{
+  position:relative;background:var(--ph);overflow:hidden;
+  background-image:
+    linear-gradient(45deg,transparent calc(50% - .5px),var(--phl) calc(50% - .5px),var(--phl) calc(50% + .5px),transparent calc(50% + .5px)),
+    linear-gradient(-45deg,transparent calc(50% - .5px),var(--phl) calc(50% - .5px),var(--phl) calc(50% + .5px),transparent calc(50% + .5px));
+}
+.ph.plain{background-image:none;}
+.ph .pht{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--fm);font-size:9.5px;font-weight:500;color:var(--pht);
+  background:rgba(255,255,255,.92);padding:3px 8px;border-radius:3px;white-space:nowrap;letter-spacing:.04em;
+}
+.ph.dark{background:#DCDCDC;}
+.r16{aspect-ratio:16/9;}.r43{aspect-ratio:4/3;}.r11{aspect-ratio:1/1;}.r34{aspect-ratio:3/4;}.r219{aspect-ratio:21/9;}
+.ph .play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;background:rgba(34,34,34,.62);display:grid;place-items:center;
+}
+.ph .play::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px;}
+.ph .dur{position:absolute;right:8px;bottom:8px;background:rgba(34,34,34,.86);color:#fff;font-family:var(--fm);font-size:9.5px;padding:2px 6px;border-radius:3px;}
+
+/* annotation pin + note */
+.pin{
+  position:absolute;width:21px;height:21px;border-radius:50%;background:var(--org);color:#fff;
+  font-family:var(--fm);font-size:10px;font-weight:600;display:grid;place-items:center;
+  box-shadow:0 0 0 3px rgba(245,130,32,.22);z-index:40;
+}
+.note{
+  border:1px dashed var(--org-b);background:var(--org-l);border-radius:6px;
+  padding:8px 11px;font-family:var(--fm);font-size:10px;line-height:1.62;color:#8A5116;
+}
+.note b{color:var(--org-d);}
+.note-row{display:flex;gap:9px;align-items:flex-start;}
+.note-row .n{flex:0 0 auto;width:17px;height:17px;border-radius:50%;background:var(--org);color:#fff;font-family:var(--fm);font-size:9px;font-weight:600;display:grid;place-items:center;margin-top:1px;}
+
+/* section header inside artboard */
+.sechd{display:flex;align-items:flex-end;gap:12px;padding:0 0 14px;border-bottom:2px solid var(--ink);margin-bottom:22px;}
+.sechd h2{font-family:var(--fd);font-size:25px;font-weight:800;letter-spacing:-.01em;line-height:1.1;}
+.sechd h2 em{font-style:normal;font-family:var(--fu);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:8px;}
+.sechd .sacc{width:5px;height:26px;background:var(--org);border-radius:3px;}
+.sechd .more{margin-left:auto;font-family:var(--fu);font-size:12px;font-weight:600;color:var(--org-d);display:flex;align-items:center;gap:5px;}
+.sechd .more::after{content:"→";}
+.sechd .meta{margin-left:auto;font-family:var(--fm);font-size:10px;color:var(--muted);}
+.sechd.thin{border-bottom:1px solid var(--line);}
+.sechd.thin h2{font-size:20px;}
+
+/* wireframe section wrapper w/ margin marker */
+.wsec{position:relative;padding:38px 0;}
+.wsec .smark{
+  position:absolute;left:-116px;top:44px;width:96px;text-align:right;
+  font-family:var(--fm);font-size:9.5px;line-height:1.7;color:#9AA0A8;
+}
+.wsec .smark b{display:block;font-size:15px;font-weight:600;color:var(--org);letter-spacing:-.02em;}
+.wsec.alt{background:var(--grey);}
+.wsec.ink{background:var(--ink);color:#fff;}
+
+/* spacing guide */
+.sguide{display:flex;align-items:center;justify-content:center;gap:8px;height:26px;font-family:var(--fm);font-size:9.5px;color:#B3B8BF;}
+.sguide::before,.sguide::after{content:"";flex:1;border-top:1px dashed #D6D9DE;}
+
+/* 12-col grid overlay */
+.gridov{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;pointer-events:none;z-index:5;max-width:1344px;margin:0 auto;left:0;right:0;}
+.gridov span{background:rgba(245,130,32,.055);border-left:1px solid rgba(245,130,32,.14);border-right:1px solid rgba(245,130,32,.14);}
+
+/* generic UI */
+.tag{display:inline-block;font-family:var(--fu);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3.5px 8px;border-radius:3px;background:var(--org);color:#fff;}
+.tag.g{background:var(--ink);}
+.tag.o{background:var(--org-l);color:var(--org-d);}
+.tag.w{background:rgba(255,255,255,.16);color:#fff;}
+.tag.dev{font-family:var(--fd);letter-spacing:0;text-transform:none;font-size:11px;font-weight:700;padding:3px 9px;}
+.tstamp{font-family:var(--fu);font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.tstamp::before{content:"";width:3px;height:3px;border-radius:50%;background:#C4C4C4;}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fd);font-size:13px;font-weight:700;padding:9px 18px;border-radius:4px;background:var(--org);color:#fff;border:none;}
+.btn.o{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
+.btn.g{background:var(--ink);color:#fff;}
+.btn.sm{font-size:12px;padding:7px 14px;}
+
+h3.hl{font-family:var(--fd);font-weight:700;line-height:1.34;letter-spacing:-.005em;}
+p.dek{font-family:var(--fb);font-size:13.5px;line-height:1.65;color:var(--ink3);}
+
+/* ═══════════════════════════════════════════════
+   ARTBOARD 1 — HOMEPAGE
+   ═══════════════════════════════════════════════ */
+
+/* 01 UTILITY BAR */
+.ubar{background:var(--ink);color:#DADADA;height:38px;display:flex;align-items:center;position:relative;}
+.ubar .wrap{display:flex;align-items:center;gap:0;width:100%;}
+.ub-live{background:#D0021B;color:#fff;font-family:var(--fu);font-size:10.5px;font-weight:800;letter-spacing:.1em;padding:5px 10px;border-radius:3px;display:flex;align-items:center;gap:6px;flex:0 0 auto;}
+.ub-live i{width:6px;height:6px;border-radius:50%;background:#fff;display:block;}
+.ub-tick{flex:1;overflow:hidden;margin:0 16px;position:relative;}
+.ub-tick .row{display:flex;gap:34px;white-space:nowrap;font-size:12.5px;font-family:var(--fb);color:#EDEDED;}
+.ub-tick .row b{color:var(--org);font-weight:700;margin-right:7px;font-family:var(--fu);font-size:10px;letter-spacing:.06em;}
+.ub-tick::after{content:"";position:absolute;right:0;top:0;bottom:0;width:60px;background:linear-gradient(90deg,transparent,var(--ink));}
+.ub-r{display:flex;align-items:center;gap:0;flex:0 0 auto;font-family:var(--fu);font-size:11.5px;color:#B8B8B8;}
+.ub-r>*{padding:0 12px;border-left:1px solid #3A3A3A;display:flex;align-items:center;gap:6px;height:22px;}
+.ub-r .wx b{color:#fff;font-weight:600;}
+.ub-r .soc{gap:8px;}
+.ub-r .soc i{width:15px;height:15px;border-radius:3px;background:#3E3E3E;display:block;}
+.ub-r .lang b{color:var(--org);}
+.ub-r .lgn{color:#fff;font-weight:600;}
+
+/* 02 MAIN HEADER */
+.mhead{border-bottom:1px solid var(--line);background:#fff;position:relative;}
+.mhead .wrap{display:flex;align-items:center;gap:34px;height:92px;}
+.logo{display:flex;align-items:center;gap:11px;flex:0 0 auto;}
+.logo .mark{width:52px;height:52px;border-radius:11px;background:linear-gradient(140deg,#F9A34E,var(--org));display:grid;place-items:center;position:relative;}
+.logo .mark svg{width:30px;height:30px;}
+.logo .lt{line-height:1;}
+.logo .lt b{display:block;font-family:var(--fd);font-size:27px;font-weight:800;letter-spacing:-.02em;color:var(--ink);}
+.logo .lt span{display:flex;align-items:center;gap:6px;margin-top:3px;font-family:var(--fu);font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--muted);}
+.logo .lt span i{width:22px;height:2px;background:var(--org);display:block;}
+.hsearch{flex:1;max-width:520px;position:relative;}
+.hsearch input{
+  width:100%;height:48px;border:1.5px solid var(--line);border-radius:6px;background:var(--grey);
+  padding:0 116px 0 46px;font-family:var(--fb);font-size:14px;color:var(--ink);outline:none;
+}
+.hsearch input::placeholder{color:#A5A5A5;}
+.hsearch .si{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:17px;height:17px;border:2px solid #9A9A9A;border-radius:50%;}
+.hsearch .si::after{content:"";position:absolute;right:-6px;bottom:-3px;width:8px;height:2px;background:#9A9A9A;transform:rotate(45deg);}
+.hsearch .sbtn{position:absolute;right:5px;top:5px;height:38px;padding:0 18px;border:0;border-radius:4px;background:var(--org);color:#fff;font-family:var(--fd);font-size:13px;font-weight:700;}
+.hact{display:flex;align-items:center;gap:10px;margin-left:auto;flex:0 0 auto;}
+.hact .hbtn{display:flex;align-items:center;gap:7px;height:42px;padding:0 15px;border:1.5px solid var(--line);border-radius:5px;font-family:var(--fd);font-size:13px;font-weight:600;color:var(--ink2);}
+.hact .hbtn.live{background:#D0021B;border-color:#D0021B;color:#fff;}
+.hact .hbtn.live i{width:7px;height:7px;border-radius:50%;background:#fff;display:block;}
+.hact .hbtn.ep{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+/* 03 PRIMARY NAV */
+.pnav{background:#fff;border-bottom:2px solid var(--ink);position:relative;z-index:30;}
+.pnav .wrap{display:flex;align-items:stretch;}
+.pnav a{
+  font-family:var(--fd);font-size:14.5px;font-weight:600;color:var(--ink2);
+  padding:14px 15px;position:relative;white-space:nowrap;display:flex;align-items:center;gap:5px;
+}
+.pnav a.home{background:var(--org);color:#fff;font-weight:700;}
+.pnav a.on{color:var(--org-d);}
+.pnav a.on::after{content:"";position:absolute;left:15px;right:15px;bottom:-2px;height:3px;background:var(--org);}
+.pnav a .cv{width:0;height:0;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:4px solid #B0B0B0;}
+.pnav .nspacer{flex:1;}
+.pnav .nlast{display:flex;align-items:center;gap:8px;padding-right:0;}
+.pnav .nlast .npill{font-family:var(--fu);font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--org-d);background:var(--org-l);border:1px solid var(--org-b);padding:5px 10px;border-radius:20px;}
+.sticky-note{position:absolute;right:14px;top:-30px;}
+</style>
+</head>
+<body>
+
+<!-- ═══════ FIGMA CHROME ═══════ -->
+<div class="figbar">
+  <div class="fb-logo"><b>S</b> Futuready&nbsp;Media</div>
+  <div class="fb-file">Shivsena LIVE / <span>Homepage Wireframe v1.0</span></div>
+  <nav class="fb-tabs">
+    <a href="#ab-home" class="on">Homepage</a>
+    <a href="#ab-mega">Mega Menu</a>
+    <a href="#ab-lib">Components</a>
+    <a href="#ab-mob">Mobile</a>
+    <a href="#ab-spec">Spec</a>
+  </nav>
+  <div class="fb-right">
+    <span class="chip">1440 × auto</span>
+    <span class="chip">12-col · 24px gutter</span>
+    <span class="chip o">Wireframe — pre-visual</span>
+    <span>04 Aug 2026</span>
+  </div>
+</div>
+
+<!-- ═══════ LEFT RAIL ═══════ -->
+<aside class="rail">
+  <h4>Pages</h4>
+  <a href="#ab-home" class="grp"><i>▸</i> Homepage — Desktop</a>
+  <a href="#ab-mega" class="grp"><i>▸</i> Mega Menu — State</a>
+  <a href="#ab-lib" class="grp"><i>▸</i> Component Library</a>
+  <a href="#ab-mob" class="grp"><i>▸</i> Mobile — 390</a>
+  <a href="#ab-spec" class="grp"><i>▸</i> Spec &amp; Handoff</a>
+  <div class="rdiv"></div>
+  <h4>Homepage Sections</h4>
+  <a href="#s01"><i>01</i> Utility Bar</a>
+  <a href="#s02"><i>02</i> Main Header</a>
+  <a href="#s03"><i>03</i> Primary Nav</a>
+  <a href="#s04"><i>04</i> Leaderboard Ad</a>
+  <a href="#s05"><i>05</i> Hero — Lead Story</a>
+  <a href="#s06"><i>06</i> Breaking Strip</a>
+  <a href="#s07"><i>07</i> Regional News</a>
+  <a href="#s08"><i>08</i> Editor's Pick</a>
+  <a href="#s09"><i>09</i> राजकारण</a>
+  <a href="#s10"><i>10</i> भूमिका — Explainers</a>
+  <a href="#s11"><i>11</i> शिवसेना कॉर्नर</a>
+  <a href="#s12"><i>12</i> Video Carousel</a>
+  <a href="#s13"><i>13</i> Content Hubs ×14</a>
+  <a href="#s14"><i>14</i> Photo Gallery</a>
+  <a href="#s15"><i>15</i> Web Stories</a>
+  <a href="#s16"><i>16</i> Podcasts</a>
+  <a href="#s17"><i>17</i> Trending</a>
+  <a href="#s18"><i>18</i> Right Sidebar</a>
+  <a href="#s19"><i>19</i> Footer</a>
+  <div class="rnote">
+    <p><b>WIREFRAME —</b> structure, hierarchy &amp; content strategy only. Grey blocks = image slots. Colour, photography and final type treatment follow at <b>visual design</b> stage.</p>
+  </div>
+</aside>
+
+<div class="canvas">
+
+<!-- ══════════════════════════════════════════
+     ARTBOARD 1 — HOMEPAGE DESKTOP
+     ══════════════════════════════════════════ -->
+<div class="frame-label">
+  <i class="fi"></i> Homepage — Desktop <span class="sz">· 1440 × auto</span>
+  <span class="badge">ARTBOARD 01</span>
+</div>
+<div class="frame" id="ab-home">
+
+  <!-- ─── 01 UTILITY BAR ─── -->
+  <div class="wsec" id="s01" style="padding:0;">
+    <div class="smark" style="top:8px;"><b>01</b> Utility Bar<br>H 38px</div>
+    <div class="ubar">
+      <span class="pin" style="left:-13px;top:9px;">1</span>
+      <div class="wrap">
+        <span class="ub-live"><i></i>BREAKING</span>
+        <div class="ub-tick">
+          <div class="row">
+            <span><b>१२:४०</b>राज्य मंत्रिमंडळाच्या बैठकीत पायाभूत सुविधा प्रकल्पांना मंजुरी</span>
+            <span><b>१२:१८</b>मुंबई महापालिकेचा पावसाळापूर्व कृती आराखडा जाहीर</span>
+            <span><b>११:५५</b>विदर्भात पुढील दोन दिवस पावसाचा अंदाज</span>
+          </div>
+        </div>
+        <div class="ub-r">
+          <span class="wx">मुंबई <b>३१°</b></span>
+          <span>मंगळवार, ०४ ऑगस्ट २०२६</span>
+          <span class="lang"><b>मराठी</b> / EN</span>
+          <span>ई-पेपर</span>
+          <span>LIVE TV</span>
+          <span class="soc"><i></i><i></i><i></i><i></i></span>
+          <span class="lgn">लॉगिन</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 02 MAIN HEADER ─── -->
+  <div class="wsec" id="s02" style="padding:0;">
+    <div class="smark" style="top:30px;"><b>02</b> Main Header<br>H 92px<br>sticky</div>
+    <div class="mhead">
+      <span class="pin" style="left:-13px;top:36px;">2</span>
+      <div class="wrap">
+        <div class="logo">
+          <div class="mark">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 5 L20 27" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M20 5 L16.5 10 M20 5 L23.5 10" stroke="#fff" stroke-width="2.3" stroke-linecap="round"/>
+              <path d="M7 27 Q20 15 33 27" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+              <path d="M7 27 L33 27" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lt">
+            <b>शिवसेना</b>
+            <span><i></i>LIVE</span>
+          </div>
+        </div>
+
+        <div class="hsearch">
+          <span class="si"></span>
+          <input type="text" placeholder="बातम्या, विषय, जिल्हा किंवा लेखक शोधा…">
+          <button class="sbtn">शोधा</button>
+        </div>
+
+        <div class="hact">
+          <span class="hbtn live"><i></i>LIVE TV</span>
+          <span class="hbtn ep">ई-पेपर</span>
+          <span class="hbtn">🔔 अलर्ट</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 03 PRIMARY NAV ─── -->
+  <div class="wsec" id="s03" style="padding:0;">
+    <div class="smark" style="top:14px;"><b>03</b> Primary Nav<br>12 items<br>+ mega menu</div>
+    <div class="pnav">
+      <span class="pin" style="left:-13px;top:16px;">3</span>
+      <div class="wrap">
+        <a href="#" class="home">होम</a>
+        <a href="#" class="on">मुख्य बातम्या <span class="cv"></span></a>
+        <a href="#">राजकारण <span class="cv"></span></a>
+        <a href="#">संपादकीय <span class="cv"></span></a>
+        <a href="#">क्रीडा</a>
+        <a href="#">मनोरंजन</a>
+        <a href="#">ट्रेंडिंग <span class="cv"></span></a>
+        <a href="#">शिवसेना कॉर्नर <span class="cv"></span></a>
+        <a href="#">फोटो</a>
+        <a href="#">व्हिडिओ</a>
+        <a href="#">वेब स्टोरी</a>
+        <a href="#">पॉडकास्ट</a>
+        <span class="nspacer"></span>
+        <span class="nlast"><span class="npill">३० + विभाग</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 04 LEADERBOARD AD ─── -->
+  <div class="wsec" id="s04" style="padding:22px 0 6px;">
+    <div class="smark" style="top:26px;"><b>04</b> Ad Slot<br>Leaderboard</div>
+    <div class="wrap">
+      <span class="pin" style="left:-13px;top:24px;">4</span>
+      <div class="ph plain" style="height:92px;border:1px dashed #CFCFCF;display:grid;place-items:center;background:#FAFAFA;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--fm);font-size:11px;font-weight:600;color:#9A9A9A;letter-spacing:.14em;">ADVERTISEMENT — LEADERBOARD</div>
+          <div style="font-family:var(--fm);font-size:10px;color:#B5B5B5;margin-top:4px;">970 × 90 &nbsp;·&nbsp; desktop &nbsp;|&nbsp; 320 × 50 &nbsp;·&nbsp; mobile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 05 HERO ─── -->
+  <div class="wsec" id="s05" style="padding:26px 0 34px;">
+    <div class="smark" style="top:34px;"><b>05</b> Hero<br>Lead + 4<br>8 / 4 cols</div>
+    <div class="wrap" style="position:relative;">
+      <span class="pin" style="left:-13px;top:30px;">5</span>
+      <div class="gridov" style="opacity:.55;">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:32px;position:relative;z-index:10;">
+
+        <!-- lead story -->
+        <article>
+          <div class="ph r219" style="border-radius:4px;">
+            <span class="pht">LEAD IMAGE · 1280 × 548 · 21:9</span>
+            <div style="position:absolute;left:16px;top:16px;display:flex;gap:7px;">
+              <span class="tag">मुख्य बातमी</span>
+              <span class="tag g">EXCLUSIVE</span>
+            </div>
+          </div>
+          <div style="padding-top:18px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+              <span class="tag o">राजकारण</span>
+              <span class="tstamp">२० मिनिटांपूर्वी</span>
+              <span class="tstamp">४ मिनिटे वाचन</span>
+            </div>
+            <h3 class="hl" style="font-size:38px;line-height:1.2;margin-bottom:12px;">राज्यातील पायाभूत सुविधा प्रकल्पांना गती; पुढील टप्प्याच्या कामाला मंजुरी</h3>
+            <p class="dek" style="font-size:15.5px;max-width:92%;">मंत्रिमंडळ बैठकीत घेतलेल्या निर्णयांचा थेट परिणाम कोणत्या जिल्ह्यांवर होणार, निधीचे वाटप कसे असेल आणि प्रत्यक्ष कामाला कधीपासून सुरुवात होणार — सविस्तर विश्लेषण.</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:16px;">
+              <span class="btn">सविस्तर वाचा →</span>
+              <span style="display:flex;align-items:center;gap:9px;">
+                <span class="ph r11 plain" style="width:30px;border-radius:50%;"></span>
+                <span style="font-family:var(--fd);font-size:12.5px;font-weight:600;">प्रतिनिधी, मुंबई</span>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 breaking -->
+        <aside>
+          <div style="display:flex;align-items:center;gap:9px;padding-bottom:11px;border-bottom:2px solid var(--ink);margin-bottom:4px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#D0021B;display:block;"></span>
+            <h4 style="font-family:var(--fd);font-size:16px;font-weight:800;">ताज्या घडामोडी</h4>
+            <span style="margin-left:auto;font-family:var(--fm);font-size:9.5px;color:var(--muted);">AUTO-REFRESH 60s</span>
+          </div>
+
+          <a href="#" style="display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line);">
+            <span style="font-family:var(--fu);font-size:20px;font-weight:800;color:var(--org);line-height:1;flex:0 0 auto;">01</span>
+            <span style="flex:1;">
+              <h3 class="hl" style="font-size:15px;margin-bottom:6px;">मुंबई महापालिकेचा पावसाळापूर्व कृती आराखडा जाहीर</h3>
+              <span class="tstamp">१२:१८ · मुंबई</span>
+            </span>
+            <span class="ph r11 plain" style="width:56px;flex:0 0 auto;border-radius:3px;"></span>
+          </a>
+          <a href="#" style="display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line);">
+            <span style="font-family:var(--fu);font-size:20px;font-weight:800;color:var(--org);line-height:1;flex:0 0 auto;">02</span>
+            <span style="flex:1;">
+              <h3 class="hl" style="font-size:15px;margin-bottom:6px;">विदर्भात पुढील दोन दिवस मुसळधार पावसाचा अंदाज</h3>
+              <span class="tstamp">११:५५ · नागपूर</span>
+            </span>
+            <span class="ph r11 plain" style="width:56px;flex:0 0 auto;border-radius:3px;"></span>
+          </a>
+          <a href="#" style="display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line);">
+            <span style="font-family:var(--fu);font-size:20px;font-weight:800;color:var(--org);line-height:1;flex:0 0 auto;">03</span>
+            <span style="flex:1;">
+              <h3 class="hl" style="font-size:15px;margin-bottom:6px;">कोकण किनारपट्टीवर मच्छीमारांना सतर्कतेचा इशारा</h3>
+              <span class="tstamp">११:३० · रत्नागिरी</span>
+            </span>
+            <span class="ph r11 plain" style="width:56px;flex:0 0 auto;border-radius:3px;"></span>
+          </a>
+          <a href="#" style="display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line);">
+            <span style="font-family:var(--fu);font-size:20px;font-weight:800;color:var(--org);line-height:1;flex:0 0 auto;">04</span>
+            <span style="flex:1;">
+              <h3 class="hl" style="font-size:15px;margin-bottom:6px;">मराठवाड्यातील सिंचन प्रकल्पाचा आढावा; निधी वितरणाचा निर्णय</h3>
+              <span class="tstamp">१०:४८ · छ. संभाजीनगर</span>
+            </span>
+            <span class="ph r11 plain" style="width:56px;flex:0 0 auto;border-radius:3px;"></span>
+          </a>
+
+          <div class="note" style="margin-top:14px;">
+            <div class="note-row"><span class="n">5</span><span><b>Hero rule —</b> lead story is editor-pinned from CMS. The four side stories auto-populate by recency, with manual override. Entire block must render above 900px fold.</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="sguide">↕ 40px section gap</div>
+<style>
+/* ─── SHARED CARD SYSTEM ─── */
+.ncard{display:block;}
+.ncard .ph{border-radius:3px;margin-bottom:11px;}
+.ncard h3{font-family:var(--fd);font-weight:700;line-height:1.34;font-size:15.5px;margin-bottom:7px;}
+.ncard .cmeta{display:flex;align-items:center;gap:10px;}
+.hscroll{display:flex;gap:20px;overflow:hidden;position:relative;}
+.hscroll>*{flex:0 0 auto;}
+.hs-nav{display:flex;gap:6px;margin-left:auto;}
+.hs-nav span{width:30px;height:30px;border:1.5px solid var(--line);border-radius:50%;display:grid;place-items:center;font-family:var(--fu);font-size:13px;color:var(--ink3);}
+.hs-nav span.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.fade-r{position:absolute;right:0;top:0;bottom:0;width:70px;background:linear-gradient(90deg,transparent,#fff);pointer-events:none;z-index:6;}
+.fade-r.g{background:linear-gradient(90deg,transparent,var(--grey));}
+.fade-r.d{background:linear-gradient(90deg,transparent,var(--ink));}
+
+/* main + sidebar grid */
+.mgrid{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;position:relative;}
+.mgrid>*{min-width:0;}
+.col-main{min-width:0;}
+.col-main .smark{left:-172px;}
+.hscroll{overflow:hidden;}
+.hscroll{min-width:0;max-width:100%;}
+.col-side{position:relative;}
+
+/* sidebar modules */
+.smod{border:1px solid var(--line);border-radius:5px;margin-bottom:20px;overflow:hidden;background:#fff;}
+.smod-h{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--grey);}
+.smod-h h4{font-family:var(--fd);font-size:14.5px;font-weight:800;}
+.smod-h .acc{width:4px;height:15px;background:var(--org);border-radius:2px;}
+.smod-h .mm{margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--muted);}
+.smod-b{padding:12px 14px;}
+.mread{display:flex;gap:11px;padding:10px 0;border-bottom:1px dashed var(--line);}
+.mread:last-child{border-bottom:none;}
+.mread .rk{font-family:var(--fu);font-size:19px;font-weight:800;color:var(--line);line-height:1;flex:0 0 auto;width:22px;}
+.mread.top .rk{color:var(--org);}
+.mread h5{font-family:var(--fd);font-size:13.5px;font-weight:600;line-height:1.4;}
+.mread .tstamp{font-size:10.5px;margin-top:4px;}
+.adbox{border:1px dashed #CFCFCF;background:#FAFAFA;display:grid;place-items:center;text-align:center;}
+.adbox .t1{font-family:var(--fm);font-size:10.5px;font-weight:600;color:#9A9A9A;letter-spacing:.13em;}
+.adbox .t2{font-family:var(--fm);font-size:9.5px;color:#B5B5B5;margin-top:3px;}
+.poll-opt{display:flex;align-items:center;gap:9px;padding:8px 10px;border:1.5px solid var(--line);border-radius:4px;margin-bottom:8px;font-family:var(--fd);font-size:13px;font-weight:600;}
+.poll-opt i{width:14px;height:14px;border:1.5px solid #C4C4C4;border-radius:50%;display:block;flex:0 0 auto;}
+.poll-opt.sel{border-color:var(--org);background:var(--org-l);}
+.poll-opt.sel i{border-color:var(--org);background:var(--org);box-shadow:inset 0 0 0 2.5px #fff;}
+
+/* regional card */
+.rcard{width:228px;border:1px solid var(--line);border-radius:5px;overflow:hidden;}
+.rcard .ph{border-radius:0;margin:0;}
+.rcard .rb{padding:12px 13px 14px;}
+.rcard .rt{display:flex;align-items:center;gap:7px;margin-bottom:9px;}
+.rcard .rt b{font-family:var(--fd);font-size:15px;font-weight:800;}
+.rcard .rt span{font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-left:auto;}
+.rcard li{font-family:var(--fd);font-size:12.5px;font-weight:500;line-height:1.42;color:var(--ink2);padding:6px 0 6px 11px;position:relative;border-bottom:1px dashed var(--line2);}
+.rcard li:last-child{border-bottom:none;}
+.rcard li::before{content:"";position:absolute;left:0;top:12px;width:4px;height:4px;border-radius:50%;background:var(--org);}
+
+/* editor pick */
+.epick{border:1px solid var(--line);border-radius:5px;overflow:hidden;position:relative;}
+.epick .ph{border-radius:0;margin:0;}
+.epick .eb{padding:15px 16px 17px;}
+.epick .enum{position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--fu);font-size:12px;font-weight:700;display:grid;place-items:center;}
+
+/* explainer card */
+.exp{width:100%;}
+.exp .ph{border-radius:4px;margin-bottom:10px;}
+.exp .ebar{display:flex;align-items:center;gap:8px;margin-top:7px;}
+.exp .av{width:26px;height:26px;border-radius:50%;background:var(--ph);flex:0 0 auto;}
+</style>
+
+  <!-- ─── 06 BREAKING STRIP ─── -->
+  <div class="wsec alt" id="s06" style="padding:26px 0;">
+    <div class="smark" style="top:32px;"><b>06</b> Breaking Strip<br>h-scroll cards</div>
+    <div class="wrap" style="position:relative;">
+      <span class="pin" style="left:-13px;top:26px;">6</span>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:15px;">
+        <span class="tag" style="background:#D0021B;">● आताच्या बातम्या</span>
+        <h2 style="font-family:var(--fd);font-size:19px;font-weight:800;">देशभरातून</h2>
+        <div class="hs-nav"><span>‹</span><span class="on">›</span></div>
+      </div>
+      <div class="hscroll">
+        <a class="ncard" style="width:236px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px;">
+          <span class="tag o" style="margin-bottom:9px;">महाराष्ट्र</span>
+          <h3 style="font-size:14px;">राज्यातील रस्ते विकास प्रकल्पांचा नव्याने आढावा</h3>
+          <span class="tstamp">८ मिनिटांपूर्वी</span>
+        </a>
+        <a class="ncard" style="width:236px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px;">
+          <span class="tag o" style="margin-bottom:9px;">मुंबई</span>
+          <h3 style="font-size:14px;">उपनगरी रेल्वे सेवेच्या वेळापत्रकात बदल</h3>
+          <span class="tstamp">२२ मिनिटांपूर्वी</span>
+        </a>
+        <a class="ncard" style="width:236px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px;">
+          <span class="tag o" style="margin-bottom:9px;">कृषी</span>
+          <h3 style="font-size:14px;">खरीप हंगामासाठी बियाणे वितरणाला सुरुवात</h3>
+          <span class="tstamp">३५ मिनिटांपूर्वी</span>
+        </a>
+        <a class="ncard" style="width:236px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px;">
+          <span class="tag o" style="margin-bottom:9px;">क्रीडा</span>
+          <h3 style="font-size:14px;">राज्यस्तरीय कुस्ती स्पर्धेचे वेळापत्रक जाहीर</h3>
+          <span class="tstamp">५१ मिनिटांपूर्वी</span>
+        </a>
+        <a class="ncard" style="width:236px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px;">
+          <span class="tag o" style="margin-bottom:9px;">शिक्षण</span>
+          <h3 style="font-size:14px;">शिष्यवृत्ती अर्जाची मुदत वाढवली</h3>
+          <span class="tstamp">१ तासापूर्वी</span>
+        </a>
+        <div class="fade-r g"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ MAIN GRID A : content + sidebar ══════ -->
+  <div class="wrap" style="padding-top:8px;">
+    <div class="mgrid">
+
+      <!-- ══ LEFT COLUMN ══ -->
+      <div class="col-main">
+
+        <!-- ─── 07 REGIONAL NEWS ─── -->
+        <section class="wsec" id="s07" style="padding:34px 0 30px;">
+          <div class="smark" style="top:40px;"><b>07</b> Regional<br>7 bureaus</div>
+          <span class="pin" style="left:-13px;top:36px;">7</span>
+          <div class="sechd">
+            <span class="sacc"></span>
+            <h2>प्रादेशिक बातम्या <em>Regional</em></h2>
+            <div class="hs-nav"><span>‹</span><span class="on">›</span></div>
+          </div>
+          <div class="hscroll" style="position:relative;">
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>मुंबई</b><span>१२ नवीन</span></div>
+                <ul>
+                  <li>पालिकेचा पावसाळापूर्व कृती आराखडा जाहीर</li>
+                  <li>उपनगरी वाहतुकीत सुधारणा प्रस्तावित</li>
+                  <li>सागरी किनारा प्रकल्पाचा आढावा</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>ठाणे</b><span>८ नवीन</span></div>
+                <ul>
+                  <li>शहरातील पाणीपुरवठा योजनेला मंजुरी</li>
+                  <li>नवीन उड्डाणपुलाचे काम प्रगतिपथावर</li>
+                  <li>महापालिका शाळांचे डिजिटलायझेशन</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>कोकण</b><span>६ नवीन</span></div>
+                <ul>
+                  <li>मच्छीमारांना सतर्कतेचा इशारा</li>
+                  <li>आंबा हंगामाचा अंतिम टप्पा</li>
+                  <li>पर्यटन हंगामासाठी तयारी सुरू</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>विदर्भ</b><span>९ नवीन</span></div>
+                <ul>
+                  <li>पुढील दोन दिवस पावसाचा अंदाज</li>
+                  <li>कापूस खरेदी केंद्रांचा आढावा</li>
+                  <li>औद्योगिक वसाहतीत नवे प्रकल्प</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>मराठवाडा</b><span>७ नवीन</span></div>
+                <ul>
+                  <li>सिंचन प्रकल्पाचा निधी मंजूर</li>
+                  <li>जलसंधारण कामांना गती</li>
+                  <li>शेतकरी मेळाव्याचे आयोजन</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>उत्तर महाराष्ट्र</b><span>५ नवीन</span></div>
+                <ul>
+                  <li>द्राक्ष निर्यातीत वाढ नोंदवली</li>
+                  <li>यात्रा कालावधीत विशेष व्यवस्था</li>
+                  <li>रस्ते दुरुस्तीच्या कामाला सुरुवात</li>
+                </ul>
+              </div>
+            </div>
+            <div class="rcard">
+              <div class="ph r43"><span class="pht">228 × 171</span></div>
+              <div class="rb">
+                <div class="rt"><b>देश</b><span>१४ नवीन</span></div>
+                <ul>
+                  <li>केंद्रीय योजनांचा राज्यनिहाय आढावा</li>
+                  <li>अर्थसंकल्पातील तरतुदींचे विश्लेषण</li>
+                  <li>हवामान विभागाचा नवा अंदाज</li>
+                </ul>
+              </div>
+            </div>
+            <div class="fade-r"></div>
+          </div>
+          <div class="note" style="margin-top:16px;">
+            <div class="note-row"><span class="n">7</span><span><b>Each bureau card = independent landing page</b> with its own URL, editor, ad slot and Google News section map. Card shows 3 latest headlines + unseen count. Order is editor-sortable; "देश" always last.</span></div>
+          </div>
+        </section>
+
+        <!-- ─── 08 EDITOR'S PICK ─── -->
+        <section class="wsec" id="s08" style="padding:30px 0;">
+          <div class="smark" style="top:36px;"><b>08</b> Editor's Pick<br>3 premium</div>
+          <span class="pin" style="left:-13px;top:32px;">8</span>
+          <div class="sechd">
+            <span class="sacc"></span>
+            <h2>संपादकांची निवड <em>Editor's Pick</em></h2>
+            <span class="more">सर्व</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+            <article class="epick">
+              <span class="enum">1</span>
+              <div class="ph r43"><span class="pht">315 × 236</span></div>
+              <div class="eb">
+                <span class="tag o" style="margin-bottom:9px;">विश्लेषण</span>
+                <h3 class="hl" style="font-size:17px;margin-bottom:8px;">राज्याच्या अर्थसंकल्पातील तरतुदी सामान्य माणसाला काय देतात?</h3>
+                <p class="dek" style="font-size:12.5px;">आकडेवारीच्या पलीकडे जाऊन प्रत्यक्ष परिणामाचा वेध.</p>
+                <div style="display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:11px;border-top:1px solid var(--line2);">
+                  <span class="ph r11 plain" style="width:26px;border-radius:50%;"></span>
+                  <span style="font-family:var(--fd);font-size:12px;font-weight:600;">संपादकीय विभाग</span>
+                  <span class="tstamp" style="margin-left:auto;">५ तास</span>
+                </div>
+              </div>
+            </article>
+            <article class="epick">
+              <span class="enum">2</span>
+              <div class="ph r43"><span class="pht">315 × 236</span></div>
+              <div class="eb">
+                <span class="tag o" style="margin-bottom:9px;">शिवविचार</span>
+                <h3 class="hl" style="font-size:17px;margin-bottom:8px;">मराठी अस्मिता आणि आजची पिढी: संवाद कुठे थांबतो?</h3>
+                <p class="dek" style="font-size:12.5px;">स्तंभलेखकाच्या नजरेतून सांस्कृतिक बदलांचा मागोवा.</p>
+                <div style="display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:11px;border-top:1px solid var(--line2);">
+                  <span class="ph r11 plain" style="width:26px;border-radius:50%;"></span>
+                  <span style="font-family:var(--fd);font-size:12px;font-weight:600;">स्तंभलेखक</span>
+                  <span class="tstamp" style="margin-left:auto;">८ तास</span>
+                </div>
+              </div>
+            </article>
+            <article class="epick">
+              <span class="enum">3</span>
+              <div class="ph r43"><span class="pht">315 × 236</span></div>
+              <div class="eb">
+                <span class="tag o" style="margin-bottom:9px;">अर्थभान</span>
+                <h3 class="hl" style="font-size:17px;margin-bottom:8px;">छोट्या उद्योगांसाठी नव्या कर्ज योजना: पात्रता आणि प्रक्रिया</h3>
+                <p class="dek" style="font-size:12.5px;">अर्ज कुठे करायचा, कागदपत्रे कोणती — संपूर्ण मार्गदर्शन.</p>
+                <div style="display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:11px;border-top:1px solid var(--line2);">
+                  <span class="ph r11 plain" style="width:26px;border-radius:50%;"></span>
+                  <span style="font-family:var(--fd);font-size:12px;font-weight:600;">विशेष प्रतिनिधी</span>
+                  <span class="tstamp" style="margin-left:auto;">१ दिवस</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- IN-FEED AD -->
+        <div class="wsec" style="padding:6px 0 20px;">
+          <div class="adbox" style="height:110px;">
+            <div>
+              <div class="t1">IN-FEED NATIVE AD</div>
+              <div class="t2">flows with content · labelled "जाहिरात" · 984 × 110</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── 09 POLITICS ─── -->
+        <section class="wsec" id="s09" style="padding:30px 0;">
+          <div class="smark" style="top:36px;"><b>09</b> राजकारण<br>featured +<br>list + most read</div>
+          <span class="pin" style="left:-13px;top:32px;">9</span>
+          <div class="sechd">
+            <span class="sacc"></span>
+            <h2>राजकारण <em>Politics</em></h2>
+            <span class="more">सर्व बातम्या</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:28px;">
+            <article>
+              <div class="ph r16" style="border-radius:4px;">
+                <span class="pht">FEATURED · 540 × 304 · 16:9</span>
+                <span class="tag" style="position:absolute;left:12px;top:12px;">विशेष</span>
+              </div>
+              <div style="padding-top:15px;">
+                <div style="display:flex;gap:11px;margin-bottom:9px;">
+                  <span class="tag o">निवडणूक</span><span class="tstamp">३ तासांपूर्वी</span>
+                </div>
+                <h3 class="hl" style="font-size:24px;margin-bottom:10px;">स्थानिक स्वराज्य संस्थांच्या निवडणुका: तयारी, आव्हाने आणि गणित</h3>
+                <p class="dek">मतदारसंघनिहाय परिस्थिती, आघाड्यांची समीकरणे आणि प्रचाराचे मुद्दे — जिल्हावार सविस्तर मांडणी.</p>
+              </div>
+            </article>
+            <div>
+              <h4 style="font-family:var(--fd);font-size:14px;font-weight:800;padding-bottom:9px;border-bottom:1.5px solid var(--ink);margin-bottom:4px;">ताज्या राजकीय बातम्या</h4>
+              <a style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line2);">
+                <span class="ph r11 plain" style="width:62px;flex:0 0 auto;border-radius:3px;"></span>
+                <span><h3 class="hl" style="font-size:13.5px;">मंत्रिमंडळ बैठकीत महत्त्वाचे निर्णय; अंमलबजावणीचा आराखडा</h3><span class="tstamp" style="margin-top:5px;">१ तास</span></span>
+              </a>
+              <a style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line2);">
+                <span class="ph r11 plain" style="width:62px;flex:0 0 auto;border-radius:3px;"></span>
+                <span><h3 class="hl" style="font-size:13.5px;">जिल्हा नियोजन समितीच्या निधीवाटपाला मंजुरी</h3><span class="tstamp" style="margin-top:5px;">२ तास</span></span>
+              </a>
+              <a style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line2);">
+                <span class="ph r11 plain" style="width:62px;flex:0 0 auto;border-radius:3px;"></span>
+                <span><h3 class="hl" style="font-size:13.5px;">विधिमंडळ अधिवेशनाचे कामकाज: कोणते विषय चर्चेत</h3><span class="tstamp" style="margin-top:5px;">४ तास</span></span>
+              </a>
+              <a style="display:flex;gap:12px;padding:12px 0;">
+                <span class="ph r11 plain" style="width:62px;flex:0 0 auto;border-radius:3px;"></span>
+                <span><h3 class="hl" style="font-size:13.5px;">स्थानिक पातळीवरील संघटनात्मक बांधणीचा आढावा</h3><span class="tstamp" style="margin-top:5px;">६ तास</span></span>
+              </a>
+              <div style="background:var(--grey);border-radius:5px;padding:13px 14px;margin-top:14px;">
+                <h4 style="font-family:var(--fd);font-size:13px;font-weight:800;margin-bottom:9px;">🔥 सर्वाधिक वाचलेल्या</h4>
+                <div style="font-family:var(--fd);font-size:12.5px;font-weight:600;line-height:1.45;color:var(--ink2);">
+                  <div style="padding:5px 0;border-bottom:1px dashed var(--line);">१. निधी वितरणाचा नवा आराखडा</div>
+                  <div style="padding:5px 0;border-bottom:1px dashed var(--line);">२. पक्ष संघटनेत नव्या नियुक्त्या</div>
+                  <div style="padding:5px 0;">३. स्थानिक प्रश्नांवर आंदोलनाचा इशारा</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─── 10 भूमिका EXPLAINERS ─── -->
+        <section class="wsec" id="s10" style="padding:30px 0 34px;">
+          <div class="smark" style="top:36px;"><b>10</b> भूमिका<br>Explainer<br>YouTube-style</div>
+          <span class="pin" style="left:-13px;top:32px;">10</span>
+          <div class="sechd">
+            <span class="sacc"></span>
+            <h2>भूमिका <em>Explainer</em></h2>
+            <span style="font-family:var(--fd);font-size:12.5px;color:var(--muted);margin-left:4px;">८–१० मिनिटांचा विश्लेषणात्मक कार्यक्रम</span>
+            <span class="more">सर्व भाग</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+            <article class="exp">
+              <div class="ph r16"><span class="pht">THUMBNAIL 16:9</span><span class="play"></span><span class="dur">9:25</span></div>
+              <h3 class="hl" style="font-size:15px;">राष्ट्रीय धोरणातील बदल आणि महाराष्ट्रावरील परिणाम</h3>
+              <div class="ebar"><span class="av"></span><span style="font-family:var(--fd);font-size:11.5px;color:var(--ink3);font-weight:600;">भूमिका</span><span class="tstamp" style="margin-left:auto;">१२ हजार व्ह्यूज</span></div>
+            </article>
+            <article class="exp">
+              <div class="ph r16"><span class="pht">THUMBNAIL 16:9</span><span class="play"></span><span class="dur">8:45</span></div>
+              <h3 class="hl" style="font-size:15px;">जागतिक घडामोडींमध्ये भारताची वाढती भूमिका</h3>
+              <div class="ebar"><span class="av"></span><span style="font-family:var(--fd);font-size:11.5px;color:var(--ink3);font-weight:600;">भूमिका</span><span class="tstamp" style="margin-left:auto;">९.४ हजार</span></div>
+            </article>
+            <article class="exp">
+              <div class="ph r16"><span class="pht">THUMBNAIL 16:9</span><span class="play"></span><span class="dur">9:10</span></div>
+              <h3 class="hl" style="font-size:15px;">बेळगाव सीमाप्रश्न: पार्श्वभूमी आणि आजची स्थिती</h3>
+              <div class="ebar"><span class="av"></span><span style="font-family:var(--fd);font-size:11.5px;color:var(--ink3);font-weight:600;">भूमिका</span><span class="tstamp" style="margin-left:auto;">१८ हजार</span></div>
+            </article>
+          </div>
+          <div class="note" style="margin-top:16px;">
+            <div class="note-row"><span class="n">10</span><span><b>Content-pillar module —</b> sourced directly from the show line-up in the client presentation. Card = 16:9 thumb + duration + view count + show tag. Same component is reused for पॉडकास्ट, भ्रमंती, फूड शो and A Day With…</span></div>
+          </div>
+        </section>
+
+        <!-- ─── 10b FACT CHECK STRIP ─── -->
+        <section class="wsec" style="padding:0 0 34px;">
+          <div class="sechd thin">
+            <span class="sacc"></span>
+            <h2>फॅक्ट चेक <em>Fact Check</em></h2>
+            <span class="meta">verdict-labelled · schema: ClaimReview</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <article style="border:1px solid var(--line);border-left:3px solid #D0021B;border-radius:4px;padding:13px 14px;">
+              <span class="tag" style="background:#D0021B;margin-bottom:9px;">दावा खोटा</span>
+              <h3 class="hl" style="font-size:13.5px;">समाजमाध्यमांवरील 'त्या' योजनेचा दावा तपासला असता निराधार</h3>
+              <span class="tstamp" style="margin-top:7px;">पडताळणी पथक</span>
+            </article>
+            <article style="border:1px solid var(--line);border-left:3px solid #E8A33D;border-radius:4px;padding:13px 14px;">
+              <span class="tag" style="background:#E8A33D;margin-bottom:9px;">अर्धसत्य</span>
+              <h3 class="hl" style="font-size:13.5px;">आकडेवारीचा संदर्भ वगळून केलेला प्रसार दिशाभूल करणारा</h3>
+              <span class="tstamp" style="margin-top:7px;">पडताळणी पथक</span>
+            </article>
+            <article style="border:1px solid var(--line);border-left:3px solid #2E9E4F;border-radius:4px;padding:13px 14px;">
+              <span class="tag" style="background:#2E9E4F;margin-bottom:9px;">दावा खरा</span>
+              <h3 class="hl" style="font-size:13.5px;">अर्ज मुदतवाढीची अधिसूचना अधिकृत संकेतस्थळावर उपलब्ध</h3>
+              <span class="tstamp" style="margin-top:7px;">पडताळणी पथक</span>
+            </article>
+          </div>
+          <div class="note" style="margin-top:14px;">
+            <div class="note-row"><span class="n">FC</span><span><b>Colour-coded verdicts</b> (खोटा / अर्धसत्य / खरा) are the only place red and green enter the palette. Carries ClaimReview schema — Google surfaces fact-checks separately, so this module earns traffic no other section can.</span></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ══ 18 RIGHT SIDEBAR ══ -->
+      <aside class="col-side" id="s18">
+        <span class="pin" style="left:-13px;top:36px;">18</span>
+        <div style="padding-top:34px;">
+
+          <div class="smod">
+            <div class="smod-h"><span class="acc"></span><h4>सर्वाधिक वाचलेल्या</h4><span class="mm">24H</span></div>
+            <div class="smod-b" style="padding-top:4px;padding-bottom:6px;">
+              <div class="mread top"><span class="rk">1</span><div><h5>राज्य मंत्रिमंडळाचे महत्त्वाचे निर्णय; काय बदलणार?</h5><span class="tstamp">१.२ लाख वाचक</span></div></div>
+              <div class="mread top"><span class="rk">2</span><div><h5>शिष्यवृत्ती अर्जाची मुदतवाढ; नवी तारीख जाहीर</h5><span class="tstamp">८८ हजार</span></div></div>
+              <div class="mread top"><span class="rk">3</span><div><h5>पावसाचा नवा अंदाज: कोणत्या जिल्ह्यांना इशारा</h5><span class="tstamp">७४ हजार</span></div></div>
+              <div class="mread"><span class="rk">4</span><div><h5>कृषी योजनांचा लाभ घेण्याची प्रक्रिया सोपी</h5><span class="tstamp">६१ हजार</span></div></div>
+              <div class="mread"><span class="rk">5</span><div><h5>उपनगरी रेल्वे वेळापत्रकात बदल</h5><span class="tstamp">५३ हजार</span></div></div>
+            </div>
+          </div>
+
+          <div class="smod">
+            <div class="smod-h"><span class="acc"></span><h4>ट्रेंडिंग विषय</h4></div>
+            <div class="smod-b">
+              <div style="display:flex;flex-wrap:wrap;gap:7px;">
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#मुंबई</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#पाऊस</span>
+                <span class="tag dev" style="background:var(--org-l);color:var(--org-d);">#शिवसेना</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#शेतकरी</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#निवडणूक</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#शिक्षण</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#आरोग्य</span>
+                <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#कोकण</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="adbox" style="height:250px;margin-bottom:20px;">
+            <div><div class="t1">MEDIUM RECTANGLE</div><div class="t2">300 × 250</div></div>
+          </div>
+
+          <div class="smod">
+            <div class="smod-h"><span class="acc"></span><h4>ताजे व्हिडिओ</h4><span class="mm">MPU</span></div>
+            <div class="smod-b" style="padding-top:8px;">
+              <a style="display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);">
+                <span class="ph r16 plain" style="width:88px;flex:0 0 auto;border-radius:3px;position:relative;"><span class="play" style="width:24px;height:24px;"></span></span>
+                <span><h5 style="font-family:var(--fd);font-size:12.5px;font-weight:600;line-height:1.4;">शिवसेना अपडेट्स — साप्ताहिक बुलेटीन</h5><span class="tstamp" style="font-size:10px;margin-top:3px;">6:12</span></span>
+              </a>
+              <a style="display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);">
+                <span class="ph r16 plain" style="width:88px;flex:0 0 auto;border-radius:3px;position:relative;"><span class="play" style="width:24px;height:24px;"></span></span>
+                <span><h5 style="font-family:var(--fd);font-size:12.5px;font-weight:600;line-height:1.4;">भ्रमंती: श्री साईबाबा संस्थान दर्शन</h5><span class="tstamp" style="font-size:10px;margin-top:3px;">8:30</span></span>
+              </a>
+              <a style="display:flex;gap:10px;padding:8px 0;">
+                <span class="ph r16 plain" style="width:88px;flex:0 0 auto;border-radius:3px;position:relative;"><span class="play" style="width:24px;height:24px;"></span></span>
+                <span><h5 style="font-family:var(--fd);font-size:12.5px;font-weight:600;line-height:1.4;">फूड शो: कोल्हापुरी तांबडा-पांढरा</h5><span class="tstamp" style="font-size:10px;margin-top:3px;">7:04</span></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="smod">
+            <div class="smod-h"><span class="acc"></span><h4>हवामान</h4></div>
+            <div class="smod-b">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div class="ph r11 plain" style="width:52px;border-radius:8px;"></div>
+                <div>
+                  <div style="font-family:var(--fu);font-size:30px;font-weight:800;line-height:1;">३१°</div>
+                  <div style="font-family:var(--fd);font-size:12.5px;color:var(--ink3);margin-top:3px;">मुंबई · ढगाळ</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:12px;padding-top:11px;border-top:1px solid var(--line2);">
+                <span style="flex:1;text-align:center;font-family:var(--fd);font-size:11px;color:var(--ink3);">बुध<br><b style="font-family:var(--fu);font-size:13px;color:var(--ink);">३२°</b></span>
+                <span style="flex:1;text-align:center;font-family:var(--fd);font-size:11px;color:var(--ink3);">गुरु<br><b style="font-family:var(--fu);font-size:13px;color:var(--ink);">३०°</b></span>
+                <span style="flex:1;text-align:center;font-family:var(--fd);font-size:11px;color:var(--ink3);">शुक्र<br><b style="font-family:var(--fu);font-size:13px;color:var(--ink);">२९°</b></span>
+                <span style="flex:1;text-align:center;font-family:var(--fd);font-size:11px;color:var(--ink3);">शनि<br><b style="font-family:var(--fu);font-size:13px;color:var(--ink);">३१°</b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="smod" style="border-color:#D0021B;">
+            <div class="smod-h" style="background:#D0021B;border-bottom-color:#D0021B;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#fff;display:block;"></span>
+              <h4 style="color:#fff;">LIVE TV</h4><span class="mm" style="color:rgba(255,255,255,.75);">HLS</span>
+            </div>
+            <div class="ph r16" style="margin:0;"><span class="pht">LIVE PLAYER 16:9</span><span class="play"></span></div>
+            <div class="smod-b" style="padding:10px 14px;">
+              <h5 style="font-family:var(--fd);font-size:12.5px;font-weight:700;">सध्या सुरू: दुपारचे बुलेटीन</h5>
+            </div>
+          </div>
+
+          <div class="smod">
+            <div class="smod-h"><span class="acc"></span><h4>तुमचे मत</h4><span class="mm">POLL</span></div>
+            <div class="smod-b">
+              <h5 style="font-family:var(--fd);font-size:13.5px;font-weight:700;line-height:1.45;margin-bottom:11px;">स्थानिक प्रश्नांपैकी कोणता विषय सर्वात महत्त्वाचा वाटतो?</h5>
+              <div class="poll-opt sel"><i></i>रस्ते व वाहतूक</div>
+              <div class="poll-opt"><i></i>पाणीपुरवठा</div>
+              <div class="poll-opt"><i></i>आरोग्य सुविधा</div>
+              <div class="poll-opt"><i></i>रोजगार</div>
+              <button class="btn sm" style="width:100%;justify-content:center;margin-top:4px;">मत नोंदवा</button>
+              <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-top:8px;text-align:center;">८,४२० मते नोंदवली</p>
+            </div>
+          </div>
+
+          <div class="smod" style="background:var(--ink);border-color:var(--ink);">
+            <div class="smod-b" style="padding:18px 16px;">
+              <h4 style="font-family:var(--fd);font-size:16px;font-weight:800;color:#fff;margin-bottom:7px;">दररोज सकाळी बातम्या</h4>
+              <p style="font-family:var(--fb);font-size:12px;line-height:1.55;color:rgba(255,255,255,.66);margin-bottom:13px;">महत्त्वाच्या बातम्यांचा सारांश थेट तुमच्या इनबॉक्समध्ये.</p>
+              <div style="height:38px;border-radius:4px;background:#333;display:flex;align-items:center;padding:0 12px;font-family:var(--fb);font-size:12px;color:#8A8A8A;margin-bottom:8px;">तुमचा ई-मेल</div>
+              <button class="btn sm" style="width:100%;justify-content:center;">सबस्क्राइब करा</button>
+            </div>
+          </div>
+
+          <div class="adbox" style="height:500px;margin-bottom:16px;">
+            <div>
+              <div class="t1">STICKY SIDEBAR AD</div>
+              <div class="t2">300 × 600 · half-page<br>sticks after scroll</div>
+            </div>
+          </div>
+
+          <div class="note">
+            <div class="note-row"><span class="n">18</span><span><b>Sidebar order is revenue-weighted.</b> Most Read first (highest engagement), MPU after two modules, half-page sticky last. Sidebar sticks from Regional through Explainers, then releases so full-bleed sections below run edge to edge.</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+<style>
+/* ─── SHIV SENA CORNER ─── */
+.ssc{background:var(--ink);color:#fff;position:relative;overflow:hidden;}
+.ssc::before{content:"";position:absolute;right:-160px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(245,130,32,.14),transparent 68%);}
+.ssc .sechd{border-bottom-color:rgba(255,255,255,.22);}
+.ssc .sechd h2{color:#fff;}
+.ssc .sechd h2 em{color:rgba(255,255,255,.45);}
+.ssc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.ssc-tabs span{font-family:var(--fd);font-size:13px;font-weight:600;padding:7px 15px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.72);}
+.ssc-tabs span.on{background:var(--org);border-color:var(--org);color:#fff;font-weight:700;}
+.ssc-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:6px;overflow:hidden;}
+.ssc-card .cb{padding:14px 15px 16px;}
+.ssc-card h3{font-family:var(--fd);font-size:15px;font-weight:700;line-height:1.36;color:#fff;margin-bottom:7px;}
+.ssc-card p{font-family:var(--fb);font-size:12px;line-height:1.55;color:rgba(255,255,255,.6);}
+.ssc-card .ph{background:#3A3A3A;background-image:
+  linear-gradient(45deg,transparent calc(50% - .5px),#4A4A4A calc(50% - .5px),#4A4A4A calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(-45deg,transparent calc(50% - .5px),#4A4A4A calc(50% - .5px),#4A4A4A calc(50% + .5px),transparent calc(50% + .5px));}
+.ssc-card .ph .pht{background:rgba(34,34,34,.9);color:#8A8A8A;}
+
+/* ─── HUB MODULE CARD ─── */
+.hub{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;}
+.hub-h{display:flex;align-items:center;gap:9px;padding:11px 13px;border-bottom:1px solid var(--line);}
+.hub-h .hi{width:26px;height:26px;border-radius:6px;background:var(--org-l);display:grid;place-items:center;font-size:13px;flex:0 0 auto;}
+.hub-h b{font-family:var(--fd);font-size:14px;font-weight:800;line-height:1.15;}
+.hub-h em{display:block;font-style:normal;font-family:var(--fu);font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:1px;}
+.hub-h .ar{margin-left:auto;font-family:var(--fu);font-size:13px;color:var(--muted);}
+.hub-b{padding:12px 13px 14px;flex:1;}
+.hub-b .ph{border-radius:3px;margin-bottom:10px;}
+.hub-b h3{font-family:var(--fd);font-size:13.5px;font-weight:700;line-height:1.4;margin-bottom:6px;}
+.hub-b li{font-family:var(--fd);font-size:12px;font-weight:500;line-height:1.4;color:var(--ink2);padding:5px 0 5px 10px;position:relative;border-top:1px dashed var(--line2);}
+.hub-b li::before{content:"";position:absolute;left:0;top:11px;width:3px;height:3px;border-radius:50%;background:var(--org);}
+
+/* ─── WEB STORIES ─── */
+.wstory{width:118px;text-align:center;flex:0 0 auto;}
+.wstory .ring{width:110px;height:110px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--org),#F9B06A);margin:0 auto 9px;}
+.wstory .ring .in{width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:var(--ph);background-image:
+  linear-gradient(45deg,transparent calc(50% - .5px),var(--phl) calc(50% - .5px),var(--phl) calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(-45deg,transparent calc(50% - .5px),var(--phl) calc(50% - .5px),var(--phl) calc(50% + .5px),transparent calc(50% + .5px));}
+.wstory p{font-family:var(--fd);font-size:12px;font-weight:600;line-height:1.35;color:var(--ink2);}
+.wstory.seen .ring{background:var(--line);}
+
+/* ─── PODCAST ─── */
+.pod{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px;position:relative;transition:.2s;}
+.pod .ph{border-radius:5px;margin-bottom:12px;}
+.pod h3{font-family:var(--fd);font-size:14px;font-weight:700;line-height:1.35;margin-bottom:5px;}
+.pod p{font-family:var(--fb);font-size:11.5px;color:var(--muted);line-height:1.45;}
+.pod .pbtn{position:absolute;right:20px;top:150px;width:42px;height:42px;border-radius:50%;background:var(--org);display:grid;place-items:center;box-shadow:0 6px 14px rgba(245,130,32,.4);}
+.pod .pbtn::after{content:"";border-left:12px solid #fff;border-top:7.5px solid transparent;border-bottom:7.5px solid transparent;margin-left:3px;}
+
+/* ─── TRENDING ─── */
+.trd{border-top:3px solid var(--ink);padding-top:12px;}
+.trd h4{font-family:var(--fd);font-size:15px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.trd .ph{border-radius:3px;margin-bottom:9px;}
+.trd h3{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.42;color:var(--ink2);}
+.trd li{font-family:var(--fd);font-size:12px;font-weight:500;line-height:1.4;color:var(--ink3);padding:6px 0;border-top:1px dashed var(--line2);}
+
+/* ─── MASONRY ─── */
+.masonry{columns:4;column-gap:14px;}
+.masonry>div{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:4px;overflow:hidden;}
+.masonry .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 11px 10px;background:linear-gradient(transparent,rgba(0,0,0,.78));}
+.masonry .cap b{font-family:var(--fd);font-size:12.5px;font-weight:600;color:#fff;line-height:1.35;display:block;}
+.masonry .cnt{position:absolute;right:8px;top:8px;background:rgba(34,34,34,.82);color:#fff;font-family:var(--fm);font-size:9.5px;padding:2.5px 7px;border-radius:3px;}
+</style>
+
+  <div class="sguide">↕ 56px — full-bleed section begins</div>
+
+  <!-- ─── 11 SHIV SENA CORNER ─── -->
+  <section class="wsec ssc" id="s11" style="padding:44px 0 48px;">
+    <div class="smark" style="top:50px;color:#8A8A8A;"><b>11</b> शिवसेना<br>कॉर्नर<br>full-bleed</div>
+    <span class="pin" style="left:-13px;top:46px;">11</span>
+    <div class="wrap" style="position:relative;z-index:5;">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>शिवसेना कॉर्नर <em>Organisation Desk</em></h2>
+        <span class="more" style="color:var(--org);">संपूर्ण विभाग</span>
+      </div>
+
+      <div class="ssc-tabs">
+        <span class="on">शिवकट्टा</span>
+        <span>पक्ष कार्य</span>
+        <span>पोचपावती — यशोगाथा</span>
+        <span>जनात शिवसेना</span>
+        <span>जिल्हा अपडेट्स</span>
+        <span>नेतृत्व कार्य</span>
+        <span>व्यक्ती आणि वल्ली</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:22px;margin-bottom:22px;">
+        <article class="ssc-card">
+          <div class="ph r16"><span class="pht">FEATURED · 16:9</span><span class="tag" style="position:absolute;left:12px;top:12px;">शिवकट्टा</span></div>
+          <div class="cb" style="padding:18px;">
+            <h3 style="font-size:23px;line-height:1.25;margin-bottom:9px;">शाखेपासून समाजापर्यंत: शिवसैनिकांच्या कार्याचा जिल्हावार आढावा</h3>
+            <p style="font-size:13.5px;">रक्तदान शिबिरे, आरोग्य तपासणी, शैक्षणिक मदत आणि स्थानिक प्रश्नांवरील पाठपुरावा — कार्यकर्त्यांच्या दैनंदिन कामाची नोंद.</p>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:15px;">
+              <span class="btn">वाचा →</span>
+              <span class="tstamp" style="color:rgba(255,255,255,.5);">२ तासांपूर्वी · ठाणे</span>
+            </div>
+          </div>
+        </article>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <article class="ssc-card" style="flex:1;">
+            <div class="ph r16"><span class="pht">4:3</span></div>
+            <div class="cb"><span class="tag w" style="margin-bottom:8px;">पोचपावती</span><h3>मदतीचा हात: वैद्यकीय उपचारासाठी कुटुंबाला सहकार्य</h3></div>
+          </article>
+          <article class="ssc-card" style="flex:1;">
+            <div class="ph r16"><span class="pht">4:3</span></div>
+            <div class="cb"><span class="tag w" style="margin-bottom:8px;">जनात शिवसेना</span><h3>गावपातळीवरील पाणीप्रश्नाचा पाठपुरावा यशस्वी</h3></div>
+          </article>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <article class="ssc-card" style="flex:1;">
+            <div class="ph r16"><span class="pht">4:3</span></div>
+            <div class="cb"><span class="tag w" style="margin-bottom:8px;">युवासेना</span><h3>तरुणांसाठी कौशल्य विकास कार्यशाळेचे आयोजन</h3></div>
+          </article>
+          <article class="ssc-card" style="flex:1;">
+            <div class="ph r16"><span class="pht">4:3</span></div>
+            <div class="cb"><span class="tag w" style="margin-bottom:8px;">व्यक्ती आणि वल्ली</span><h3>निष्ठावंत शिवसैनिकाचा चार दशकांचा प्रवास</h3></div>
+          </article>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);">
+        <div>
+          <div style="font-family:var(--fu);font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--org);margin-bottom:9px;">शिवसेना पाटी · दिनविशेष</div>
+          <h3 style="font-family:var(--fd);font-size:14px;font-weight:700;color:#fff;line-height:1.4;">आजच्या दिवशी: संघटनेच्या इतिहासातील महत्त्वाचे टप्पे</h3>
+        </div>
+        <div>
+          <div style="font-family:var(--fu);font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--org);margin-bottom:9px;">जिल्हा अपडेट्स</div>
+          <h3 style="font-family:var(--fd);font-size:14px;font-weight:700;color:#fff;line-height:1.4;">३६ जिल्ह्यांतील शाखा कार्याचा साप्ताहिक अहवाल</h3>
+        </div>
+        <div>
+          <div style="font-family:var(--fu);font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--org);margin-bottom:9px;">नेतृत्व कार्य</div>
+          <h3 style="font-family:var(--fd);font-size:14px;font-weight:700;color:#fff;line-height:1.4;">दौरे, बैठका आणि जनसंपर्क कार्यक्रमांचे वेळापत्रक</h3>
+        </div>
+        <div>
+          <div style="font-family:var(--fu);font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--org);margin-bottom:9px;">बालसेना</div>
+          <h3 style="font-family:var(--fd);font-size:14px;font-weight:700;color:#fff;line-height:1.4;">मुलांसाठी संस्कार आणि व्यक्तिमत्त्व विकास उपक्रम</h3>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:22px;background:rgba(245,130,32,.1);border-color:rgba(245,130,32,.35);">
+        <div class="note-row"><span class="n">11</span><span style="color:#F6C08A;"><b style="color:var(--org);">Signature module.</b> This is the section no competitor has — it must be visually distinct from the rest of the page. Dark canvas separates it from editorial news and signals "organisation desk, not newsroom". Seven sub-verticals run as filter tabs on one shared template.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 12 VIDEO CAROUSEL ─── -->
+  <section class="wsec" id="s12" style="padding:40px 0 34px;">
+    <div class="smark" style="top:46px;"><b>12</b> Video<br>h-carousel</div>
+    <span class="pin" style="left:-13px;top:42px;">12</span>
+    <div class="wrap">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>व्हिडिओ <em>Watch</em></h2>
+        <div class="hs-nav"><span>‹</span><span class="on">›</span></div>
+      </div>
+      <div class="hscroll" style="position:relative;">
+        <article style="width:302px;">
+          <div class="ph r16" style="border-radius:4px;"><span class="pht">302 × 170</span><span class="play"></span><span class="dur">12:08</span></div>
+          <h3 class="hl" style="font-size:15px;margin-top:11px;">शिवसेना अपडेट्स — या आठवड्यातील ठळक घडामोडी</h3>
+          <span class="tstamp" style="margin-top:6px;">२४ हजार व्ह्यूज · २ दिवस</span>
+        </article>
+        <article style="width:302px;">
+          <div class="ph r16" style="border-radius:4px;"><span class="pht">302 × 170</span><span class="play"></span><span class="dur">8:30</span></div>
+          <h3 class="hl" style="font-size:15px;margin-top:11px;">भ्रमंती: कोकणातील ऐतिहासिक किल्ल्यांचा प्रवास</h3>
+          <span class="tstamp" style="margin-top:6px;">१८ हजार व्ह्यूज · ३ दिवस</span>
+        </article>
+        <article style="width:302px;">
+          <div class="ph r16" style="border-radius:4px;"><span class="pht">302 × 170</span><span class="play"></span><span class="dur">7:04</span></div>
+          <h3 class="hl" style="font-size:15px;margin-top:11px;">फूड शो: महाराष्ट्राच्या खाद्यसंस्कृतीचा वारसा</h3>
+          <span class="tstamp" style="margin-top:6px;">३१ हजार व्ह्यूज · ४ दिवस</span>
+        </article>
+        <article style="width:302px;">
+          <div class="ph r16" style="border-radius:4px;"><span class="pht">302 × 170</span><span class="play"></span><span class="dur">10:22</span></div>
+          <h3 class="hl" style="font-size:15px;margin-top:11px;">A Day With… एका कार्यकर्त्याचा दिवसभराचा प्रवास</h3>
+          <span class="tstamp" style="margin-top:6px;">९.६ हजार व्ह्यूज · ५ दिवस</span>
+        </article>
+        <article style="width:302px;">
+          <div class="ph r16" style="border-radius:4px;"><span class="pht">302 × 170</span><span class="play"></span><span class="dur">6:45</span></div>
+          <h3 class="hl" style="font-size:15px;margin-top:11px;">शासकीय योजनांचा लाभ कसा मिळवाल?</h3>
+          <span class="tstamp" style="margin-top:6px;">४२ हजार व्ह्यूज · १ आठवडा</span>
+        </article>
+        <div class="fade-r"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 13 SPECIAL CONTENT HUBS ─── -->
+  <section class="wsec alt" id="s13" style="padding:44px 0 48px;">
+    <div class="smark" style="top:50px;"><b>13</b> Content Hubs<br>14 modules<br>from deck</div>
+    <span class="pin" style="left:-13px;top:46px;">13</span>
+    <div class="wrap">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>विशेष विभाग <em>Content Pillars</em></h2>
+        <span style="font-family:var(--fd);font-size:12.5px;color:var(--muted);margin-left:4px;">सादरीकरणातील १४ शो थेट मुखपृष्ठावर</span>
+        <span class="meta">14 modules · 4-col grid</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🎙</span><span><b>पॉडकास्ट शिवसेनेचा</b><em>Podcast</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span><span class="play" style="width:34px;height:34px;"></span></div>
+            <h3>राजकीय व सामाजिक विषयांवर मान्यवरांशी सविस्तर संवाद</h3>
+            <ul><li>भाग ०८ — शहरी विकासाचे प्रश्न</li><li>भाग ०७ — ग्रामीण अर्थकारण</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">📜</span><span><b>शिवसेना काल, आज, उद्या</b><em>History &amp; Legacy</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>संघटनेचा इतिहास, आंदोलने आणि वाटचालीची मालिका</h3>
+            <ul><li>भाग ०५ — सुरुवातीचा काळ</li><li>भाग ०४ — आंदोलनांचे पर्व</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">📰</span><span><b>शिवसेना अपडेट्स</b><em>Weekly Bulletin</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span><span class="play" style="width:34px;height:34px;"></span></div>
+            <h3>कार्यकर्त्यांच्या उपक्रमांचे साप्ताहिक बुलेटीन</h3>
+            <ul><li>या आठवड्यातील ठळक कार्य</li><li>आगामी उपक्रमांचे वेळापत्रक</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🛕</span><span><b>भ्रमंती</b><em>Travel &amp; Heritage</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>ऐतिहासिक, धार्मिक व पर्यटन स्थळांची ओळख</h3>
+            <ul><li>रायगड किल्ला — पूर्ण मार्गदर्शन</li><li>श्री साईबाबा संस्थान</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🍲</span><span><b>फूड शो</b><em>Food</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>खाद्यसंस्कृतीचा वारसा आणि स्थानिक चवींचा प्रवास</h3>
+            <ul><li>कोल्हापुरी तांबडा-पांढरा</li><li>मालवणी खाद्यसंस्कृती</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🎬</span><span><b>A Day With…</b><em>Day in the Life</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span><span class="play" style="width:34px;height:34px;"></span></div>
+            <h3>कार्यकर्ते व लोकप्रतिनिधींचा दिवसभराचा प्रवास</h3>
+            <ul><li>एका शाखाप्रमुखाचा दिवस</li><li>रुग्णसेवेतील स्वयंसेवक</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">📋</span><span><b>शासकीय योजना</b><em>Govt Schemes</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>योजनांचा लाभ कसा मिळवाल? — अर्ज ते मंजुरी</h3>
+            <ul><li>शिष्यवृत्ती — संपूर्ण प्रक्रिया</li><li>घरकुल योजना पात्रता</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🌾</span><span><b>यशोगाथा बळीराजाची</b><em>Farmer Stories</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>प्रयोगशील शेतकऱ्यांच्या यशाच्या कहाण्या</h3>
+            <ul><li>कमी पाण्यात जास्त उत्पन्न</li><li>सेंद्रिय शेतीचा प्रयोग</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">👩</span><span><b>लेडीज स्पेशल / हिरकणी</b><em>Women</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>महिलांसाठी योजना, कायदे, आरोग्य व प्रेरणादायी कथा</h3>
+            <ul><li>स्वयंरोजगाराच्या संधी</li><li>कायदेविषयक मार्गदर्शन</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🧒</span><span><b>बालसेना</b><em>Kids</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>मुलांसाठी संस्कृती, मूल्ये आणि व्यक्तिमत्त्व विकास</h3>
+            <ul><li>गोष्टींमधून इतिहास</li><li>चांगल्या सवयींची शाळा</li></ul>
+          </div>
+        </div>
+
+        <div class="hub">
+          <div class="hub-h"><span class="hi">🎓</span><span><b>युवासेना</b><em>Youth</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">16:9</span></div>
+            <h3>करिअर मार्गदर्शन, स्पर्धा परीक्षा व रोजगाराच्या संधी</h3>
+            <ul><li>MPSC तयारी कशी करावी</li><li>कौशल्य विकास योजना</li></ul>
+          </div>
+        </div>
+
+        <div class="hub" style="border-color:var(--org);">
+          <div class="hub-h" style="background:var(--org-l);border-bottom-color:var(--org-b);"><span class="hi" style="background:var(--org);">✒️</span><span><b>मार्मिक फटकारे</b><em>Satire</em></span><span class="ar">→</span></div>
+          <div class="hub-b">
+            <div class="ph r16"><span class="pht">CARTOON 16:9</span></div>
+            <h3>व्यंगचित्र, कार्टून आणि विनोदी शैलीतील राजकीय भाष्य</h3>
+            <ul><li>आजचे व्यंगचित्र</li><li>साप्ताहिक फटकारे</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px;">
+        <div class="hub">
+          <div class="hub-h"><span class="hi">✨</span><span><b>प्रेरणादायी कथा</b><em>Inspiration</em></span><span class="ar">→</span></div>
+          <div class="hub-b" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">अडचणींवर मात करत उभे राहिलेले उद्योजक</h3></div>
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">गावातील शिक्षकाचा शैक्षणिक प्रयोग</h3></div>
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">दिव्यांग खेळाडूची राष्ट्रीय झेप</h3></div>
+          </div>
+        </div>
+        <div class="hub">
+          <div class="hub-h"><span class="hi">📖</span><span><b>संस्कृती महाराष्ट्राची</b><em>Culture</em></span><span class="ar">→</span></div>
+          <div class="hub-b" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">लोककला जपणारी नवी पिढी</h3></div>
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">सण-उत्सवांमागील परंपरा</h3></div>
+            <div><div class="ph r43"><span class="pht">4:3</span></div><h3 style="font-size:12.5px;">मराठी साहित्यातील नवे प्रवाह</h3></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:20px;">
+        <div class="note-row"><span class="n">13</span><span><b>This grid is the differentiator.</b> Competitors bury these inside navigation; here all 14 pillars from the client deck sit on the homepage as browsable modules. Each hub = its own archive page, RSS feed and sponsorable unit. Grid is CMS-reorderable — modules can be promoted or demoted seasonally.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 14 PHOTO GALLERY ─── -->
+  <section class="wsec" id="s14" style="padding:42px 0 34px;">
+    <div class="smark" style="top:48px;"><b>14</b> Photo Gallery<br>masonry ×4</div>
+    <span class="pin" style="left:-13px;top:44px;">14</span>
+    <div class="wrap">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>फोटो गॅलरी <em>Photos</em></h2>
+        <span class="more">सर्व गॅलरी</span>
+      </div>
+      <div class="masonry">
+        <div><div class="ph" style="height:260px;"><span class="pht">3:4</span></div><span class="cnt">२४ फोटो</span><div class="cap"><b>गणेशोत्सव मिरवणुकीचे क्षण</b></div></div>
+        <div><div class="ph" style="height:180px;"><span class="pht">16:9</span></div><span class="cnt">१८ फोटो</span><div class="cap"><b>शाखा स्तरावरील आरोग्य शिबिर</b></div></div>
+        <div><div class="ph" style="height:200px;"><span class="pht">4:3</span></div><span class="cnt">३२ फोटो</span><div class="cap"><b>दहीहंडी उत्सवातील उत्साह</b></div></div>
+        <div><div class="ph" style="height:290px;"><span class="pht">3:4</span></div><span class="cnt">४१ फोटो</span><div class="cap"><b>जिल्हा मेळाव्याचे छायाचित्रण</b></div></div>
+        <div><div class="ph" style="height:190px;"><span class="pht">16:9</span></div><span class="cnt">१२ फोटो</span><div class="cap"><b>वृक्षारोपण मोहिमेची झलक</b></div></div>
+        <div><div class="ph" style="height:250px;"><span class="pht">4:3</span></div><span class="cnt">२७ फोटो</span><div class="cap"><b>श्रावणातील पारंपरिक सण</b></div></div>
+        <div><div class="ph" style="height:170px;"><span class="pht">16:9</span></div><span class="cnt">१५ फोटो</span><div class="cap"><b>क्रीडा स्पर्धेचे उद्घाटन</b></div></div>
+        <div><div class="ph" style="height:230px;"><span class="pht">4:3</span></div><span class="cnt">३६ फोटो</span><div class="cap"><b>दिवाळी पहाट कार्यक्रम</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 15 WEB STORIES ─── -->
+  <section class="wsec alt" id="s15" style="padding:34px 0;">
+    <div class="smark" style="top:40px;"><b>15</b> Web Stories<br>AMP · circular</div>
+    <span class="pin" style="left:-13px;top:36px;">15</span>
+    <div class="wrap">
+      <div class="sechd thin">
+        <span class="sacc"></span>
+        <h2>वेब स्टोरी <em>Web Stories</em></h2>
+        <span style="font-family:var(--fm);font-size:10px;color:var(--muted);margin-left:6px;">AMP · Google Discover eligible</span>
+        <div class="hs-nav"><span>‹</span><span class="on">›</span></div>
+      </div>
+      <div class="hscroll" style="gap:22px;position:relative;">
+        <div class="wstory"><div class="ring"><div class="in"></div></div><p>आजच्या ५ ठळक बातम्या</p></div>
+        <div class="wstory"><div class="ring"><div class="in"></div></div><p>पावसाचा इशारा — जिल्हावार</p></div>
+        <div class="wstory"><div class="ring"><div class="in"></div></div><p>योजनांचे फायदे एका नजरेत</p></div>
+        <div class="wstory seen"><div class="ring"><div class="in"></div></div><p>क्रीडा क्षेत्रातील घडामोडी</p></div>
+        <div class="wstory seen"><div class="ring"><div class="in"></div></div><p>सणांचे वेळापत्रक</p></div>
+        <div class="wstory seen"><div class="ring"><div class="in"></div></div><p>आरोग्यदायी सवयी</p></div>
+        <div class="wstory seen"><div class="ring"><div class="in"></div></div><p>करिअरच्या नव्या संधी</p></div>
+        <div class="wstory seen"><div class="ring"><div class="in"></div></div><p>महाराष्ट्रातील किल्ले</p></div>
+        <div class="fade-r g"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 16 PODCASTS ─── -->
+  <section class="wsec" id="s16" style="padding:42px 0 36px;">
+    <div class="smark" style="top:48px;"><b>16</b> Podcast<br>Spotify-style</div>
+    <span class="pin" style="left:-13px;top:44px;">16</span>
+    <div class="wrap">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>पॉडकास्ट <em>Listen</em></h2>
+        <span style="font-family:var(--fd);font-size:12.5px;color:var(--muted);margin-left:4px;">Spotify · Apple Podcasts वर उपलब्ध</span>
+        <span class="more">सर्व भाग</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;">
+        <article class="pod">
+          <div class="ph r11"><span class="pht">1:1 COVER</span></div><span class="pbtn"></span>
+          <h3>शहरी विकासाचे प्रश्न</h3><p>भाग ०८ · ३४ मिनिटे</p>
+        </article>
+        <article class="pod">
+          <div class="ph r11"><span class="pht">1:1 COVER</span></div><span class="pbtn"></span>
+          <h3>ग्रामीण अर्थकारण</h3><p>भाग ०७ · २८ मिनिटे</p>
+        </article>
+        <article class="pod">
+          <div class="ph r11"><span class="pht">1:1 COVER</span></div><span class="pbtn"></span>
+          <h3>मराठी भाषा आणि नवी पिढी</h3><p>भाग ०६ · ४१ मिनिटे</p>
+        </article>
+        <article class="pod">
+          <div class="ph r11"><span class="pht">1:1 COVER</span></div><span class="pbtn"></span>
+          <h3>महिलांचे आर्थिक स्वावलंबन</h3><p>भाग ०५ · ३६ मिनिटे</p>
+        </article>
+        <article class="pod">
+          <div class="ph r11"><span class="pht">1:1 COVER</span></div><span class="pbtn"></span>
+          <h3>क्रीडा क्षेत्रातील संधी</h3><p>भाग ०४ · ३० मिनिटे</p>
+        </article>
+      </div>
+      <div class="note" style="margin-top:18px;">
+        <div class="note-row"><span class="n">16</span><span><b>Persistent player —</b> audio continues across page navigation via a docked mini-player at viewport bottom. Each episode page carries show notes + transcript for SEO. RSS output feeds Spotify, Apple and JioSaavn.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 17 TRENDING ─── -->
+  <section class="wsec alt" id="s17" style="padding:42px 0 46px;">
+    <div class="smark" style="top:48px;"><b>17</b> Trending<br>7 verticals</div>
+    <span class="pin" style="left:-13px;top:44px;">17</span>
+    <div class="wrap">
+      <div class="sechd">
+        <span class="sacc"></span>
+        <h2>ट्रेंडिंग <em>Lifestyle &amp; More</em></h2>
+        <span class="meta">7 columns · equal weight</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:16px;">
+        <div class="trd">
+          <h4>लाईफस्टाईल</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>घर सजावटीतील नवे ट्रेंड</h3>
+          <li>मिनिमल राहणीमानाचे फायदे</li>
+        </div>
+        <div class="trd">
+          <h4>आरोग्य</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>पावसाळ्यातील आजार टाळण्यासाठी</h3>
+          <li>रोजच्या आहारातील बदल</li>
+        </div>
+        <div class="trd">
+          <h4>ट्रॅव्हल</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>पावसाळी पर्यटनासाठी ठिकाणे</h3>
+          <li>बजेटमध्ये सहलीचे नियोजन</li>
+        </div>
+        <div class="trd">
+          <h4>फूड</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>पारंपरिक पदार्थांच्या पाककृती</h3>
+          <li>श्रावणातील उपवासाचे पदार्थ</li>
+        </div>
+        <div class="trd">
+          <h4>एज्युकेशन</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>प्रवेश प्रक्रियेचे वेळापत्रक</h3>
+          <li>शिष्यवृत्तीसाठी अर्ज कसा करावा</li>
+        </div>
+        <div class="trd">
+          <h4>करिअर</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>स्पर्धा परीक्षांची तयारी</h3>
+          <li>नोकरीच्या नव्या संधी</li>
+        </div>
+        <div class="trd">
+          <h4>टेक्नॉलॉजी</h4>
+          <div class="ph r43"><span class="pht">4:3</span></div>
+          <h3>AI चा दैनंदिन वापर</h3>
+          <li>ऑनलाइन सुरक्षिततेचे नियम</li>
+        </div>
+      </div>
+    </div>
+  </section>
+<style>
+/* ─── FOOTER ─── */
+.ftr{background:var(--ink);color:#fff;}
+.ftr h5{font-family:var(--fd);font-size:13.5px;font-weight:800;margin-bottom:13px;color:#fff;}
+.ftr h5::after{content:"";display:block;width:22px;height:2px;background:var(--org);margin-top:7px;}
+.ftr li{font-family:var(--fd);font-size:12.5px;font-weight:500;color:rgba(255,255,255,.58);padding:4.5px 0;}
+.ftr .fbar{border-top:1px solid rgba(255,255,255,.13);}
+.appbtn{display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.22);border-radius:5px;padding:8px 13px;}
+.appbtn .ic{width:22px;height:22px;border-radius:5px;background:rgba(255,255,255,.14);flex:0 0 auto;}
+.appbtn span{line-height:1.2;}
+.appbtn b{display:block;font-family:var(--fu);font-size:11.5px;font-weight:700;color:#fff;}
+.appbtn em{font-style:normal;font-family:var(--fu);font-size:8.5px;color:rgba(255,255,255,.5);letter-spacing:.06em;}
+
+/* ─── MEGA MENU ARTBOARD ─── */
+.mega{background:#fff;border-top:2px solid var(--org);box-shadow:0 18px 40px rgba(0,0,0,.13);padding:26px 0 28px;}
+.mega-col h6{font-family:var(--fu);font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--org-d);margin-bottom:11px;}
+.mega-col li{font-family:var(--fd);font-size:13.5px;font-weight:600;color:var(--ink2);padding:5.5px 0;border-bottom:1px dashed var(--line2);}
+.mega-col li:last-child{border-bottom:none;}
+.mega-feat{background:var(--grey);border-radius:6px;padding:14px;}
+
+/* ─── COMPONENT LIBRARY ─── */
+.lib-sec{padding:26px 0;border-bottom:1px dashed var(--line);}
+.lib-sec:last-child{border-bottom:none;}
+.lib-h{display:flex;align-items:baseline;gap:11px;margin-bottom:18px;}
+.lib-h b{font-family:var(--fm);font-size:10px;font-weight:600;color:var(--org);letter-spacing:.1em;}
+.lib-h h3{font-family:var(--fu);font-size:16px;font-weight:700;}
+.lib-h span{font-family:var(--fm);font-size:10px;color:var(--muted);margin-left:auto;}
+.swatch{border-radius:6px;overflow:hidden;border:1px solid var(--line);}
+.swatch .sw{height:76px;}
+.swatch .si2{padding:9px 11px;background:#fff;}
+.swatch b{display:block;font-family:var(--fu);font-size:12px;font-weight:700;}
+.swatch code{font-family:var(--fm);font-size:10px;color:var(--muted);}
+.tscale{display:flex;align-items:baseline;gap:16px;padding:9px 0;border-bottom:1px dashed var(--line2);}
+.tscale .lbl{font-family:var(--fm);font-size:9.5px;color:var(--muted);width:150px;flex:0 0 auto;}
+.pgn{display:flex;gap:6px;align-items:center;}
+.pgn span{min-width:34px;height:34px;border:1.5px solid var(--line);border-radius:4px;display:grid;place-items:center;font-family:var(--fu);font-size:13px;font-weight:600;color:var(--ink2);padding:0 8px;}
+.pgn span.on{background:var(--org);border-color:var(--org);color:#fff;}
+.bcrumb{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:12.5px;color:var(--muted);}
+.bcrumb b{color:var(--ink);font-weight:600;}
+.bcrumb i{font-style:normal;color:#C4C4C4;}
+
+/* ─── MOBILE ARTBOARD ─── */
+.mob{width:390px;background:#fff;box-shadow:0 4px 26px rgba(0,0,0,.14);position:relative;overflow:hidden;}
+.mob-notch{height:30px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-family:var(--fu);font-size:10px;font-weight:600;color:#fff;}
+.mob-tab{position:fixed;}
+.mtabbar{display:flex;border-top:1px solid var(--line);background:#fff;}
+.mtabbar div{flex:1;text-align:center;padding:9px 0 11px;}
+.mtabbar i{display:block;width:19px;height:19px;border-radius:5px;background:var(--grey2);margin:0 auto 4px;}
+.mtabbar.on i{background:var(--org);}
+.mtabbar b{font-family:var(--fd);font-size:9.5px;font-weight:600;color:var(--muted);}
+
+/* ─── SPEC SHEET ─── */
+.spec table{width:100%;border-collapse:collapse;font-family:var(--fu);font-size:12px;}
+.spec th{background:var(--ink);color:#fff;text-align:left;padding:9px 12px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top;}
+.spec tr:nth-child(even) td{background:#FAFAFA;}
+.spec td b{color:var(--ink);}
+.spec .fm{font-family:var(--fm);font-size:11px;}
+</style>
+
+  <!-- ─── 19 FOOTER ─── -->
+  <footer class="wsec ftr" id="s19" style="padding:0;">
+    <div class="smark" style="top:50px;color:#8A8A8A;"><b>19</b> Footer<br>6 columns</div>
+    <span class="pin" style="left:-13px;top:46px;">19</span>
+
+    <div style="padding:42px 0 34px;">
+      <div class="wrap">
+        <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:34px;">
+          <div>
+            <div class="logo" style="margin-bottom:14px;">
+              <div class="mark" style="width:44px;height:44px;border-radius:9px;">
+                <svg viewBox="0 0 40 40" fill="none" style="width:26px;height:26px;">
+                  <path d="M20 5 L20 27" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+                  <path d="M20 5 L16.5 10 M20 5 L23.5 10" stroke="#fff" stroke-width="2.3" stroke-linecap="round"/>
+                  <path d="M7 27 Q20 15 33 27" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+                  <path d="M7 27 L33 27" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="lt"><b style="color:#fff;font-size:23px;">शिवसेना</b><span style="color:rgba(255,255,255,.5);"><i></i>LIVE</span></div>
+            </div>
+            <p style="font-family:var(--fb);font-size:12.5px;line-height:1.65;color:rgba(255,255,255,.55);margin-bottom:16px;">महाराष्ट्राचा डिजिटल मुखपत्र — बातम्या, विश्लेषण, प्रादेशिक वार्ता, व्हिडिओ आणि पॉडकास्ट एकाच व्यासपीठावर.</p>
+            <h5 style="font-size:12px;">अ‍ॅप डाउनलोड करा</h5>
+            <div style="display:flex;gap:9px;margin-top:12px;">
+              <span class="appbtn"><span class="ic"></span><span><em>GET IT ON</em><b>Google Play</b></span></span>
+              <span class="appbtn"><span class="ic"></span><span><em>DOWNLOAD ON</em><b>App Store</b></span></span>
+            </div>
+          </div>
+
+          <div>
+            <h5>विभाग</h5>
+            <ul>
+              <li>मुख्य बातम्या</li><li>राजकारण</li><li>संपादकीय</li><li>क्रीडा</li>
+              <li>मनोरंजन</li><li>ट्रेंडिंग</li><li>फॅक्ट चेक</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>प्रादेशिक</h5>
+            <ul>
+              <li>मुंबई</li><li>ठाणे</li><li>कोकण</li><li>विदर्भ</li>
+              <li>मराठवाडा</li><li>उत्तर महाराष्ट्र</li><li>देश</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>विशेष विभाग</h5>
+            <ul>
+              <li>शिवसेना कॉर्नर</li><li>शिवकट्टा</li><li>भूमिका</li><li>पॉडकास्ट</li>
+              <li>यशोगाथा</li><li>युवासेना · बालसेना</li><li>मार्मिक फटकारे</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>क्विक लिंक्स</h5>
+            <ul>
+              <li>आमच्याविषयी</li><li>संपर्क</li><li>जाहिरात द्या</li><li>ई-पेपर</li>
+              <li>वेब स्टोरी</li><li>संपादकीय धोरण</li><li>गोपनीयता धोरण</li>
+            </ul>
+            <div style="display:flex;gap:7px;margin-top:14px;">
+              <span style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.1);display:block;"></span>
+              <span style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.1);display:block;"></span>
+              <span style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.1);display:block;"></span>
+              <span style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.1);display:block;"></span>
+              <span style="width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.1);display:block;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fbar" style="padding:15px 0;">
+      <div class="wrap" style="display:flex;align-items:center;gap:18px;">
+        <span style="font-family:var(--fu);font-size:11.5px;color:rgba(255,255,255,.42);">© 2026 शिवसेना LIVE. सर्व हक्क राखीव.</span>
+        <span style="font-family:var(--fu);font-size:11.5px;color:rgba(255,255,255,.42);margin-left:auto;">Designed &amp; developed by <b style="color:var(--org);">Futuready Media</b></span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="frame-foot">
+  <span>Artboard 01 · Homepage — 19 sections · 12-col / 24px gutter · 1344px content</span>
+  <span>Wireframe v1.0 — structure &amp; hierarchy for approval</span>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     ARTBOARD 2 — MEGA MENU STATES
+     ══════════════════════════════════════════ -->
+<div class="frame-label"><i class="fi"></i> Mega Menu — Hover State <span class="sz">· 1440 × auto</span><span class="badge">ARTBOARD 02</span></div>
+<div class="frame" id="ab-mega" style="padding-bottom:34px;">
+
+  <div class="pnav" style="border-top:1px solid var(--line);">
+    <div class="wrap">
+      <a href="#" class="home">होम</a>
+      <a href="#">मुख्य बातम्या <span class="cv"></span></a>
+      <a href="#" class="on">राजकारण <span class="cv"></span></a>
+      <a href="#">संपादकीय <span class="cv"></span></a>
+      <a href="#">क्रीडा</a><a href="#">मनोरंजन</a>
+      <a href="#">ट्रेंडिंग <span class="cv"></span></a>
+      <a href="#">शिवसेना कॉर्नर <span class="cv"></span></a>
+      <a href="#">फोटो</a><a href="#">व्हिडिओ</a><a href="#">वेब स्टोरी</a><a href="#">पॉडकास्ट</a>
+    </div>
+  </div>
+
+  <div class="mega">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr 1fr 1.5fr;gap:30px;">
+      <div class="mega-col">
+        <h6>प्रादेशिक बातम्या</h6>
+        <ul><li>मुंबई</li><li>ठाणे</li><li>कोकण</li><li>मराठवाडा</li><li>विदर्भ</li><li>उत्तर महाराष्ट्र</li><li>देश</li></ul>
+      </div>
+      <div class="mega-col">
+        <h6>राजकारण</h6>
+        <ul><li>राज्य राजकारण</li><li>निवडणूक</li><li>नेते व पक्ष</li><li>विधिमंडळ</li><li>स्थानिक स्वराज्य</li><li>फॅक्ट चेक</li></ul>
+      </div>
+      <div class="mega-col">
+        <h6>शिवसेना कॉर्नर</h6>
+        <ul><li>शिवकट्टा</li><li>व्यक्ती आणि वल्ली</li><li>पोचपावती</li><li>जनात शिवसेना</li><li>शिवसेना पाटी — दिनविशेष</li><li>युवासेना · बालसेना</li></ul>
+      </div>
+      <div>
+        <h6 style="font-family:var(--fu);font-size:9.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--org-d);margin-bottom:11px;">या विभागातील ठळक</h6>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="mega-feat">
+            <div class="ph r16" style="border-radius:4px;margin-bottom:9px;"><span class="pht">16:9</span></div>
+            <h3 class="hl" style="font-size:13.5px;">स्थानिक स्वराज्य संस्थांच्या निवडणुकांची तयारी</h3>
+          </div>
+          <div class="mega-feat">
+            <div class="ph r16" style="border-radius:4px;margin-bottom:9px;"><span class="pht">16:9</span></div>
+            <h3 class="hl" style="font-size:13.5px;">मंत्रिमंडळ निर्णयांचा जिल्हावार परिणाम</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:22px;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;">
+      <span style="font-family:var(--fm);font-size:10px;color:var(--muted);">TRENDING —</span>
+      <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#निवडणूक</span>
+      <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#मंत्रिमंडळ</span>
+      <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#जिल्हा नियोजन</span>
+      <span class="tag dev" style="background:var(--org-l);color:var(--org-d);">#शिवसेना</span>
+      <span class="more" style="margin-left:auto;">संपूर्ण विभाग पहा</span>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:26px;">
+    <div class="note">
+      <div class="note-row"><span class="n">M</span><span><b>Mega menu behaviour —</b> opens on hover (desktop) / tap (touch), 200ms delay in, 400ms out to prevent flicker. Max 4 columns; column 4 always reserved for two featured stories so the menu itself drives clicks rather than just navigating. Same shell is reused for मुख्य बातम्या, संपादकीय and ट्रेंडिंग with different column data.</span></div>
+    </div>
+  </div>
+</div>
+<div class="frame-foot"><span>Artboard 02 · Mega Menu — 4 nav items carry dropdowns</span><span>hover state</span></div>
+
+
+<!-- ══════════════════════════════════════════
+     ARTBOARD 3 — COMPONENT LIBRARY
+     ══════════════════════════════════════════ -->
+<div class="frame-label"><i class="fi"></i> UI Component Library <span class="sz">· 1440 × auto</span><span class="badge">ARTBOARD 03</span></div>
+<div class="frame" id="ab-lib" style="padding:34px 0 40px;">
+  <div class="wrap">
+
+    <div style="border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px;">
+      <h2 style="font-family:var(--fu);font-size:24px;font-weight:800;letter-spacing:-.02em;">Component Library</h2>
+      <p style="font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:5px;">Every element used across the homepage · built once, reused everywhere</p>
+    </div>
+
+    <!-- colour -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>01</b><h3>Colour</h3><span>orange = accent only · never a background for body text</span></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;">
+        <div class="swatch"><div class="sw" style="background:#F58220;"></div><div class="si2"><b>Primary</b><code>#F58220</code></div></div>
+        <div class="swatch"><div class="sw" style="background:#D96A10;"></div><div class="si2"><b>Primary Dark</b><code>#D96A10</code></div></div>
+        <div class="swatch"><div class="sw" style="background:#222222;"></div><div class="si2"><b>Ink</b><code>#222222</code></div></div>
+        <div class="swatch"><div class="sw" style="background:#F7F7F7;"></div><div class="si2"><b>Light Grey</b><code>#F7F7F7</code></div></div>
+        <div class="swatch"><div class="sw" style="background:#FFFFFF;border-bottom:1px solid var(--line);"></div><div class="si2"><b>White</b><code>#FFFFFF</code></div></div>
+        <div class="swatch"><div class="sw" style="background:#D0021B;"></div><div class="si2"><b>Live / Breaking</b><code>#D0021B</code></div></div>
+      </div>
+    </div>
+
+    <!-- type -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>02</b><h3>Type Scale</h3><span>Mukta (display) · Noto Sans Devanagari (body) · Inter (UI) · IBM Plex Mono (labels)</span></div>
+      <div class="tscale"><span class="lbl">Lead / 38 · 800 · -1%</span><span style="font-family:var(--fd);font-size:38px;font-weight:800;line-height:1.2;">राज्यातील प्रकल्पांना गती</span></div>
+      <div class="tscale"><span class="lbl">Section H2 / 25 · 800</span><span style="font-family:var(--fd);font-size:25px;font-weight:800;">प्रादेशिक बातम्या</span></div>
+      <div class="tscale"><span class="lbl">Card H3 / 15.5 · 700</span><span style="font-family:var(--fd);font-size:15.5px;font-weight:700;">मुंबई महापालिकेचा कृती आराखडा जाहीर</span></div>
+      <div class="tscale"><span class="lbl">Body / 13.5 · 400 · 1.65</span><span style="font-family:var(--fb);font-size:13.5px;color:var(--ink3);">मंत्रिमंडळ बैठकीत घेतलेल्या निर्णयांचा परिणाम कोणत्या जिल्ह्यांवर होणार.</span></div>
+      <div class="tscale"><span class="lbl">Meta / 11 · Inter 400</span><span style="font-family:var(--fu);font-size:11px;color:var(--muted);">२० मिनिटांपूर्वी · ४ मिनिटे वाचन</span></div>
+      <div class="tscale" style="border-bottom:none;"><span class="lbl">Label / 10 · Mono 600</span><span style="font-family:var(--fm);font-size:10px;color:var(--org);letter-spacing:.1em;">ADVERTISEMENT · 970 × 90</span></div>
+      <div class="note" style="margin-top:12px;">
+        <div class="note-row"><span class="n">T</span><span><b>Accessibility floor —</b> no body text below 13px. Devanagari needs more leading than Latin: line-height 1.6–1.7 on paragraphs, 1.34–1.42 on headlines. Built for elderly readers first.</span></div>
+      </div>
+    </div>
+
+    <!-- buttons / tags -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>03</b><h3>Buttons, Tags &amp; Badges</h3><span>4px radius · 44px min touch target</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px;">
+        <span class="btn">सविस्तर वाचा →</span>
+        <span class="btn g">सबस्क्राइब करा</span>
+        <span class="btn o">अधिक पहा</span>
+        <span class="btn sm">मत नोंदवा</span>
+        <span class="btn" style="background:#D0021B;">● LIVE पहा</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center;">
+        <span class="tag">मुख्य बातमी</span><span class="tag g">EXCLUSIVE</span><span class="tag o">राजकारण</span>
+        <span class="tag" style="background:#D0021B;">● BREAKING</span>
+        <span class="tag dev" style="background:var(--grey);color:var(--ink2);">#शिवसेना</span>
+        <span class="tag dev" style="background:var(--org-l);color:var(--org-d);">जाहिरात</span>
+        <span style="font-family:var(--fm);font-size:9.5px;background:var(--ink);color:#fff;padding:2.5px 7px;border-radius:3px;">9:25</span>
+      </div>
+    </div>
+
+    <!-- nav components -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>04</b><h3>Navigation Components</h3><span>breadcrumb · pagination · search · ticker</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;">
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">BREADCRUMB</p>
+          <div class="bcrumb" style="margin-bottom:20px;">होम <i>›</i> मुख्य बातम्या <i>›</i> महाराष्ट्र <i>›</i> <b>मुंबई</b></div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">PAGINATION</p>
+          <div class="pgn"><span>‹</span><span class="on">1</span><span>2</span><span>3</span><span>…</span><span>18</span><span>›</span></div>
+        </div>
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">SEARCH FIELD</p>
+          <div class="hsearch" style="max-width:100%;margin-bottom:20px;">
+            <span class="si"></span>
+            <input type="text" placeholder="बातम्या, विषय, जिल्हा किंवा लेखक शोधा…">
+            <button class="sbtn">शोधा</button>
+          </div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">TICKER</p>
+          <div class="ubar" style="height:36px;border-radius:4px;">
+            <div style="display:flex;align-items:center;width:100%;padding:0 12px;gap:14px;">
+              <span class="ub-live"><i></i>BREAKING</span>
+              <span style="font-family:var(--fb);font-size:12.5px;color:#EDEDED;">राज्य मंत्रिमंडळाच्या बैठकीत महत्त्वाचे निर्णय…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cards -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>05</b><h3>Card Family</h3><span>news · video · gallery · podcast · author · ad</span></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;">
+
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">NEWS CARD</p>
+          <article class="ncard" style="border:1px solid var(--line);border-radius:5px;overflow:hidden;">
+            <div class="ph r16" style="margin:0;border-radius:0;"><span class="pht">16:9</span></div>
+            <div style="padding:12px 13px 14px;">
+              <span class="tag o" style="margin-bottom:8px;">मुंबई</span>
+              <h3 style="font-size:14px;">पालिकेचा पावसाळापूर्व कृती आराखडा जाहीर</h3>
+              <span class="tstamp">२ तासांपूर्वी</span>
+            </div>
+          </article>
+        </div>
+
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">VIDEO CARD</p>
+          <article>
+            <div class="ph r16" style="border-radius:4px;"><span class="pht">16:9</span><span class="play" style="width:36px;height:36px;"></span><span class="dur">8:45</span></div>
+            <h3 class="hl" style="font-size:14px;margin-top:10px;">भूमिका — जागतिक घडामोडींचे विश्लेषण</h3>
+            <span class="tstamp" style="margin-top:5px;">९.४ हजार व्ह्यूज</span>
+          </article>
+        </div>
+
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">GALLERY CARD</p>
+          <article style="position:relative;border-radius:4px;overflow:hidden;">
+            <div class="ph" style="height:172px;"><span class="pht">4:3</span></div>
+            <span class="cnt" style="position:absolute;right:8px;top:8px;background:rgba(34,34,34,.82);color:#fff;font-family:var(--fm);font-size:9.5px;padding:2.5px 7px;border-radius:3px;">२४ फोटो</span>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:22px 11px 10px;background:linear-gradient(transparent,rgba(0,0,0,.78));">
+              <b style="font-family:var(--fd);font-size:12.5px;font-weight:600;color:#fff;">गणेशोत्सव मिरवणुकीचे क्षण</b>
+            </div>
+          </article>
+        </div>
+
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">PODCAST CARD</p>
+          <article class="pod" style="padding:11px;">
+            <div class="ph r11" style="border-radius:5px;margin-bottom:11px;"><span class="pht">1:1</span></div>
+            <span class="pbtn" style="right:18px;top:118px;width:36px;height:36px;"></span>
+            <h3>शहरी विकासाचे प्रश्न</h3><p>भाग ०८ · ३४ मिनिटे</p>
+          </article>
+        </div>
+
+        <div>
+          <p style="font-family:var(--fm);font-size:9.5px;color:var(--muted);margin-bottom:8px;">AUTHOR CARD</p>
+          <article style="border:1px solid var(--line);border-radius:5px;padding:16px;text-align:center;">
+            <div class="ph r11 plain" style="width:58px;border-radius:50%;margin:0 auto 11px;"></div>
+            <h3 style="font-family:var(--fd);font-size:14px;font-weight:700;">विशेष प्रतिनिधी</h3>
+            <p style="font-family:var(--fd);font-size:11.5px;color:var(--muted);margin-top:3px;">राजकीय वार्ताहर · मुंबई</p>
+            <p style="font-family:var(--fu);font-size:10.5px;color:var(--muted);margin-top:9px;padding-top:9px;border-top:1px solid var(--line2);">३४२ बातम्या</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- ad + poll + newsletter -->
+    <div class="lib-sec">
+      <div class="lib-h"><b>06</b><h3>Advertising, Poll &amp; Newsletter</h3><span>every ad slot is labelled "जाहिरात" · reserved height prevents CLS</span></div>
+      <div style="display:grid;grid-template-columns:1.6fr .8fr 1fr 1fr;gap:18px;align-items:start;">
+        <div>
+          <div class="adbox" style="height:90px;margin-bottom:12px;"><div><div class="t1">LEADERBOARD</div><div class="t2">970 × 90</div></div></div>
+          <div class="adbox" style="height:100px;"><div><div class="t1">IN-FEED NATIVE</div><div class="t2">flows with content · labelled</div></div></div>
+        </div>
+        <div class="adbox" style="height:250px;"><div><div class="t1">MPU</div><div class="t2">300 × 250</div></div></div>
+        <div class="smod" style="margin:0;">
+          <div class="smod-h"><span class="acc"></span><h4>तुमचे मत</h4></div>
+          <div class="smod-b">
+            <h5 style="font-family:var(--fd);font-size:13px;font-weight:700;line-height:1.45;margin-bottom:10px;">कोणता विषय सर्वात महत्त्वाचा?</h5>
+            <div class="poll-opt sel"><i></i>रस्ते व वाहतूक</div>
+            <div class="poll-opt"><i></i>पाणीपुरवठा</div>
+            <button class="btn sm" style="width:100%;justify-content:center;">मत नोंदवा</button>
+          </div>
+        </div>
+        <div class="smod" style="margin:0;background:var(--ink);border-color:var(--ink);">
+          <div class="smod-b" style="padding:16px;">
+            <h4 style="font-family:var(--fd);font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">दररोज सकाळी बातम्या</h4>
+            <p style="font-family:var(--fb);font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.62);margin-bottom:11px;">महत्त्वाच्या बातम्यांचा सारांश इनबॉक्समध्ये.</p>
+            <div style="height:34px;border-radius:4px;background:#333;display:flex;align-items:center;padding:0 11px;font-family:var(--fb);font-size:11.5px;color:#8A8A8A;margin-bottom:8px;">तुमचा ई-मेल</div>
+            <button class="btn sm" style="width:100%;justify-content:center;">सबस्क्राइब</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-foot"><span>Artboard 03 · Component Library — 16 component families</span><span>build once · reuse everywhere</span></div>
+
+
+<!-- ══════════════════════════════════════════
+     ARTBOARD 4 — MOBILE
+     ══════════════════════════════════════════ -->
+<div class="frame-label"><i class="fi"></i> Mobile — 390 <span class="sz">· responsive reflow</span><span class="badge">ARTBOARD 04</span></div>
+<div class="frame" id="ab-mob" style="padding:34px 0 40px;background:var(--grey);">
+  <div class="wrap" style="display:flex;gap:34px;align-items:flex-start;">
+
+    <div class="mob">
+      <div class="mob-notch"><span>9:41</span><span>▮▮▮ ▮</span></div>
+      <div style="background:var(--ink);color:#fff;display:flex;align-items:center;gap:8px;padding:7px 12px;">
+        <span class="ub-live" style="font-size:9px;padding:3px 7px;"><i style="width:5px;height:5px;"></i>BREAKING</span>
+        <span style="font-family:var(--fb);font-size:11px;color:#E4E4E4;white-space:nowrap;overflow:hidden;">मंत्रिमंडळ बैठकीत महत्त्वाचे निर्णय…</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line);">
+        <span style="width:20px;height:14px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);position:relative;flex:0 0 auto;"></span>
+        <div class="logo"><div class="mark" style="width:32px;height:32px;border-radius:7px;"><svg viewBox="0 0 40 40" style="width:19px;height:19px;"><path d="M20 5 L20 27" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M7 27 Q20 15 33 27" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M7 27 L33 27" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div><div class="lt"><b style="font-size:17px;">शिवसेना</b></div></div>
+        <span style="margin-left:auto;width:20px;height:20px;border:2px solid var(--ink3);border-radius:50%;"></span>
+        <span class="tag" style="background:#D0021B;font-size:8.5px;">LIVE</span>
+      </div>
+      <div style="display:flex;gap:14px;padding:9px 12px;border-bottom:2px solid var(--ink);overflow:hidden;">
+        <span style="font-family:var(--fd);font-size:12.5px;font-weight:700;color:var(--org);white-space:nowrap;">होम</span>
+        <span style="font-family:var(--fd);font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap;">मुख्य</span>
+        <span style="font-family:var(--fd);font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap;">राजकारण</span>
+        <span style="font-family:var(--fd);font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap;">क्रीडा</span>
+        <span style="font-family:var(--fd);font-size:12.5px;font-weight:600;color:var(--ink2);white-space:nowrap;">कॉर्नर</span>
+      </div>
+
+      <div style="padding:12px;">
+        <div class="ph r16" style="border-radius:4px;"><span class="pht">366 × 206</span><span class="tag" style="position:absolute;left:10px;top:10px;font-size:9px;">मुख्य बातमी</span></div>
+        <h3 class="hl" style="font-size:20px;margin:11px 0 8px;">राज्यातील पायाभूत सुविधा प्रकल्पांना गती</h3>
+        <span class="tstamp" style="font-size:10.5px;">२० मिनिटांपूर्वी · राजकारण</span>
+      </div>
+
+      <div style="padding:0 12px 12px;">
+        <div style="display:flex;gap:10px;overflow:hidden;">
+          <div class="wstory" style="width:72px;"><div class="ring" style="width:66px;height:66px;"><div class="in"></div></div><p style="font-size:10px;">ठळक ५</p></div>
+          <div class="wstory" style="width:72px;"><div class="ring" style="width:66px;height:66px;"><div class="in"></div></div><p style="font-size:10px;">पाऊस</p></div>
+          <div class="wstory seen" style="width:72px;"><div class="ring" style="width:66px;height:66px;"><div class="in"></div></div><p style="font-size:10px;">योजना</p></div>
+          <div class="wstory seen" style="width:72px;"><div class="ring" style="width:66px;height:66px;"><div class="in"></div></div><p style="font-size:10px;">क्रीडा</p></div>
+        </div>
+      </div>
+
+      <div style="padding:0 12px 12px;">
+        <div class="adbox" style="height:50px;"><div><div class="t1" style="font-size:9px;">320 × 50 MOBILE BANNER</div></div></div>
+      </div>
+
+      <div style="padding:0 12px;">
+        <div class="sechd thin" style="margin-bottom:12px;padding-bottom:8px;"><span class="sacc" style="height:18px;"></span><h2 style="font-size:16px;">ताज्या घडामोडी</h2></div>
+        <a style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);">
+          <span style="flex:1;"><h3 class="hl" style="font-size:13.5px;">मुंबई महापालिकेचा कृती आराखडा जाहीर</h3><span class="tstamp" style="font-size:10px;margin-top:5px;">१२:१८</span></span>
+          <span class="ph r11 plain" style="width:76px;flex:0 0 auto;border-radius:3px;"></span>
+        </a>
+        <a style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);">
+          <span style="flex:1;"><h3 class="hl" style="font-size:13.5px;">विदर्भात मुसळधार पावसाचा अंदाज</h3><span class="tstamp" style="font-size:10px;margin-top:5px;">११:५५</span></span>
+          <span class="ph r11 plain" style="width:76px;flex:0 0 auto;border-radius:3px;"></span>
+        </a>
+        <a style="display:flex;gap:11px;padding:11px 0 14px;">
+          <span style="flex:1;"><h3 class="hl" style="font-size:13.5px;">कोकणात मच्छीमारांना इशारा</h3><span class="tstamp" style="font-size:10px;margin-top:5px;">११:३०</span></span>
+          <span class="ph r11 plain" style="width:76px;flex:0 0 auto;border-radius:3px;"></span>
+        </a>
+      </div>
+
+      <div class="mtabbar">
+        <div class="on"><i style="background:var(--org);"></i><b style="color:var(--org);">होम</b></div>
+        <div><i></i><b>विभाग</b></div>
+        <div><i></i><b>व्हिडिओ</b></div>
+        <div><i></i><b>कॉर्नर</b></div>
+        <div><i></i><b>शोध</b></div>
+      </div>
+    </div>
+
+    <div style="flex:1;padding-top:8px;">
+      <h3 style="font-family:var(--fu);font-size:17px;font-weight:800;margin-bottom:14px;">Responsive Reflow Rules</h3>
+      <div class="note" style="margin-bottom:12px;">
+        <div class="note-row"><span class="n">1</span><span><b>Sidebar dissolves.</b> Its 8 modules are redistributed inline between content sections — Most Read after Regional, Poll after Politics, Newsletter before Footer. Nothing is dropped.</span></div>
+      </div>
+      <div class="note" style="margin-bottom:12px;">
+        <div class="note-row"><span class="n">2</span><span><b>Grids collapse predictably.</b> 4-col → 2-col at 768px → 1-col at 480px. The 14 content hubs become a 2-col grid, then a horizontal swipe rail — never a 14-item vertical stack.</span></div>
+      </div>
+      <div class="note" style="margin-bottom:12px;">
+        <div class="note-row"><span class="n">3</span><span><b>Bottom tab bar</b> replaces the 12-item nav. Five destinations only: होम · विभाग · व्हिडिओ · शिवसेना कॉर्नर · शोध. Full category tree lives behind the hamburger.</span></div>
+      </div>
+      <div class="note" style="margin-bottom:12px;">
+        <div class="note-row"><span class="n">4</span><span><b>Web Stories move up.</b> On mobile they sit directly under the hero — highest tap-through of any module for under-30 readers. On desktop they stay lower.</span></div>
+      </div>
+      <div class="note">
+        <div class="note-row"><span class="n">5</span><span><b>Ad reserved space is fixed</b> at every breakpoint so late-loading creatives never shift text. This is what protects the CLS score and Discover eligibility.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-foot"><span>Artboard 04 · Mobile 390 — 85%+ of audience arrives here</span><span>reflow rules</span></div>
+
+
+<!-- ══════════════════════════════════════════
+     ARTBOARD 5 — SPEC
+     ══════════════════════════════════════════ -->
+<div class="frame-label"><i class="fi"></i> Spec &amp; Handoff <span class="sz">· reference sheet</span><span class="badge">ARTBOARD 05</span></div>
+<div class="frame spec" id="ab-spec" style="padding:34px 0 42px;">
+  <div class="wrap">
+    <div style="border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px;">
+      <h2 style="font-family:var(--fu);font-size:24px;font-weight:800;letter-spacing:-.02em;">Spec &amp; Handoff</h2>
+      <p style="font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:5px;">Grid, ad inventory and section register — for developer handoff after visual design sign-off</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:26px;">
+      <div>
+        <h3 style="font-family:var(--fu);font-size:14px;font-weight:700;margin-bottom:12px;">Layout Grid</h3>
+        <table>
+          <tr><td><b>Canvas</b></td><td class="fm">1440px</td></tr>
+          <tr><td><b>Content width</b></td><td class="fm">1344px (48px side margins)</td></tr>
+          <tr><td><b>Columns</b></td><td class="fm">12</td></tr>
+          <tr><td><b>Gutter</b></td><td class="fm">24px</td></tr>
+          <tr><td><b>Main / sidebar split</b></td><td class="fm">984px / 320px · 40px gap</td></tr>
+          <tr><td><b>Breakpoints</b></td><td class="fm">1440 · 1200 · 992 · 768 · 480 · 390</td></tr>
+          <tr><td><b>Vertical rhythm</b></td><td class="fm">8px base · section gap 40–56px</td></tr>
+          <tr><td><b>Radius</b></td><td class="fm">3px cards · 4px buttons · 6px modules</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-family:var(--fu);font-size:14px;font-weight:700;margin-bottom:12px;">Advertising Inventory</h3>
+        <table>
+          <thead><tr><th>Slot</th><th>Size</th><th>Position</th></tr></thead>
+          <tr><td><b>Leaderboard</b></td><td class="fm">970×90 / 320×50</td><td>Below nav</td></tr>
+          <tr><td><b>MPU</b></td><td class="fm">300×250</td><td>Sidebar, after 2 modules</td></tr>
+          <tr><td><b>Half-page sticky</b></td><td class="fm">300×600</td><td>Sidebar foot</td></tr>
+          <tr><td><b>In-feed native</b></td><td class="fm">984×110</td><td>Between sections</td></tr>
+          <tr><td><b>Gallery interstitial</b></td><td class="fm">full-screen</td><td>Every 5 slides</td></tr>
+          <tr><td><b>Section sponsorship</b></td><td class="fm">branded header</td><td>Any of 30+ sections</td></tr>
+          <tr><td colspan="3" style="background:var(--org-l);color:var(--org-d);"><b>All slots carry reserved height · labelled "जाहिरात" · async load</b></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--fu);font-size:14px;font-weight:700;margin-bottom:12px;">Homepage Section Register</h3>
+    <table>
+      <thead><tr><th style="width:40px">#</th><th style="width:220px">Section</th><th>Purpose &amp; content source</th><th style="width:130px">Data</th><th style="width:110px">Priority</th></tr></thead>
+      <tr><td class="fm">01</td><td><b>Utility Bar</b></td><td>Breaking ticker, weather, date, language toggle, e-paper, Live TV, social, login</td><td class="fm">live feed</td><td>Critical</td></tr>
+      <tr><td class="fm">02</td><td><b>Main Header</b></td><td>Logo, primary search, Live TV, e-paper, alerts — sticky on scroll</td><td class="fm">static</td><td>Critical</td></tr>
+      <tr><td class="fm">03</td><td><b>Primary Navigation</b></td><td>12 items; 4 carry mega menus (मुख्य बातम्या, राजकारण, ट्रेंडिंग, शिवसेना कॉर्नर)</td><td class="fm">CMS taxonomy</td><td>Critical</td></tr>
+      <tr><td class="fm">04</td><td><b>Leaderboard Ad</b></td><td>First revenue slot, above the fold</td><td class="fm">ad manager</td><td>Critical</td></tr>
+      <tr><td class="fm">05</td><td><b>Hero</b></td><td>Editor-pinned lead + 4 auto-recency breaking stories</td><td class="fm">CMS pinned</td><td>Critical</td></tr>
+      <tr><td class="fm">06</td><td><b>Breaking Strip</b></td><td>Horizontal card rail, national + state</td><td class="fm">recency</td><td>High</td></tr>
+      <tr><td class="fm">07</td><td><b>Regional News</b></td><td>7 bureau cards — Mumbai, Thane, Konkan, Vidarbha, Marathwada, N. Maharashtra, India</td><td class="fm">bureau tag</td><td>Critical</td></tr>
+      <tr><td class="fm">08</td><td><b>Editor's Pick</b></td><td>3 premium cards, manually curated daily</td><td class="fm">manual</td><td>High</td></tr>
+      <tr><td class="fm">09</td><td><b>राजकारण</b></td><td>Featured + latest list + most-read block</td><td class="fm">category</td><td>Critical</td></tr>
+      <tr><td class="fm">10</td><td><b>भूमिका — Explainers</b></td><td>Video explainer show from client deck · 8–10 min format</td><td class="fm">video CPT</td><td>High</td></tr>
+      <tr><td class="fm">11</td><td><b>शिवसेना कॉर्नर</b></td><td>Signature dark module · 7 sub-verticals as filter tabs</td><td class="fm">custom taxonomy</td><td>Critical</td></tr>
+      <tr><td class="fm">12</td><td><b>Video Carousel</b></td><td>Cross-show video rail</td><td class="fm">video CPT</td><td>High</td></tr>
+      <tr><td class="fm">13</td><td><b>Content Hubs</b></td><td>14 pillars from the presentation surfaced on the homepage</td><td class="fm">hub CPT</td><td>Critical</td></tr>
+      <tr><td class="fm">14</td><td><b>Photo Gallery</b></td><td>4-column masonry, gallery CPT with image count</td><td class="fm">gallery CPT</td><td>High</td></tr>
+      <tr><td class="fm">15</td><td><b>Web Stories</b></td><td>AMP circular rail · seen/unseen state · Discover eligible</td><td class="fm">AMP CPT</td><td>High</td></tr>
+      <tr><td class="fm">16</td><td><b>Podcasts</b></td><td>5-up cards + docked persistent player + RSS out</td><td class="fm">audio CPT</td><td>High</td></tr>
+      <tr><td class="fm">17</td><td><b>Trending</b></td><td>7 lifestyle verticals at equal weight</td><td class="fm">category</td><td>Medium</td></tr>
+      <tr><td class="fm">18</td><td><b>Right Sidebar</b></td><td>Most Read, Trending tags, MPU, Latest Videos, Weather, Live TV, Poll, Newsletter, sticky ad</td><td class="fm">mixed</td><td>Critical</td></tr>
+      <tr><td class="fm">19</td><td><b>Footer</b></td><td>5 columns + app download + social + legal</td><td class="fm">static</td><td>High</td></tr>
+    </table>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;">
+      <div class="note">
+        <div class="note-row"><span class="n">✓</span><span><b>What this wireframe fixes.</b> Structure, hierarchy, content strategy and component inventory. Approve this before any colour or photography work begins.</span></div>
+      </div>
+      <div class="note">
+        <div class="note-row"><span class="n">→</span><span><b>What comes next.</b> Visual design: photography direction, final type treatment, iconography, motion and the full colour application across all 19 sections.</span></div>
+      </div>
+      <div class="note">
+        <div class="note-row"><span class="n">!</span><span><b>Open decisions for client.</b> Comments on/off at launch · Live TV stream source · e-paper scope · which 4 hubs get top-row priority in section 13.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-foot"><span>Artboard 05 · Spec &amp; Handoff</span><span>Shivsena LIVE — Homepage Wireframe v1.0 · Futuready Media · 04 Aug 2026</span></div>
+
+</div>
+</body>
+</html>
