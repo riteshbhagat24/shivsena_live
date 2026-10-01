@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Shivsena Live — Android &amp; iOS Mobile Application Development Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ TOKENS ═══════════ */
+:root{
+  --org:#F58220; --org-d:#D1690F; --org-l:#FFF3E7; --org-b:#F7CFA6;
+  --ink:#222222; --ink2:#3E3E3E; --ink3:#5E5E5E; --muted:#8A8A8A;
+  --white:#FFFFFF; --grey:#F7F7F7; --grey2:#EFEFEF;
+  --line:#E3E3E3; --line2:#F0F0F0;
+  --ok:#1F7A34; --warn:#A15C00;
+  --pw:210mm; --ph:297mm; --px:17mm;
+  --fh:'Manrope',sans-serif;
+  --fb:'Inter',sans-serif;
+  --fd:'Mukta','Noto Sans Devanagari',sans-serif;
+  --fm:'IBM Plex Mono',monospace;
+  --sh:0 16px 44px rgba(0,0,0,.11),0 2px 6px rgba(0,0,0,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--fb);background:#DCDCDC;color:var(--ink);
+  font-size:10pt;line-height:1.6;-webkit-font-smoothing:antialiased;
+  padding:14mm 0;
+}
+.mr{font-family:var(--fd);}
+ul{list-style:none;}
+a{color:inherit;text-decoration:none;}
+
+/* ═══════════ PAGE ═══════════ */
+.page{
+  position:relative;width:var(--pw);min-height:var(--ph);background:#fff;
+  margin:0 auto 9mm;padding:15mm var(--px) 19mm;box-shadow:var(--sh);
+  overflow:hidden;page-break-after:always;break-after:page;
+  display:flex;flex-direction:column;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.page:last-child{page-break-after:auto;break-after:auto;}
+.pbody{flex:1;}
+
+.phead{display:flex;align-items:center;justify-content:space-between;padding-bottom:4.5mm;margin-bottom:8mm;border-bottom:1px solid var(--line);}
+.phead .l{display:flex;align-items:center;gap:7px;}
+.phead .mk{width:15px;height:15px;border-radius:4px;background:var(--org);position:relative;flex:0 0 auto;}
+.phead .mk::after{content:"";position:absolute;inset:4.5px 4.5px auto auto;width:6px;height:6px;background:#fff;border-radius:1px;}
+.phead .b{font-family:var(--fh);font-weight:800;font-size:8pt;letter-spacing:.15em;text-transform:uppercase;}
+.phead .r{font-family:var(--fh);font-weight:600;font-size:7.4pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+
+.pfoot{
+  position:absolute;left:var(--px);right:var(--px);bottom:9mm;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:4mm;border-top:1px solid var(--line2);
+  font-family:var(--fh);font-weight:600;font-size:7pt;letter-spacing:.1em;
+  text-transform:uppercase;color:#A4A4A4;
+}
+.pfoot b{color:var(--org);font-weight:800;}
+
+/* ═══════════ SECTION HEADS ═══════════ */
+.stag{display:inline-flex;align-items:center;gap:8px;font-family:var(--fh);font-size:7.4pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--org-d);margin-bottom:6px;}
+.stag .n{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;border-radius:5px;background:var(--org);color:#fff;font-size:7.4pt;padding:0 5px;}
+h1.st{font-family:var(--fh);font-weight:800;font-size:21pt;line-height:1.16;letter-spacing:-.022em;margin-bottom:4px;}
+.srule{width:48px;height:3.5px;background:var(--org);border-radius:2px;margin:7px 0 9px;}
+.ssub{font-size:9.4pt;color:var(--ink3);max-width:150mm;margin-bottom:8mm;line-height:1.6;}
+h2.blk{font-family:var(--fh);font-weight:800;font-size:12pt;letter-spacing:-.01em;margin:7mm 0 4mm;display:flex;align-items:center;gap:8px;}
+h2.blk::before{content:"";width:4px;height:14px;background:var(--org);border-radius:2px;flex:0 0 auto;}
+h3.mini{font-family:var(--fh);font-weight:700;font-size:9.6pt;margin-bottom:3px;line-height:1.3;}
+p{margin-bottom:3.4mm;color:var(--ink2);}
+p.lead{font-size:11pt;line-height:1.68;color:var(--ink);}
+strong{color:var(--ink);font-weight:600;}
+.hl{background:linear-gradient(transparent 60%,rgba(245,130,32,.26) 60%);font-weight:600;color:var(--ink);}
+.xs{font-size:8.3pt;line-height:1.5;color:var(--muted);}
+.xxs{font-size:7.7pt;line-height:1.45;color:var(--muted);}
+
+/* ═══════════ GRID + CARDS ═══════════ */
+.g{display:grid;gap:4mm;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g5{grid-template-columns:repeat(5,1fr);}
+.card{background:#fff;border:1px solid var(--line);border-radius:3.4mm;padding:4.2mm 4.6mm;}
+.card.soft{background:var(--grey);border-color:transparent;}
+.card.o{border-top:1.1mm solid var(--org);}
+.card.ink{background:var(--ink);color:#fff;border-color:transparent;}
+.card.ink h3.mini,.card.ink strong{color:#fff;}
+.card.ink p,.card.ink .xs,.card.ink .xxs{color:rgba(255,255,255,.72);}
+.card.fill{background:var(--org);color:#fff;border-color:transparent;}
+.card.fill h3.mini{color:#fff;}
+.card.fill .xs,.card.fill .xxs,.card.fill p{color:rgba(255,255,255,.9);}
+
+.ic{width:9mm;height:9mm;border-radius:2.6mm;background:var(--org-l);color:var(--org-d);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:10pt;margin-bottom:3mm;}
+.ic.solid{background:var(--org);color:#fff;}
+.ic.dark{background:var(--ink);color:#fff;}
+.ic.sm{width:7mm;height:7mm;font-size:8.4pt;border-radius:2mm;margin-bottom:2.2mm;}
+
+.stat{border:1px solid var(--line);border-radius:3.4mm;padding:4.2mm;position:relative;overflow:hidden;background:#fff;}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1.1mm;background:var(--org);}
+.stat .v{font-family:var(--fh);font-weight:800;font-size:19pt;letter-spacing:-.035em;line-height:1;}
+.stat .v small{font-size:11pt;color:var(--org);}
+.stat .k{font-family:var(--fh);font-weight:700;font-size:8.4pt;margin-top:2.6mm;line-height:1.25;}
+.stat .d{font-size:7.5pt;color:var(--muted);line-height:1.4;margin-top:1mm;}
+
+.co{border-left:1.2mm solid var(--org);background:var(--org-l);border-radius:0 3mm 3mm 0;padding:3.6mm 4.4mm;display:flex;gap:3.6mm;align-items:flex-start;}
+.co .ci{font-family:var(--fh);font-weight:800;font-size:11pt;color:var(--org-d);line-height:1;flex:0 0 auto;margin-top:.6mm;}
+.co p{margin:0;font-size:8.7pt;line-height:1.56;}
+.co.dark{border-left-color:var(--ink);background:var(--grey);}
+.co.dark .ci{color:var(--ink);}
+
+/* lists */
+ul.chk li{position:relative;padding-left:5.4mm;margin-bottom:1.9mm;font-size:8.6pt;line-height:1.46;color:var(--ink2);}
+ul.chk li::before{content:"";position:absolute;left:0;top:1.5mm;width:2.4mm;height:1.2mm;border-left:1.1px solid var(--org);border-bottom:1.1px solid var(--org);transform:rotate(-45deg);}
+ul.dot li{position:relative;padding-left:4.4mm;margin-bottom:1.6mm;font-size:8.6pt;line-height:1.46;color:var(--ink2);}
+ul.dot li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.6mm;height:1.6mm;border-radius:50%;background:var(--org);}
+ul.x li{position:relative;padding-left:5.4mm;margin-bottom:1.7mm;font-size:8.5pt;line-height:1.44;color:var(--ink2);}
+ul.x li::before{content:"×";position:absolute;left:0;top:-.3mm;font-family:var(--fh);font-weight:700;color:#B8B8B8;font-size:10pt;}
+
+/* ═══════════ TABLES ═══════════ */
+table.t{width:100%;border-collapse:collapse;font-size:8.3pt;}
+table.t thead th{background:var(--ink);color:#fff;font-family:var(--fh);font-weight:700;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:2.8mm 3mm;}
+table.t thead th:first-child{border-radius:2.4mm 0 0 0;}
+table.t thead th:last-child{border-radius:0 2.4mm 0 0;}
+table.t tbody td{padding:2.3mm 3mm;border-bottom:1px solid var(--line2);vertical-align:top;color:var(--ink2);line-height:1.42;}
+table.t tbody tr:nth-child(even){background:#FBFBFB;}
+table.t td.f{font-family:var(--fh);font-weight:600;color:var(--ink);}
+table.t td.n{font-family:var(--fh);font-weight:800;color:var(--org-d);}
+table.t td.a{font-family:var(--fh);font-weight:800;color:var(--ink);text-align:right;white-space:nowrap;}
+
+.pill{display:inline-block;padding:.5mm 2.2mm;border-radius:6mm;font-family:var(--fh);font-weight:700;font-size:6.6pt;letter-spacing:.06em;white-space:nowrap;}
+.pill.a{background:var(--org);color:#fff;}
+.pill.b{background:var(--ink);color:#fff;}
+.pill.c{background:var(--grey2);color:var(--ink3);}
+.pill.g{background:#EAF6EC;color:var(--ok);}
+.pill.w{background:#FFF4E5;color:var(--warn);}
+
+/* ═══════════ COVER ═══════════ */
+.cover{background:var(--ink);color:#fff;padding:0;justify-content:space-between;}
+.cv-bg{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.cv-bg i{position:absolute;display:block;border-radius:50%;}
+.cv-bg i.g1{width:420px;height:420px;right:-130px;top:-110px;background:radial-gradient(circle,rgba(245,130,32,.34),transparent 68%);}
+.cv-bg i.g2{width:380px;height:380px;left:-150px;bottom:-130px;background:radial-gradient(circle,rgba(255,255,255,.07),transparent 68%);}
+.cv-grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(rgba(255,255,255,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.55) 1px,transparent 1px);background-size:24mm 24mm;}
+.cv-top{padding:17mm var(--px) 0;position:relative;z-index:3;}
+.cv-mid{padding:0 var(--px);position:relative;z-index:3;}
+.cv-bot{padding:0 var(--px) 15mm;position:relative;z-index:3;}
+.cv-logo{display:flex;align-items:center;gap:11px;}
+.cv-logo .mk{width:30px;height:30px;border-radius:7px;background:var(--org);position:relative;}
+.cv-logo .mk::after{content:"";position:absolute;top:9px;right:9px;width:11px;height:11px;background:#fff;border-radius:2px;}
+.cv-logo .tx{font-family:var(--fh);font-weight:800;font-size:10.5pt;letter-spacing:.2em;text-transform:uppercase;}
+.cv-kick{margin-top:22mm;display:inline-block;padding:5.5px 14px;border:1px solid rgba(255,255,255,.3);border-radius:100px;font-family:var(--fh);font-size:7.3pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;}
+.cv-title{font-family:var(--fh);font-weight:800;font-size:37pt;line-height:1.04;letter-spacing:-.035em;margin-top:8mm;}
+.cv-title .o{color:var(--org);}
+.cv-mr{font-family:var(--fd);font-weight:700;font-size:17pt;color:rgba(255,255,255,.5);margin-top:4mm;}
+.cv-line{width:70px;height:4.5px;background:var(--org);border-radius:3px;margin:8mm 0;}
+.cv-sub{font-size:11.5pt;color:rgba(255,255,255,.74);max-width:132mm;line-height:1.6;}
+.cv-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:7mm;}
+.cv-chips span{font-family:var(--fh);font-size:7.6pt;font-weight:700;letter-spacing:.06em;padding:4px 11px;border-radius:4px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);}
+.cv-meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.17);padding-top:6mm;margin-top:7mm;}
+.cv-meta .k{font-family:var(--fh);font-size:6.7pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:1.4mm;}
+.cv-meta .v{font-family:var(--fh);font-size:9.4pt;font-weight:700;line-height:1.32;}
+.cv-meta .v small{display:block;font-weight:400;font-size:7.5pt;color:rgba(255,255,255,.5);margin-top:.5mm;}
+.cv-strip{position:absolute;left:0;right:0;bottom:0;height:6px;display:flex;z-index:4;}
+.cv-strip i{flex:1;}
+.cv-strip i:nth-child(1){background:var(--org);flex:4;}
+.cv-strip i:nth-child(2){background:#fff;flex:1;}
+.cv-strip i:nth-child(3){background:#4A4A4A;flex:2;}
+.cv-art{position:absolute;right:16mm;top:92mm;z-index:2;}
+
+/* ═══════════ TOC ═══════════ */
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:0 11mm;}
+.trow{display:flex;align-items:baseline;gap:7px;padding:2.4mm 0;border-bottom:1px dotted var(--line);}
+.trow .n{font-family:var(--fh);font-weight:800;font-size:8pt;color:var(--org);min-width:16px;}
+.trow .t{font-family:var(--fh);font-weight:600;font-size:8.8pt;flex:1;}
+.trow .p{font-family:var(--fh);font-weight:700;font-size:7.8pt;color:var(--muted);}
+.trow.h{border-bottom:none;padding-top:4.5mm;}
+.trow.h .t{font-size:7.3pt;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);}
+
+/* ═══════════ ARCHITECTURE ═══════════ */
+.arch{border:1px solid var(--line);border-radius:3.4mm;padding:5mm;background:#FBFBFB;}
+.alayer{background:#fff;border:1px solid var(--line);border-radius:2.6mm;padding:3.2mm 4mm;position:relative;}
+.alayer .lt{font-family:var(--fh);font-size:6.6pt;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--org-d);margin-bottom:1.8mm;}
+.alayer b{font-family:var(--fh);font-size:10pt;font-weight:800;}
+.alayer p{margin:1.4mm 0 0;font-size:7.8pt;line-height:1.45;color:var(--muted);}
+.alayer.hi{background:var(--org);border-color:transparent;}
+.alayer.hi .lt{color:rgba(255,255,255,.8);}
+.alayer.hi b{color:#fff;}
+.alayer.hi p{color:rgba(255,255,255,.88);}
+.alayer.dk{background:var(--ink);border-color:transparent;}
+.alayer.dk .lt{color:var(--org);}
+.alayer.dk b{color:#fff;}
+.alayer.dk p{color:rgba(255,255,255,.66);}
+.aflow{text-align:center;color:#C9C9C9;font-family:var(--fh);font-size:11pt;font-weight:700;line-height:1;margin:2mm 0;}
+.chips{display:flex;flex-wrap:wrap;gap:2mm;}
+.chip{font-family:var(--fh);font-weight:600;font-size:7.6pt;padding:1.6mm 2.8mm;border-radius:1.8mm;background:var(--grey);color:var(--ink);border:1px solid var(--line);}
+.chip.o{background:var(--org);color:#fff;border-color:transparent;}
+.chip.d{background:var(--ink);color:#fff;border-color:transparent;}
+
+/* ═══════════ IA TREE ═══════════ */
+.nd{font-family:var(--fd);font-weight:600;font-size:8.4pt;padding:1.9mm 2.6mm;border-radius:2mm;background:#fff;border:1px solid var(--line);text-align:center;line-height:1.22;}
+.nd small{display:block;font-family:var(--fh);font-weight:600;font-size:6.5pt;opacity:.55;margin-top:.3mm;}
+.nd.root{background:var(--ink);color:#fff;border-color:transparent;font-family:var(--fh);font-size:10pt;font-weight:800;padding:2.8mm 8mm;}
+.nd.l1{background:var(--org);color:#fff;border-color:transparent;font-weight:700;}
+.nd.l1 small{opacity:.8;}
+.nd.l2{background:var(--org-l);border-color:var(--org-b);font-size:7.8pt;}
+.br{position:relative;padding-top:4.4mm;}
+.br::before{content:"";position:absolute;left:50%;top:0;width:.5mm;height:4.4mm;background:#DDD;}
+.fan{display:grid;gap:2.4mm;position:relative;}
+.fan::before{content:"";position:absolute;left:7%;right:7%;top:-2.2mm;height:.5mm;background:#DDD;}
+.fan>div{position:relative;padding-top:2.2mm;}
+.fan>div::before{content:"";position:absolute;left:50%;top:0;width:.5mm;height:2.2mm;background:#DDD;}
+.col{display:flex;flex-direction:column;gap:1.8mm;}
+
+/* ═══════════ PRICING ═══════════ */
+.pcard{border:1px solid var(--line);border-radius:4mm;padding:6mm 5mm;text-align:center;background:#fff;position:relative;overflow:hidden;}
+.pcard .pl{font-family:var(--fh);font-size:7.2pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+.pcard .pv{font-family:var(--fh);font-weight:800;font-size:26pt;letter-spacing:-.04em;line-height:1.05;margin-top:3mm;}
+.pcard .pg{font-family:var(--fh);font-size:8pt;font-weight:600;color:var(--muted);margin-top:1mm;}
+.pcard .pd{font-size:8pt;color:var(--ink3);line-height:1.46;margin-top:4mm;padding-top:3.4mm;border-top:1px solid var(--line2);}
+.pcard.feat{background:var(--ink);border-color:transparent;color:#fff;}
+.pcard.feat .pl{color:var(--org);}
+.pcard.feat .pv{color:#fff;}
+.pcard.feat .pg{color:rgba(255,255,255,.6);}
+.pcard.feat .pd{color:rgba(255,255,255,.72);border-top-color:rgba(255,255,255,.18);}
+.pcard .ptag{position:absolute;right:-30px;top:12px;background:var(--org);color:#fff;font-family:var(--fh);font-size:6.6pt;font-weight:800;letter-spacing:.14em;padding:3px 34px;transform:rotate(38deg);}
+
+table.pr{width:100%;border-collapse:collapse;font-size:9.6pt;}
+table.pr th{background:var(--ink);color:#fff;font-family:var(--fh);font-weight:700;font-size:8.4pt;letter-spacing:.09em;text-transform:uppercase;padding:3.4mm 4mm;text-align:left;}
+table.pr th:last-child,table.pr td:last-child{text-align:right;}
+table.pr td{padding:3.2mm 4mm;border-bottom:1px solid var(--line);}
+table.pr td.i{font-family:var(--fh);font-weight:700;color:var(--ink);}
+table.pr td.i small{display:block;font-family:var(--fb);font-weight:400;font-size:7.8pt;color:var(--muted);margin-top:.5mm;line-height:1.4;}
+table.pr td.a{font-family:var(--fh);font-weight:800;white-space:nowrap;}
+table.pr tr.tot td{background:var(--org);color:#fff;font-family:var(--fh);font-weight:800;font-size:12pt;border:none;padding:4mm;}
+
+/* ═══════════ TIMELINE ═══════════ */
+.gt{border:1px solid var(--line);border-radius:3mm;overflow:hidden;}
+.gt-h{display:grid;grid-template-columns:62mm 1fr;background:var(--grey);border-bottom:1px solid var(--line);}
+.gt-h .l{padding:2.2mm 3.4mm;font-family:var(--fh);font-weight:700;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.gt-s{display:grid;grid-template-columns:repeat(30,1fr);}
+.gt-s span{font-family:var(--fh);font-size:5.6pt;font-weight:700;color:var(--muted);text-align:center;padding:2.2mm 0;border-left:1px solid var(--line2);}
+.gt-r{display:grid;grid-template-columns:62mm 1fr;border-bottom:1px solid var(--line2);align-items:center;}
+.gt-r:last-child{border-bottom:none;}
+.gt-r .l{padding:2.4mm 3.4mm;}
+.gt-r .l b{font-family:var(--fh);font-weight:700;font-size:8.4pt;display:block;line-height:1.22;}
+.gt-r .l small{font-family:var(--fh);font-size:6.8pt;color:var(--muted);}
+.gt-t{position:relative;height:100%;display:grid;grid-template-columns:repeat(30,1fr);padding:2.4mm 0;}
+.gt-t .c{border-left:1px solid #F4F4F4;height:100%;}
+.gb{position:absolute;top:50%;transform:translateY(-50%);height:5mm;border-radius:6mm;background:var(--org);display:flex;align-items:center;padding:0 2.4mm;font-family:var(--fh);font-size:6.2pt;font-weight:800;color:#fff;white-space:nowrap;}
+.gb.d{background:var(--ink);}
+.gb.g{background:#8E8E8E;}
+
+/* ═══════════ PAY ═══════════ */
+.payc{border:1px solid var(--line);border-radius:4mm;padding:5.5mm;text-align:center;background:#fff;}
+.payc .p{font-family:var(--fh);font-weight:800;font-size:30pt;color:var(--org);line-height:1;letter-spacing:-.04em;}
+.payc .s{font-family:var(--fh);font-weight:800;font-size:11pt;margin-top:2.4mm;}
+.payc .d{font-size:8.2pt;color:var(--ink3);margin-top:1.6mm;line-height:1.45;}
+.payc .m{font-family:var(--fh);font-weight:800;font-size:10.5pt;color:var(--ink);margin-top:3.4mm;padding-top:3mm;border-top:1px dashed var(--line);}
+
+.dv{height:1px;background:var(--line);margin:5mm 0;}
+.mt2{margin-top:2mm;}.mt3{margin-top:3mm;}.mt4{margin-top:4mm;}.mt5{margin-top:5mm;}.mt6{margin-top:6mm;}
+.mb0{margin-bottom:0;}.mb2{margin-bottom:2mm;}.mb3{margin-bottom:3mm;}.mb4{margin-bottom:4mm;}.mb5{margin-bottom:5mm;}.mb6{margin-bottom:6mm;}
+.tc{text-align:center;}
+
+/* ═══════════ CLOSING ═══════════ */
+.closing{background:var(--ink);color:#fff;justify-content:center;align-items:center;text-align:center;}
+.closing .ci2{position:relative;z-index:3;width:100%;padding:0 10mm;}
+.closing h1{font-family:var(--fh);font-weight:800;font-size:34pt;letter-spacing:-.035em;line-height:1.06;}
+.closing h1 .o{color:var(--org);}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media screen and (max-width:840px){
+  body{padding:4mm 0;font-size:9.6pt;}
+  .page{width:100%;min-height:auto;padding:9mm 6mm 15mm;margin-bottom:5mm;}
+  .pfoot{left:6mm;right:6mm;bottom:5mm;}
+  .cv-top{padding:10mm 6mm 0;}.cv-mid,.cv-bot{padding-left:6mm;padding-right:6mm;}
+  .cv-title{font-size:24pt;}.cv-art{display:none;}
+  .cv-meta{grid-template-columns:1fr 1fr;gap:5mm 0;}
+  .g2,.g3,.g4,.g5,.toc{grid-template-columns:1fr;}
+  .gt-h,.gt-r{grid-template-columns:34mm 1fr;}
+  table.t{font-size:7.2pt;}
+  .closing h1{font-size:24pt;}
+}
+@page{size:A4;margin:0;}
+@media print{
+  body{background:#fff;padding:0;}
+  .page{width:210mm;height:297mm;min-height:297mm;margin:0;box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 01 COVER ══════════ -->
+<section class="page cover">
+  <div class="cv-bg"><div class="cv-grid"></div><i class="g1"></i><i class="g2"></i></div>
+
+  <svg class="cv-art" viewBox="0 0 220 300" width="150" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="46" y="20" width="128" height="250" rx="16" fill="#2C2C2C" stroke="#444" stroke-width="1.5"/>
+    <rect x="52" y="26" width="116" height="238" rx="12" fill="#1C1C1C"/>
+    <rect x="92" y="31" width="36" height="5" rx="2.5" fill="#3A3A3A"/>
+    <rect x="52" y="44" width="116" height="20" fill="#F58220"/>
+    <rect x="60" y="51" width="40" height="6" rx="3" fill="#fff" opacity=".9"/>
+    <rect x="134" y="51" width="26" height="6" rx="3" fill="#fff" opacity=".45"/>
+    <rect x="60" y="74" width="100" height="54" rx="5" fill="#333"/>
+    <path d="M60 110 L84 94 L104 106 L128 88 L160 104 L160 123 a5 5 0 0 1 -5 5 H65 a5 5 0 0 1 -5 -5 Z" fill="#454545"/>
+    <circle cx="130" cy="97" r="7" fill="#F58220" opacity=".85"/>
+    <rect x="60" y="136" width="76" height="7" rx="3.5" fill="#555"/>
+    <rect x="60" y="149" width="100" height="4.5" rx="2.2" fill="#3C3C3C"/>
+    <rect x="60" y="159" width="88" height="4.5" rx="2.2" fill="#3C3C3C"/>
+    <rect x="60" y="176" width="46" height="38" rx="5" fill="#2E2E2E"/>
+    <rect x="114" y="176" width="46" height="38" rx="5" fill="#2E2E2E"/>
+    <rect x="65" y="181" width="36" height="20" rx="3" fill="#444"/>
+    <rect x="119" y="181" width="36" height="20" rx="3" fill="#F58220" opacity=".65"/>
+    <rect x="65" y="205" width="26" height="4" rx="2" fill="#4E4E4E"/>
+    <rect x="119" y="205" width="26" height="4" rx="2" fill="#4E4E4E"/>
+    <rect x="52" y="230" width="116" height="34" rx="0" fill="#161616"/>
+    <circle cx="74" cy="247" r="7" fill="#F58220"/>
+    <circle cx="104" cy="247" r="5" fill="#3E3E3E"/>
+    <circle cx="134" cy="247" r="5" fill="#3E3E3E"/>
+    <circle cx="186" cy="74" r="20" fill="#F58220" opacity=".16"/>
+    <path d="M180 74 l5 5 l10 -11" stroke="#F58220" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="30" cy="196" r="15" fill="#fff" opacity=".07"/>
+  </svg>
+
+  <div class="cv-top">
+    <div class="cv-logo"><div class="mk"></div><div class="tx">Futuready Media</div></div>
+    <div class="cv-kick">Confidential — Client Proposal</div>
+  </div>
+
+  <div class="cv-mid">
+    <h1 class="cv-title">Android &amp; iOS<br>Mobile Application<br><span class="o">Development</span></h1>
+    <div class="cv-mr">शिवसेना लाईव्ह — मोबाईल अ‍ॅप्लिकेशन</div>
+    <div class="cv-line"></div>
+    <p class="cv-sub">Mobile News, Content &amp; Digital Publishing Application — built on Flutter, powered by the existing WordPress CMS through API integration.</p>
+    <div class="cv-chips">
+      <span>Flutter</span><span>WordPress REST API</span><span>Firebase FCM</span><span>Firebase Analytics</span><span>Google Play</span><span>App Store</span>
+    </div>
+  </div>
+
+  <div class="cv-bot">
+    <div class="cv-meta">
+      <div><div class="k">Prepared For</div><div class="v">Shivsena Live<small>Marathi Digital News Platform</small></div></div>
+      <div><div class="k">Prepared By</div><div class="v">Futuready Media<small>Mumbai, India</small></div></div>
+      <div><div class="k">Date</div><div class="v">04 August 2026<small>Valid 30 days</small></div></div>
+      <div><div class="k">Version</div><div class="v">1.0<small>Mobile application scope</small></div></div>
+    </div>
+  </div>
+
+  <div class="cv-strip"><i></i><i></i><i></i></div>
+</section>
+
+<!-- ══════════ 02 CONTENTS ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">Shivsena Live · Mobile App Proposal v1.0</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">—</span> Navigation</div>
+    <h1 class="st">Contents</h1>
+    <div class="srule"></div>
+    <p class="ssub">A complete scope for the Android and iOS applications — from architecture and feature scope through testing, deployment, commercials and assumptions.</p>
+
+    <div class="toc">
+      <div>
+        <div class="trow h"><div class="t">Part A — Overview</div></div>
+        <div class="trow"><span class="n">01</span><span class="t">Executive Summary</span><span class="p">03</span></div>
+        <div class="trow"><span class="n">02</span><span class="t">Project Objectives</span><span class="p">04</span></div>
+        <div class="trow"><span class="n">03</span><span class="t">Technical Architecture</span><span class="p">05</span></div>
+        <div class="trow"><span class="n">04</span><span class="t">Technology Stack</span><span class="p">06</span></div>
+
+        <div class="trow h"><div class="t">Part B — Product Scope</div></div>
+        <div class="trow"><span class="n">05</span><span class="t">App Information Architecture</span><span class="p">07</span></div>
+        <div class="trow"><span class="n">06</span><span class="t">IA — Regional &amp; Special Content</span><span class="p">08</span></div>
+        <div class="trow"><span class="n">07</span><span class="t">Feature Scope — Core Reading</span><span class="p">09</span></div>
+        <div class="trow"><span class="n">08</span><span class="t">Feature Scope — Multimedia</span><span class="p">10</span></div>
+        <div class="trow"><span class="n">09</span><span class="t">Feature Scope — Engagement</span><span class="p">11</span></div>
+        <div class="trow"><span class="n">10</span><span class="t">Advertising &amp; Analytics</span><span class="p">12</span></div>
+      </div>
+      <div>
+        <div class="trow h"><div class="t">Part C — Platform Delivery</div></div>
+        <div class="trow"><span class="n">11</span><span class="t">Android Application</span><span class="p">13</span></div>
+        <div class="trow"><span class="n">12</span><span class="t">iOS Application</span><span class="p">14</span></div>
+        <div class="trow"><span class="n">13</span><span class="t">Performance &amp; Security</span><span class="p">15</span></div>
+        <div class="trow"><span class="n">14</span><span class="t">Testing &amp; Quality Assurance</span><span class="p">16</span></div>
+        <div class="trow"><span class="n">15</span><span class="t">App Store Deployment</span><span class="p">17</span></div>
+        <div class="trow"><span class="n">16</span><span class="t">Project Timeline</span><span class="p">18</span></div>
+        <div class="trow"><span class="n">17</span><span class="t">Deliverables &amp; Support</span><span class="p">19</span></div>
+
+        <div class="trow h"><div class="t">Part D — Commercials</div></div>
+        <div class="trow"><span class="n">18</span><span class="t">Commercial Proposal</span><span class="p">20</span></div>
+        <div class="trow"><span class="n">19</span><span class="t">Payment Terms</span><span class="p">21</span></div>
+        <div class="trow"><span class="n">20</span><span class="t">Hosting &amp; Infrastructure</span><span class="p">22</span></div>
+        <div class="trow"><span class="n">21</span><span class="t">Third-Party &amp; Platform Costs</span><span class="p">23</span></div>
+        <div class="trow"><span class="n">22</span><span class="t">Assumptions &amp; Dependencies</span><span class="p">24</span></div>
+        <div class="trow"><span class="n">23</span><span class="t">Out of Scope</span><span class="p">25</span></div>
+        <div class="trow"><span class="n">24</span><span class="t">Commercial Summary</span><span class="p">26</span></div>
+      </div>
+    </div>
+
+    <div class="co mt6">
+      <span class="ci">i</span>
+      <p><strong>Scope note:</strong> this proposal covers <strong>mobile application development only</strong>. The Shivsena Live website and news portal is a separate project with its own scope and commercial terms. The applications described here consume content from that platform's WordPress CMS through APIs.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>02</b></span></div>
+</section>
+
+<!-- ══════════ 03 EXECUTIVE SUMMARY ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">01 · Executive Summary</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">01</span> Executive Summary</div>
+    <h1 class="st">Extending Shivsena Live<br>to Android and iOS</h1>
+    <div class="srule"></div>
+
+    <p class="lead">Shivsena Live is being developed as a Marathi digital news and content platform. This proposal covers the development of its <strong>Android and iOS mobile applications</strong> — the layer that carries the platform directly into readers' hands.</p>
+
+    <p>The applications will connect to the existing WordPress CMS through APIs. This is the central design decision of the project: the editorial team continues to publish news exactly as it does for the website, and that content appears automatically inside both applications. <span class="hl">There is no second content system to maintain</span>, no duplicate publishing workflow, and no additional editorial burden created by adding mobile.</p>
+
+    <p>Both applications will be built on <strong>Flutter</strong>, which allows a shared application architecture while still producing genuinely native Android and iOS builds. One codebase is written, tested and maintained; two platform-specific applications are delivered.</p>
+
+    <h2 class="blk">What Readers Get</h2>
+    <p>Users will be able to access main news, regional updates, politics, editorial content, sports, entertainment, trending content, Shiv Sena Corner content, videos, podcasts, photo galleries and web stories — organised through a mobile navigation structure designed for one-handed reading.</p>
+
+    <div class="g g4 mt4 mb5">
+      <div class="card soft"><div class="ic sm">01</div><h3 class="mini">Content Reading</h3><p class="xxs mb0">Home feed, categories, article detail, search and related content across the full section tree.</p></div>
+      <div class="card soft"><div class="ic sm">02</div><h3 class="mini">Multimedia</h3><p class="xxs mb0">Video listing and playback, podcast episodes with audio controls, galleries and web stories.</p></div>
+      <div class="card soft"><div class="ic sm">03</div><h3 class="mini">Engagement</h3><p class="xxs mb0">Push notifications, sharing to WhatsApp and social platforms, bookmarks and recently viewed.</p></div>
+      <div class="card soft"><div class="ic sm">04</div><h3 class="mini">Commercial</h3><p class="xxs mb0">Advertising-ready placements across home, feed, article and section levels, plus analytics.</p></div>
+    </div>
+
+    <h2 class="blk">The Commercial Shape</h2>
+    <p>The Android and iOS applications are individually priced, and a combined package price is offered for developing both together. Because the two applications share a Flutter codebase and a single API integration layer, developing them as one coordinated project is materially more efficient than running two separate builds.</p>
+
+    <div class="g g4 mt4">
+      <div class="stat"><div class="v">₹1.50<small>L</small></div><div class="k">Android App</div><div class="d">Standalone platform price</div></div>
+      <div class="stat"><div class="v">₹2.25<small>L</small></div><div class="k">iOS App</div><div class="d">Standalone platform price</div></div>
+      <div class="stat"><div class="v">₹3.25<small>L</small></div><div class="k">Combined Package</div><div class="d">Both applications together</div></div>
+      <div class="stat"><div class="v">25–30<small> days</small></div><div class="k">Timeline</div><div class="d">Requirement to store submission</div></div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">→</span>
+      <p><strong>Objective.</strong> To provide a fast, scalable and user-friendly mobile experience that extends the reach of the Shivsena Live platform without adding complexity to the editorial workflow that already runs it. All figures above are exclusive of GST. Hosting, store developer accounts and third-party service charges are additional and are detailed in later sections.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>03</b></span></div>
+</section>
+
+<!-- ══════════ 04 OBJECTIVES ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">02 · Project Objectives</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">02</span> Project Objectives</div>
+    <h1 class="st">Ten Objectives That Define Delivery</h1>
+    <div class="srule"></div>
+    <p class="ssub">Each objective below carries a defined technical response. These are the criteria against which the delivered applications should be assessed.</p>
+
+    <div class="g g2" style="gap:3.4mm;">
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">01</span> &nbsp;Extend the platform to Android and iOS</h3>
+        <p class="xs mb0">Two production applications, built from a shared Flutter codebase and published to Google Play and the Apple App Store.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">02</span> &nbsp;Fast, responsive reading experience</h3>
+        <p class="xs mb0">Optimised app startup, API caching, lazy image loading and pagination so the feed stays usable on inconsistent mobile networks.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">03</span> &nbsp;Integrate with the existing WordPress CMS</h3>
+        <p class="xs mb0">WordPress REST API and custom endpoints where required, mapped to every content type the applications display.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">04</span> &nbsp;One central publishing system</h3>
+        <p class="xs mb0">Editorial publishes once in the CMS; content appears on the website and inside both applications. No parallel content system.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">05</span> &nbsp;Breaking-news and content notifications</h3>
+        <p class="xs mb0">Firebase Cloud Messaging for breaking news, important stories, new videos, podcasts and editorially defined alerts.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">06</span> &nbsp;Support multimedia content</h3>
+        <p class="xs mb0">Images, video listing and playback, podcast audio with progress control, photo galleries and web stories.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">07</span> &nbsp;Strong content discovery</h3>
+        <p class="xs mb0">Category navigation, global search with pagination, trending sections and related-content recirculation on every article.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">08</span> &nbsp;Scalable technical foundation</h3>
+        <p class="xs mb0">Structured so additional content types, sections and future mobile features can be added without re-architecting the applications.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">09</span> &nbsp;Analytics and performance monitoring</h3>
+        <p class="xs mb0">Firebase Analytics across app opens, article and category views, search, media plays, shares and notification opens.</p>
+      </div>
+      <div class="card o">
+        <h3 class="mini"><span style="color:var(--org);">10</span> &nbsp;Advertising-ready structure</h3>
+        <p class="xs mb0">Placement slots designed into home, feed, article and section templates so inventory exists from the first release.</p>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Reading without friction.</strong> Users will not be required to create an account simply to read news. Account creation is not part of the proposed scope, and features such as bookmarks and recently viewed are designed to work on local device storage so that reading remains open by default.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>04</b></span></div>
+</section>
+<!-- ══════════ 05 ARCHITECTURE ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">03 · Technical Architecture</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">03</span> Technical Architecture</div>
+    <h1 class="st">One Content Source,<br>Two Applications</h1>
+    <div class="srule"></div>
+    <p class="ssub">Content flows in one direction — from the editorial desk, through the CMS and API layer, into both applications. Nothing is published twice.</p>
+
+    <div class="arch mb5">
+      <div class="alayer">
+        <div class="lt">Layer 1 · Source</div>
+        <b>Editorial Team</b>
+        <p>Reporters, sub-editors and the desk publish news, videos, podcasts, galleries and web stories through the interface they already use. No change to the existing editorial workflow.</p>
+      </div>
+      <div class="aflow">↓</div>
+      <div class="alayer dk">
+        <div class="lt">Layer 2 · Content Management</div>
+        <b>WordPress CMS</b>
+        <p>Remains the single source of truth for all content. Categories, tags, regional sections, media and special content pillars are all managed here — for the website and the applications alike.</p>
+      </div>
+      <div class="aflow">↓</div>
+      <div class="alayer">
+        <div class="lt">Layer 3 · Interface</div>
+        <b>WordPress REST API &amp; Custom Endpoints</b>
+        <p>Standard REST endpoints are used where they are sufficient. Custom endpoints are built where the applications need shaped responses — a lighter home feed, combined section payloads, or media-specific structures that reduce round trips.</p>
+      </div>
+      <div class="aflow">↓</div>
+      <div class="alayer hi">
+        <div class="lt">Layer 4 · Application</div>
+        <b>Flutter Application</b>
+        <p>A single Dart codebase containing all screens, navigation, state handling, local caching and offline-state behaviour. Built once, compiled twice.</p>
+      </div>
+      <div class="aflow">↓</div>
+      <div class="alayer">
+        <div class="lt">Layer 5 · Distribution</div>
+        <b>Android &amp; iOS Users</b>
+        <p>Native builds distributed through Google Play and the Apple App Store, each following its platform's own conventions for navigation, notifications and permissions.</p>
+      </div>
+    </div>
+
+    <h2 class="blk">Supporting Services</h2>
+    <div class="g g4">
+      <div class="card">
+        <div class="ic sm">FCM</div>
+        <h3 class="mini">Firebase Cloud Messaging</h3>
+        <p class="xxs mb0">Delivers breaking-news and content push notifications to both platforms from a single console.</p>
+      </div>
+      <div class="card">
+        <div class="ic sm">FA</div>
+        <h3 class="mini">Firebase Analytics</h3>
+        <p class="xxs mb0">Records reading behaviour, media plays, search and notification response for editorial and commercial reporting.</p>
+      </div>
+      <div class="card">
+        <div class="ic sm">CDN</div>
+        <h3 class="mini">Cloudflare / CDN</h3>
+        <p class="xxs mb0">Serves images and static media from edge locations, reducing both app load time and origin server load.</p>
+      </div>
+      <div class="card">
+        <div class="ic sm">VPS</div>
+        <h3 class="mini">Cloud VPS</h3>
+        <p class="xxs mb0">Hosts the WordPress CMS and serves the API requests the applications make. Billed separately — see page 22.</p>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">!</span>
+      <p><strong>Dependency worth stating plainly:</strong> the applications are only as fast and as reliable as the API they consume. CMS and API availability, response times and content structure directly determine app performance. This is why API access and content-structure readiness appear in the assumptions on page 24.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>05</b></span></div>
+</section>
+
+<!-- ══════════ 06 TECHNOLOGY STACK ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">04 · Technology Stack</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">04</span> Technology Stack</div>
+    <h1 class="st">Why Flutter for This Project</h1>
+    <div class="srule"></div>
+
+    <p class="lead mb5">A news application is largely the same product on both platforms — the same feed, the same article, the same player. Writing that twice, in two languages, for two teams, is where most mobile budgets are spent. Flutter removes that duplication while still delivering real native builds rather than a web page in a wrapper.</p>
+
+    <table class="t mb5">
+      <thead><tr><th style="width:44mm">Technology</th><th>Role in this project</th></tr></thead>
+      <tbody>
+        <tr><td class="f">Flutter</td><td>Cross-platform UI framework. One application architecture, screen set and component library shared across Android and iOS, compiled to native code on each platform — not rendered in a web view.</td></tr>
+        <tr><td class="f">Dart</td><td>The language the application is written in. Strongly typed and compiled ahead of time for release builds, which keeps startup and scrolling performance predictable on mid-range Android devices.</td></tr>
+        <tr><td class="f">WordPress REST API<br><span class="xxs">+ custom endpoints</span></td><td>The content interface. Standard endpoints for posts, categories, media and taxonomies; custom endpoints where the applications benefit from purpose-shaped responses that reduce the number of calls per screen.</td></tr>
+        <tr><td class="f">Firebase Cloud Messaging</td><td>Push notification delivery to both platforms. Supports targeted sends and, where technically feasible, category-based notification preferences controlled by the user.</td></tr>
+        <tr><td class="f">Firebase Analytics</td><td>Event and screen tracking. Supplies the behavioural data needed to judge which sections perform, which notifications are opened and where readers drop off.</td></tr>
+        <tr><td class="f">Image optimisation &amp; caching</td><td>Images are resized and cached on device so repeated feed scrolling does not re-download the same assets. The single largest factor in perceived mobile news app speed.</td></tr>
+        <tr><td class="f">API-based content sync</td><td>Content is fetched on demand with pagination and pull-to-refresh, so new stories surface without the user reinstalling or waiting on an app update.</td></tr>
+        <tr><td class="f">Deep linking</td><td>Where applicable, shared article links open directly to that article inside the application rather than dropping the user on the home screen.</td></tr>
+        <tr><td class="f">Android build / Google Play</td><td>Production AAB generation, signing configuration and store submission assistance.</td></tr>
+        <tr><td class="f">iOS build / App Store</td><td>Production build generation, certificate and provisioning configuration, and store submission assistance.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="blk">What Shared Architecture Does and Does Not Mean</h2>
+    <div class="g g2">
+      <div class="card">
+        <h3 class="mini">It does mean</h3>
+        <ul class="chk mt2">
+          <li>One codebase written, reviewed and maintained</li>
+          <li>Feature parity across platforms by default</li>
+          <li>A fix applied once resolves it on both apps</li>
+          <li>Two genuinely native builds, not a web wrapper</li>
+          <li>Lower combined cost than two separate builds</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">It does not mean</h3>
+        <ul class="x mt2">
+          <li>Zero platform-specific work — iOS still requires its own build pipeline, certificates, device testing and store review</li>
+          <li>Identical behaviour everywhere — navigation, notification permissions and share sheets follow each platform's conventions</li>
+          <li>Half the cost of two apps — shared logic reduces effort substantially, but each platform is tested and shipped separately</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chips mt5">
+      <span class="chip o">Flutter</span><span class="chip o">Dart</span><span class="chip d">WordPress REST API</span><span class="chip">Custom Endpoints</span><span class="chip d">Firebase FCM</span><span class="chip">Firebase Analytics</span><span class="chip">Image Caching</span><span class="chip">Deep Linking</span><span class="chip">Cloudflare CDN</span><span class="chip">Google Play</span><span class="chip">Apple App Store</span>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>06</b></span></div>
+</section>
+
+<!-- ══════════ 07 IA — PRIMARY ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">05 · App Information Architecture</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">05</span> App Information Architecture</div>
+    <h1 class="st">Primary Navigation Structure</h1>
+    <div class="srule"></div>
+    <p class="ssub">Mobile navigation cannot carry a twelve-item menu bar. The structure below distributes the section tree across a bottom tab bar, a scrollable category strip and a full drawer — so every section is reachable without crowding the screen.</p>
+
+    <div class="tc mb4" style="display:flex;justify-content:center;"><div class="nd root">HOME <span class="mr" style="font-size:9pt;opacity:.65;">मुखपृष्ठ</span></div></div>
+
+    <div class="br mb4">
+      <div class="fan" style="grid-template-columns:repeat(4,1fr);">
+        <div><div class="nd l1">मुख्य बातम्या<small>Main News</small></div></div>
+        <div><div class="nd l1">राजकारण<small>Politics</small></div></div>
+        <div><div class="nd l1">संपादकीय<small>Editorial</small></div></div>
+        <div><div class="nd l1">क्रीडा<small>Sports</small></div></div>
+      </div>
+    </div>
+    <div class="g mb5" style="grid-template-columns:repeat(4,1fr);gap:2.6mm;">
+      <div><div class="nd l1">मनोरंजन<small>Entertainment</small></div></div>
+      <div><div class="nd l1">ट्रेंडिंग<small>Trending</small></div></div>
+      <div><div class="nd l1">शिवसेना कॉर्नर<small>Shiv Sena Corner</small></div></div>
+      <div><div class="nd l1">फोटो<small>Photos</small></div></div>
+    </div>
+    <div class="g mb5" style="grid-template-columns:repeat(4,1fr);gap:2.6mm;">
+      <div><div class="nd l1">व्हिडिओ<small>Video</small></div></div>
+      <div><div class="nd l1">वेब स्टोरी<small>Web Stories</small></div></div>
+      <div><div class="nd l1">पॉडकास्ट<small>Podcast</small></div></div>
+      <div><div class="nd l2">शोध<small>Search</small></div></div>
+    </div>
+
+    <h2 class="blk">How These Map to Mobile Navigation</h2>
+    <div class="g g3">
+      <div class="card">
+        <div class="ic sm">1</div>
+        <h3 class="mini">Bottom Tab Bar</h3>
+        <p class="xs mb2">Five fixed destinations, always visible, thumb-reachable.</p>
+        <ul class="dot" style="margin:0;">
+          <li>Home <span class="mr">मुखपृष्ठ</span></li>
+          <li>Sections <span class="mr">विभाग</span></li>
+          <li>Video <span class="mr">व्हिडिओ</span></li>
+          <li>Shiv Sena Corner</li>
+          <li>Search <span class="mr">शोध</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic sm">2</div>
+        <h3 class="mini">Horizontal Category Strip</h3>
+        <p class="xs mb2">Scrollable row under the header on the home screen, giving one-tap access to the highest-traffic sections without leaving the feed.</p>
+        <p class="xxs mb0">Order is CMS-driven, so the desk can promote a section during elections, festivals or major events without an app update.</p>
+      </div>
+      <div class="card">
+        <div class="ic sm">3</div>
+        <h3 class="mini">Full Section Drawer</h3>
+        <p class="xs mb2">The complete tree — all primary sections, every regional bureau, all lifestyle verticals and the full special-content list.</p>
+        <p class="xxs mb0">This is where depth lives, so the visible navigation can stay deliberately shallow.</p>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Why this split matters.</strong> The platform carries more than thirty sections. Exposing all of them at once produces a menu nobody reads. Placing five in the tab bar, the highest-traffic ones in a scrollable strip and the full tree in a drawer keeps the application navigable for both a first-time reader and someone looking for a specific district bureau.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>07</b></span></div>
+</section>
+
+<!-- ══════════ 08 IA — REGIONAL & SPECIAL ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">06 · IA — Regional &amp; Special Content</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">06</span> Information Architecture</div>
+    <h1 class="st">Regional, Lifestyle<br>&amp; Special Content</h1>
+    <div class="srule"></div>
+
+    <h2 class="blk" style="margin-top:0;">Regional News <span class="mr" style="font-weight:600;font-size:10pt;color:var(--muted);">प्रादेशिक</span></h2>
+    <div class="tc mb3" style="display:flex;justify-content:center;"><div class="nd l1" style="padding:2.4mm 8mm;">महाराष्ट्र <span style="opacity:.78;font-size:7.4pt;">/ REGIONAL</span></div></div>
+    <div class="br mb5">
+      <div class="fan" style="grid-template-columns:repeat(7,1fr);">
+        <div><div class="nd l2">मुंबई<small>Mumbai</small></div></div>
+        <div><div class="nd l2">ठाणे<small>Thane</small></div></div>
+        <div><div class="nd l2">कोकण<small>Konkan</small></div></div>
+        <div><div class="nd l2">मराठवाडा<small>Marathwada</small></div></div>
+        <div><div class="nd l2">विदर्भ<small>Vidarbha</small></div></div>
+        <div><div class="nd l2">उत्तर महाराष्ट्र<small>North MH</small></div></div>
+        <div><div class="nd l2">देश<small>India</small></div></div>
+      </div>
+    </div>
+
+    <h2 class="blk">Trending &amp; Lifestyle <span class="mr" style="font-weight:600;font-size:10pt;color:var(--muted);">ट्रेंडिंग</span></h2>
+    <div class="g mb5" style="grid-template-columns:repeat(7,1fr);gap:2.4mm;">
+      <div class="nd l2">लाईफस्टाईल<small>Lifestyle</small></div>
+      <div class="nd l2">आरोग्य<small>Health</small></div>
+      <div class="nd l2">ट्रॅव्हेल<small>Travel</small></div>
+      <div class="nd l2">फूड<small>Food</small></div>
+      <div class="nd l2">करिअर<small>Career</small></div>
+      <div class="nd l2">एज्युकेशन<small>Education</small></div>
+      <div class="nd l2">टेक्नॉलॉजी<small>Technology</small></div>
+    </div>
+
+    <h2 class="blk">Shiv Sena Corner &amp; Special Content</h2>
+    <p class="xs mb3">Fifteen content pillars, each surfaced as its own section within the application with a dedicated listing screen, so they are discoverable rather than buried inside a general news feed.</p>
+    <div class="g" style="grid-template-columns:repeat(5,1fr);gap:2.4mm;">
+      <div class="nd l2">शिवकट्टा<small>Shiv Katta</small></div>
+      <div class="nd l2">व्यक्ती आणि वल्ली<small>Profiles</small></div>
+      <div class="nd l2">भूमिका<small>Explainer</small></div>
+      <div class="nd l2">शिवसेना काल, आज, उद्या<small>History</small></div>
+      <div class="nd l2">पॉडकास्ट शिवसेनेचा<small>Podcast</small></div>
+      <div class="nd l2">शिवसेना अपडेट्स<small>Updates</small></div>
+      <div class="nd l2">भ्रमंती<small>Travel Show</small></div>
+      <div class="nd l2">फूड शो<small>Food Show</small></div>
+      <div class="nd l2">A Day With<small>Day in the Life</small></div>
+      <div class="nd l2">शासकीय योजना<small>Govt Schemes</small></div>
+      <div class="nd l2">यशोगाथा बळीराजाची<small>Farmer Stories</small></div>
+      <div class="nd l2">लेडीज स्पेशल / हिरकणी<small>Women</small></div>
+      <div class="nd l2">बालसेना<small>Kids</small></div>
+      <div class="nd l2">युवासेना<small>Youth</small></div>
+      <div class="nd l2">मार्मिक फटकारे<small>Satire</small></div>
+    </div>
+
+    <div class="g g2 mt5" style="gap:4mm;">
+      <div class="card soft">
+        <h3 class="mini">Section Behaviour</h3>
+        <p class="xxs mb0">Every section above resolves to a standard listing screen: featured item, story cards with image, date and time, pagination or load-more, and related content. One template serves all of them, which is what makes adding a section later a configuration task rather than a development task.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Content Type Mapping</h3>
+        <p class="xxs mb0">Text sections render as article lists. Video-led pillars such as भूमिका, भ्रमंती, फूड शो and A Day With render as video listings. पॉडकास्ट शिवसेनेचा renders as an episode list with the audio player. Mapping is driven by the content type returned by the API.</p>
+      </div>
+    </div>
+
+    <div class="co mt4">
+      <span class="ci">i</span>
+      <p><strong>Dependency:</strong> this structure assumes the categories, taxonomies and content types listed above exist in the WordPress CMS and are exposed through the API. Sections that are not present in the CMS at integration time cannot be displayed in the applications.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>08</b></span></div>
+</section>
+<!-- ══════════ 09 FEATURE SCOPE — CORE READING ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">07 · Feature Scope — Core Reading</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">07</span> Feature Scope</div>
+    <h1 class="st">Core Reading Experience</h1>
+    <div class="srule"></div>
+    <p class="ssub">The screens a reader touches on every visit. Specified feature by feature so scope is unambiguous before development begins.</p>
+
+    <h2 class="blk" style="margin-top:0;">A · Home Screen</h2>
+    <div class="g g3 mb2" style="gap:3mm;">
+      <div class="card soft"><h3 class="mini">Content Blocks</h3><ul class="dot" style="margin-top:2mm;"><li>Featured / lead story</li><li>Latest news</li><li>Breaking news</li><li>Trending stories</li><li>Category highlights</li><li>Regional news</li></ul></div>
+      <div class="card soft"><h3 class="mini">Media &amp; Special</h3><ul class="dot" style="margin-top:2mm;"><li>Editor's picks</li><li>Video highlights</li><li>Photo highlights</li><li>Podcast highlights</li><li>Web Stories</li><li>Special content pillars</li></ul></div>
+      <div class="card soft"><h3 class="mini">Behaviour</h3><ul class="dot" style="margin-top:2mm;"><li>Most-read / popular content</li><li>Advertisement placements</li><li>Pull-to-refresh</li><li>Infinite scroll / pagination<br>where applicable</li><li>Loading and empty states</li></ul></div>
+    </div>
+
+    <h2 class="blk">B · Breaking News</h2>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card"><h3 class="mini">Breaking Section</h3><p class="xxs mb0">A dedicated breaking-news area within the home feed, separated visually from standard stories.</p></div>
+      <div class="card"><h3 class="mini">Highlighted Cards</h3><p class="xxs mb0">Distinct card treatment so urgent stories are identifiable at a glance while scrolling.</p></div>
+      <div class="card"><h3 class="mini">Push Capability</h3><p class="xxs mb0">Breaking items can trigger a push notification through Firebase Cloud Messaging.</p></div>
+      <div class="card"><h3 class="mini">Time &amp; Tap</h3><p class="xxs mb0">Date and time displayed on each item; tapping opens the full article detail screen.</p></div>
+    </div>
+
+    <h2 class="blk">C · News Category Screens</h2>
+    <p class="xs mb3">A single flexible template serves every category, sub-category, regional bureau and special content section. Each screen displays:</p>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card soft"><ul class="chk" style="margin:0;"><li>Latest stories</li><li>Featured story</li></ul></div>
+      <div class="card soft"><ul class="chk" style="margin:0;"><li>Story cards</li><li>Images</li></ul></div>
+      <div class="card soft"><ul class="chk" style="margin:0;"><li>Date and time</li><li>Pagination / load more</li></ul></div>
+      <div class="card soft"><ul class="chk" style="margin:0;"><li>Related content</li><li>Section-level ad slot</li></ul></div>
+    </div>
+
+    <h2 class="blk">D · Article Detail Screen</h2>
+    <div class="g g3" style="gap:3mm;">
+      <div class="card o">
+        <h3 class="mini">Article Content</h3>
+        <ul class="dot" style="margin-top:2mm;">
+          <li>Category label</li><li>Headline</li><li>Featured image</li><li>Author</li>
+          <li>Publication date and time</li><li>Full article content</li><li>Embedded images</li>
+          <li>Video embeds where supported</li>
+        </ul>
+      </div>
+      <div class="card o">
+        <h3 class="mini">Navigation &amp; Discovery</h3>
+        <ul class="dot" style="margin-top:2mm;">
+          <li>Related stories</li><li>Previous / next article</li><li>Recommended stories</li>
+          <li>In-article advertisement slot</li><li>Return to section</li>
+        </ul>
+      </div>
+      <div class="card o">
+        <h3 class="mini">Actions</h3>
+        <ul class="dot" style="margin-top:2mm;">
+          <li>Share functionality</li><li>Copy link</li><li>WhatsApp sharing</li>
+          <li>Facebook sharing</li><li>X sharing</li>
+          <li>Bookmark / favourite</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>No account required to read.</strong> Users will not be asked to register or log in to access news. Bookmarks and recently viewed are handled through local device storage, so the reading experience remains open and friction-free from first launch.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>09</b></span></div>
+</section>
+
+<!-- ══════════ 10 FEATURE SCOPE — MULTIMEDIA ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">08 · Feature Scope — Multimedia</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">08</span> Feature Scope</div>
+    <h1 class="st">Search &amp; Multimedia Modules</h1>
+    <div class="srule"></div>
+
+    <h2 class="blk" style="margin-top:0;">E · Search</h2>
+    <div class="g g5" style="gap:3mm;">
+      <div class="card soft"><h3 class="mini">Global Search</h3><p class="xxs mb0">Accessible from the bottom tab bar on every screen.</p></div>
+      <div class="card soft"><h3 class="mini">Search Articles</h3><p class="xxs mb0">Full-text query across published article content.</p></div>
+      <div class="card soft"><h3 class="mini">Categories &amp; Content</h3><p class="xxs mb0">Results include matching sections and content types.</p></div>
+      <div class="card soft"><h3 class="mini">Results &amp; Paging</h3><p class="xxs mb0">Paginated result list with load-more behaviour.</p></div>
+      <div class="card soft"><h3 class="mini">Empty Results</h3><p class="xxs mb0">A handled zero-result state rather than a blank screen.</p></div>
+    </div>
+
+    <h2 class="blk">F · Video</h2>
+    <div class="g g3" style="gap:3mm;">
+      <div class="card"><div class="ic sm">▶</div><h3 class="mini">Listing &amp; Categories</h3><p class="xxs mb0">Video listing screen with category filtering, so show-based pillars such as भूमिका, भ्रमंती and फूड शो each have their own browsable set.</p></div>
+      <div class="card"><div class="ic sm">▶</div><h3 class="mini">Detail &amp; Playback</h3><p class="xxs mb0">Video thumbnails on listing cards, and a video detail screen with playback, title, description and publication metadata.</p></div>
+      <div class="card"><div class="ic sm">▶</div><h3 class="mini">Recirculation</h3><p class="xxs mb0">Related videos below the player and share functionality on every video detail screen.</p></div>
+    </div>
+
+    <h2 class="blk">G · Podcast</h2>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card soft"><h3 class="mini">Listing &amp; Episodes</h3><p class="xxs mb0">Podcast listing with episode cards, grouped by show where the content structure supports it.</p></div>
+      <div class="card soft"><h3 class="mini">Episode Detail</h3><p class="xxs mb0">Episode screen with title, description and publication metadata.</p></div>
+      <div class="card soft"><h3 class="mini">Audio Playback</h3><p class="xxs mb0">Play and pause controls with a progress control for seeking within the episode.</p></div>
+      <div class="card soft"><h3 class="mini">Share</h3><p class="xxs mb0">Share functionality on every episode, using the same share layer as articles.</p></div>
+    </div>
+
+    <h2 class="blk">H · Photo Gallery</h2>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card"><h3 class="mini">Gallery Listing</h3><p class="xxs mb0">Browsable list of published galleries with cover thumbnails.</p></div>
+      <div class="card"><h3 class="mini">Thumbnails</h3><p class="xxs mb0">Grid of gallery thumbnails within each gallery entry.</p></div>
+      <div class="card"><h3 class="mini">Full-Screen Viewer</h3><p class="xxs mb0">Tap to open a full-screen image viewer with swipe navigation between images.</p></div>
+      <div class="card"><h3 class="mini">Share</h3><p class="xxs mb0">Share functionality from within the gallery viewer.</p></div>
+    </div>
+
+    <h2 class="blk">I · Web Stories</h2>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card soft"><h3 class="mini">Story Listing</h3><p class="xxs mb0">Dedicated listing of published web stories within the application.</p></div>
+      <div class="card soft"><h3 class="mini">Full-Screen Experience</h3><p class="xxs mb0">Vertical full-screen story presentation designed for the mobile format.</p></div>
+      <div class="card soft"><h3 class="mini">Image &amp; Video Support</h3><p class="xxs mb0">Image and video-supported story formats where the API and content structure provide them.</p></div>
+      <div class="card soft"><h3 class="mini">Navigation</h3><p class="xxs mb0">Tap and swipe navigation between story frames and between stories.</p></div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">!</span>
+      <p><strong>Content-structure dependency.</strong> Video, podcast, gallery and web story modules depend on those content types existing in the WordPress CMS and being exposed through the API in a consistent structure. Where a content type is not yet available, the corresponding module is built but will display content only once the CMS side is in place.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>10</b></span></div>
+</section>
+
+<!-- ══════════ 11 FEATURE SCOPE — ENGAGEMENT ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">09 · Feature Scope — Engagement</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">09</span> Feature Scope</div>
+    <h1 class="st">Notifications, Sharing<br>&amp; Personal Utilities</h1>
+    <div class="srule"></div>
+
+    <h2 class="blk" style="margin-top:0;">J · Push Notifications</h2>
+    <p class="xs mb3">Delivered through <strong>Firebase Cloud Messaging</strong>, giving the desk a single console to reach both platforms. Notifications may be used for:</p>
+    <div class="g" style="grid-template-columns:repeat(6,1fr);gap:2.6mm;">
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">Breaking news</h3></div>
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">Important news</h3></div>
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">New videos</h3></div>
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">Podcasts</h3></div>
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">Special stories</h3></div>
+      <div class="card soft" style="padding:3mm;"><h3 class="mini" style="font-size:8.6pt;">Editorial content</h3></div>
+    </div>
+    <p class="xs mt3 mb0">Other editorially defined alerts can be sent through the same mechanism. <strong>Where technically feasible, category-based notification preferences will be provided</strong> so a reader can choose which kinds of alerts they receive.</p>
+
+    <h2 class="blk">K · Content Sharing</h2>
+    <div class="g g5" style="gap:3mm;">
+      <div class="card"><h3 class="mini">WhatsApp</h3><p class="xxs mb0">The dominant sharing channel for Marathi news; placed first in the share order.</p></div>
+      <div class="card"><h3 class="mini">Facebook</h3><p class="xxs mb0">Direct share to Facebook from article, video, gallery and podcast screens.</p></div>
+      <div class="card"><h3 class="mini">X</h3><p class="xxs mb0">Direct share to X with headline and link.</p></div>
+      <div class="card"><h3 class="mini">Native Share</h3><p class="xxs mb0">The device's own share sheet, covering every other installed app.</p></div>
+      <div class="card"><h3 class="mini">Copy Link</h3><p class="xxs mb0">One-tap link copy for pasting anywhere.</p></div>
+    </div>
+
+    <div class="g g2 mt5" style="gap:4mm;">
+      <div>
+        <h2 class="blk" style="margin-top:0;">L · Bookmarks / Favourites <span class="pill w" style="margin-left:5px;">Optional</span></h2>
+        <div class="card">
+          <ul class="chk">
+            <li><strong>Save article</strong> — from the article detail screen</li>
+            <li><strong>View saved articles</strong> — a dedicated saved list</li>
+            <li><strong>Remove saved article</strong> — individually removable</li>
+          </ul>
+          <div class="dv" style="margin:3.4mm 0;"></div>
+          <p class="xxs mb0"><strong>Local device storage is used.</strong> No mandatory user account is required, and saved items are not synced across devices. This keeps the feature useful without introducing a login requirement for reading.</p>
+        </div>
+      </div>
+      <div>
+        <h2 class="blk" style="margin-top:0;">M · Recently Viewed <span class="pill w" style="margin-left:5px;">Optional</span></h2>
+        <div class="card">
+          <ul class="chk">
+            <li>A recently-viewed content list built from reading history on the device</li>
+            <li>Lets a reader return to a story they scrolled past earlier</li>
+            <li>Clearable by the user</li>
+          </ul>
+          <div class="dv" style="margin:3.4mm 0;"></div>
+          <p class="xxs mb0"><strong>Local device storage is used.</strong> Reading history remains on the device and is not transmitted to a server or tied to an account.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>On "optional" items.</strong> Bookmarks and Recently Viewed are included within the proposed scope and will be built. They are marked optional because activating them is an editorial and product decision, not a commercial one — there is no additional cost attached to either.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>11</b></span></div>
+</section>
+
+<!-- ══════════ 12 ADVERTISING & ANALYTICS ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">10 · Advertising &amp; Analytics</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">10</span> Advertising &amp; Analytics</div>
+    <h1 class="st">Commercial Structure<br>&amp; Measurement</h1>
+    <div class="srule"></div>
+
+    <h2 class="blk" style="margin-top:0;">N · Advertising</h2>
+    <p class="xs mb3">The applications will be <strong>structured to support advertising placements</strong>. Slots are designed into the templates from the start, with reserved space so that late-loading creatives do not disturb the reading layout.</p>
+
+    <table class="t mb3">
+      <thead><tr><th style="width:52mm">Placement</th><th>Position within the application</th></tr></thead>
+      <tbody>
+        <tr><td class="f">Home banner</td><td>Within the home screen, above or between the primary content blocks</td></tr>
+        <tr><td class="f">In-feed advertisements</td><td>Placed between story cards in listing feeds so they flow with the content</td></tr>
+        <tr><td class="f">Article advertisements</td><td>Within the article detail screen, between content and the related-stories block</td></tr>
+        <tr><td class="f">Section-level advertisements</td><td>On category and section listing screens, allowing section-specific placement</td></tr>
+        <tr><td class="f">Interstitial advertisements</td><td>Where appropriate, between screen transitions — used sparingly to protect the reading experience</td></tr>
+        <tr><td class="f">Video advertisements</td><td>Where supported by the video delivery method in use</td></tr>
+        <tr><td class="f">Sponsored content placements</td><td>Where technically applicable, using a labelled sponsored content type supplied by the CMS</td></tr>
+      </tbody>
+    </table>
+
+    <div class="co dark mb5">
+      <span class="ci">!</span>
+      <p><strong>Scope boundary.</strong> This proposal covers building the <em>structure</em> that supports advertising placements. It does not include ad network subscription charges, ad sales, campaign management or creative production — and no specific advertising revenue is promised or implied.</p>
+    </div>
+
+    <h2 class="blk" style="margin-top:0;">O · Analytics</h2>
+    <p class="xs mb3"><strong>Firebase Analytics</strong> will be integrated to track relevant application events, giving the editorial and commercial teams evidence rather than assumption.</p>
+
+    <div class="g g5" style="gap:2.6mm;">
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">App opens</h3><p class="xxs mb0">Launch frequency and session starts</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Article views</h3><p class="xxs mb0">Which stories are actually read</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Category views</h3><p class="xxs mb0">Which sections draw traffic</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Search</h3><p class="xxs mb0">What readers look for</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Video plays</h3><p class="xxs mb0">Video engagement by show</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Podcast plays</h3><p class="xxs mb0">Episode-level listening</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Shares</h3><p class="xxs mb0">What gets forwarded onward</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Notification opens</h3><p class="xxs mb0">Push effectiveness by type</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">Screen views</h3><p class="xxs mb0">Navigation paths through the app</p></div>
+      <div class="card soft" style="padding:3.2mm;"><h3 class="mini" style="font-size:8.6pt;">User engagement</h3><p class="xxs mb0">Time in app and return behaviour</p></div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">→</span>
+      <p><strong>Why analytics is scoped as core, not optional.</strong> Section-level readership data is what allows the desk to decide what to publish more of — and what the commercial team can present to advertisers when negotiating placement rates. Without it, both decisions are made on instinct.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>12</b></span></div>
+</section>
+<!-- ══════════ 13 ANDROID ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">11 · Android Application</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">11</span> Android Application Development</div>
+    <h1 class="st">Android Application</h1>
+    <div class="srule"></div>
+    <p class="ssub">A Flutter-built Android application, published through Google Play, covering the full content and feature scope defined in this proposal.</p>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div>
+        <h2 class="blk" style="margin-top:0;">Development Scope</h2>
+        <ul class="chk">
+          <li>Flutter Android application</li>
+          <li>Complete UI implementation</li>
+          <li>WordPress / API integration</li>
+          <li>All agreed news and content sections</li>
+          <li>Push notifications via Firebase Cloud Messaging</li>
+          <li>Search</li>
+          <li>Content sharing</li>
+          <li>Video</li>
+          <li>Podcast</li>
+          <li>Photo gallery</li>
+          <li>Web Stories</li>
+          <li>Firebase Analytics</li>
+          <li>Advertising-ready placements</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="blk" style="margin-top:0;">Build, Test &amp; Release</h2>
+        <ul class="chk">
+          <li>Performance optimisation</li>
+          <li>Device compatibility testing</li>
+          <li>QA testing</li>
+          <li>Production Android build</li>
+          <li>AAB generation</li>
+          <li>Google Play Store submission assistance</li>
+          <li>Basic post-launch support</li>
+        </ul>
+        <div class="card soft mt4">
+          <h3 class="mini">Device Coverage</h3>
+          <p class="xxs mb0">Testing covers a representative range of screen sizes and Android versions, with particular attention to mid-range devices — the handsets the majority of regional-language news readers actually use.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card ink" style="padding:6mm;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:6mm;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--fh);font-size:7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--org);">Android Application Development Cost</div>
+          <p style="margin:3mm 0 0;font-size:9pt;color:rgba(255,255,255,.72);max-width:105mm;">Standalone price for developing and releasing the Android application only. Exclusive of GST. Hosting, developer account fees and third-party service charges are additional.</p>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--fh);font-size:27pt;font-weight:800;letter-spacing:-.04em;line-height:1;">₹1,50,000</div>
+          <div style="font-family:var(--fh);font-size:9pt;font-weight:700;color:rgba(255,255,255,.6);margin-top:1.5mm;">+ GST</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Standalone pricing.</strong> The figure above applies if the Android application is commissioned on its own. If both applications are commissioned together, the combined package price on page 20 applies instead.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>13</b></span></div>
+</section>
+
+<!-- ══════════ 14 iOS ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">12 · iOS Application</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">12</span> iOS Application Development</div>
+    <h1 class="st">iOS Application</h1>
+    <div class="srule"></div>
+    <p class="ssub">A Flutter-built iOS application, published through the Apple App Store, covering the same content and feature scope with platform-appropriate behaviour.</p>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div>
+        <h2 class="blk" style="margin-top:0;">Development Scope</h2>
+        <ul class="chk">
+          <li>Flutter iOS application</li>
+          <li>Complete UI implementation</li>
+          <li>WordPress / API integration</li>
+          <li>All agreed news and content sections</li>
+          <li>Push notifications via Firebase Cloud Messaging</li>
+          <li>Search</li>
+          <li>Content sharing</li>
+          <li>Video</li>
+          <li>Podcast</li>
+          <li>Photo gallery</li>
+          <li>Web Stories</li>
+          <li>Firebase Analytics</li>
+          <li>Advertising-ready placements</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="blk" style="margin-top:0;">Build, Test &amp; Release</h2>
+        <ul class="chk">
+          <li>Performance optimisation</li>
+          <li>iPhone compatibility testing</li>
+          <li>QA testing</li>
+          <li>Production iOS build</li>
+          <li>App Store configuration assistance</li>
+          <li>App Store submission assistance</li>
+          <li>Basic post-launch support</li>
+        </ul>
+        <div class="card soft mt4">
+          <h3 class="mini">Why iOS Carries a Higher Standalone Price</h3>
+          <p class="xxs mb0">iOS requires its own build pipeline, signing certificates and provisioning profiles, a macOS build environment, separate device testing, and a review process that is more prescriptive than Google Play's. That platform-specific work exists regardless of the shared Flutter codebase.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card ink" style="padding:6mm;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:6mm;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--fh);font-size:7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--org);">iOS Application Development Cost</div>
+          <p style="margin:3mm 0 0;font-size:9pt;color:rgba(255,255,255,.72);max-width:105mm;">Standalone price for developing and releasing the iOS application only. Exclusive of GST. Hosting, Apple Developer Account fees and third-party service charges are additional.</p>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--fh);font-size:27pt;font-weight:800;letter-spacing:-.04em;line-height:1;">₹2,25,000</div>
+          <div style="font-family:var(--fh);font-size:9pt;font-weight:700;color:rgba(255,255,255,.6);margin-top:1.5mm;">+ GST</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Standalone pricing.</strong> The figure above applies if the iOS application is commissioned on its own. If both applications are commissioned together, the combined package price on page 20 applies instead.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>14</b></span></div>
+</section>
+
+<!-- ══════════ 15 PERFORMANCE & SECURITY ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">13 · Performance &amp; Security</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">13</span> Performance &amp; Security</div>
+    <h1 class="st">Built for Real Network<br>Conditions</h1>
+    <div class="srule"></div>
+    <p class="ssub">A news application is used on moving trains, in low-signal districts and on mid-range handsets. The measures below are scoped for those conditions rather than for a lab.</p>
+
+    <h2 class="blk" style="margin-top:0;">Performance</h2>
+    <div class="g g5" style="gap:3mm;">
+      <div class="card soft"><h3 class="mini">API Caching</h3><p class="xxs mb0">Responses cached to avoid repeat calls for content already fetched.</p></div>
+      <div class="card soft"><h3 class="mini">Image Optimisation</h3><p class="xxs mb0">Right-sized images requested per screen density rather than full-resolution files.</p></div>
+      <div class="card soft"><h3 class="mini">Lazy Loading</h3><p class="xxs mb0">Images and heavy elements load as they approach the viewport.</p></div>
+      <div class="card soft"><h3 class="mini">Pagination</h3><p class="xxs mb0">Feeds load in pages rather than pulling an entire section at once.</p></div>
+      <div class="card soft"><h3 class="mini">Efficient API Calls</h3><p class="xxs mb0">Calls batched and shaped to reduce round trips per screen.</p></div>
+      <div class="card soft"><h3 class="mini">Local Caching</h3><p class="xxs mb0">Recently fetched content held on device where appropriate for faster return visits.</p></div>
+      <div class="card soft"><h3 class="mini">Optimised Startup</h3><p class="xxs mb0">App startup path kept light so the first screen appears quickly.</p></div>
+      <div class="card soft"><h3 class="mini">Network Error Handling</h3><p class="xxs mb0">Connection failures handled with a retry path, not a crash or blank screen.</p></div>
+      <div class="card soft"><h3 class="mini">Loading States</h3><p class="xxs mb0">Visible loading indicators so the app never appears frozen.</p></div>
+      <div class="card soft"><h3 class="mini">Empty States</h3><p class="xxs mb0">Designed empty states for sections or searches with no results.</p></div>
+    </div>
+
+    <h2 class="blk">Security</h2>
+    <div class="g g4" style="gap:3mm;">
+      <div class="card"><div class="ic sm">1</div><h3 class="mini">HTTPS / SSL</h3><p class="xxs mb0">All communication between the applications and the API travels over encrypted connections.</p></div>
+      <div class="card"><div class="ic sm">2</div><h3 class="mini">Secure API Communication</h3><p class="xxs mb0">API requests follow secure transport and request-handling practices appropriate to a public content API.</p></div>
+      <div class="card"><div class="ic sm">3</div><h3 class="mini">Secure Local Storage</h3><p class="xxs mb0">Secure storage used for sensitive local information where such information is required.</p></div>
+      <div class="card"><div class="ic sm">4</div><h3 class="mini">Authentication Readiness</h3><p class="xxs mb0">If a login capability is added in future, authentication security practices will be applied at that point. No login is part of this scope.</p></div>
+      <div class="card"><div class="ic sm">5</div><h3 class="mini">Basic API Security Practices</h3><p class="xxs mb0">Standard protections applied on the application side of the API relationship.</p></div>
+      <div class="card"><div class="ic sm">6</div><h3 class="mini">Input Validation</h3><p class="xxs mb0">User-supplied input, such as search queries, validated before being sent to the API.</p></div>
+      <div class="card"><div class="ic sm">7</div><h3 class="mini">Secure Configuration</h3><p class="xxs mb0">Keys and configuration handled through release-appropriate practices rather than hard-coded in plain source.</p></div>
+      <div class="card soft"><h3 class="mini">A Realistic Statement</h3><p class="xxs mb0">No application can be described as fully secure. These are sound, standard practices that reduce risk — not a guarantee against every possible threat.</p></div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">!</span>
+      <p><strong>Shared responsibility.</strong> Application-side security is scoped here. Server, CMS and API-side security — firewall rules, WordPress hardening, patching and access control — sit with the platform and hosting side of the project, not within this mobile application scope.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>15</b></span></div>
+</section>
+
+<!-- ══════════ 16 TESTING ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">14 · Testing &amp; Quality Assurance</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">14</span> Testing &amp; Quality Assurance</div>
+    <h1 class="st">Thirteen Testing Passes<br>Before Submission</h1>
+    <div class="srule"></div>
+
+    <table class="t mb5">
+      <thead><tr><th style="width:52mm">Test</th><th>What is verified</th></tr></thead>
+      <tbody>
+        <tr><td class="f">Functional testing</td><td>Every feature in the agreed scope performs as specified</td></tr>
+        <tr><td class="f">API integration testing</td><td>Each endpoint returns and renders correctly, including failure and timeout responses</td></tr>
+        <tr><td class="f">UI testing</td><td>Layout, typography and Devanagari text rendering across screens</td></tr>
+        <tr><td class="f">Navigation testing</td><td>Tab bar, drawer, category strip, back behaviour and deep link entry points</td></tr>
+        <tr><td class="f">Push notification testing</td><td>Delivery, tap-through routing to the correct content, and foreground / background states</td></tr>
+        <tr><td class="f">Media playback testing</td><td>Video playback and podcast audio including play, pause and seek behaviour</td></tr>
+        <tr><td class="f">Search testing</td><td>Query handling, result accuracy, pagination and the empty-result state</td></tr>
+        <tr><td class="f">Device compatibility testing</td><td>A representative range of Android devices and iPhone models</td></tr>
+        <tr><td class="f">Screen-size testing</td><td>Small, standard and large screens, including text scaling behaviour</td></tr>
+        <tr><td class="f">Network-condition testing</td><td>Behaviour on slow connections, intermittent signal and offline states</td></tr>
+        <tr><td class="f">Crash / error testing</td><td>Error paths exercised to confirm the application fails gracefully</td></tr>
+        <tr><td class="f">Regression testing</td><td>Re-verification after fixes so corrections do not break working features</td></tr>
+        <tr><td class="f">Pre-store testing</td><td>Final verification of release builds against store requirements before submission</td></tr>
+      </tbody>
+    </table>
+
+    <div class="co">
+      <span class="ci">!</span>
+      <p><strong>On store approval.</strong> Testing confirms the applications meet the agreed scope and are prepared for submission. <strong>Final app-store approval is subject to Google Play and Apple App Store review policies</strong>, which are controlled entirely by those platforms. We prepare and submit; the approval decision is theirs.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>16</b></span></div>
+</section>
+
+<!-- ══════════ 17 DEPLOYMENT ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">15 · App Store Deployment</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">15</span> App Store Deployment</div>
+    <h1 class="st">Submission Assistance,<br>Clearly Defined</h1>
+    <div class="srule"></div>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div class="card o">
+        <div class="ic">A</div>
+        <h3 class="mini" style="font-size:11pt;">Android — Google Play</h3>
+        <ul class="chk mt3">
+          <li><strong>Production AAB build</strong> — signed release artefact generated and verified</li>
+          <li><strong>Play Store listing assistance</strong> — support in preparing listing content and assets</li>
+          <li><strong>Store configuration assistance</strong> — content rating, data safety declarations and release track setup</li>
+          <li><strong>Submission assistance</strong> — guided submission through the Play Console</li>
+        </ul>
+      </div>
+      <div class="card o">
+        <div class="ic">i</div>
+        <h3 class="mini" style="font-size:11pt;">iOS — Apple App Store</h3>
+        <ul class="chk mt3">
+          <li><strong>Production build</strong> — signed release build generated and verified</li>
+          <li><strong>App Store configuration assistance</strong> — App Store Connect record, metadata and privacy declarations</li>
+          <li><strong>Submission assistance</strong> — guided submission for App Review</li>
+          <li><strong>Resubmission support</strong> — for review feedback relating to delivered functionality</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card ink mb5" style="padding:5.5mm;">
+      <h3 class="mini" style="font-size:11pt;">Submission assistance is not guaranteed approval</h3>
+      <p class="xs mb0" style="color:rgba(255,255,255,.78);">This distinction matters and is stated plainly. We prepare compliant builds, configure the store records, and submit the applications for review. <strong>Final approval and publication remain subject to Google's and Apple's own review processes and policies</strong>, including any policy changes those platforms make. Neither timeline nor outcome of store review is within our control.</p>
+    </div>
+
+    <h2 class="blk" style="margin-top:0;">Account Prerequisites</h2>
+    <div class="g g2" style="gap:4mm;">
+      <div class="card soft">
+        <h3 class="mini">Google Play Developer Account</h3>
+        <p class="xxs mb0">Must be registered in the client's name and access provided to our team. The account fee is payable by the client — see page 23.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Apple Developer Account</h3>
+        <p class="xxs mb0">Must be registered in the client's name with access provided. Organisation accounts may require additional verification, which can affect the submission schedule.</p>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Ownership.</strong> Both store accounts should be held in the client's name so the applications, their listings and their user base remain the client's property regardless of who maintains them in future.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>17</b></span></div>
+</section>
+
+<!-- ══════════ 18 TIMELINE ══════════ -->
+<style>
+#tl .gt-r .l{padding:2mm 3.4mm;}
+#tl table.t tbody td{padding:1.9mm 3mm;}
+</style>
+<section class="page" id="tl">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">16 · Project Timeline</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">16</span> Project Timeline</div>
+    <h1 class="st">25–30 Working Days</h1>
+    <div class="srule"></div>
+    <p class="ssub">Six phases from requirement finalisation to store submission. Phases overlap where dependencies allow, which is how the range holds without reducing testing time.</p>
+
+    <div class="gt mb5">
+      <div class="gt-h">
+        <div class="l">Phase</div>
+        <div class="gt-s">
+          <span>1</span><span></span><span></span><span></span><span>5</span><span></span><span></span><span></span><span></span><span>10</span>
+          <span></span><span></span><span></span><span></span><span>15</span><span></span><span></span><span></span><span></span><span>20</span>
+          <span></span><span></span><span></span><span></span><span>25</span><span></span><span></span><span></span><span></span><span>30</span>
+        </div>
+      </div>
+      <div class="gt-r"><div class="l"><b>1 · Requirement &amp; Planning</b><small>2–3 working days</small></div>
+        <div class="gt-t"><div class="gb d" style="left:.4%;width:9.5%;">D1–3</div></div></div>
+      <div class="gt-r"><div class="l"><b>2 · UI &amp; App Development</b><small>10–12 working days</small></div>
+        <div class="gt-t"><div class="gb" style="left:10.4%;width:39%;">D4–15</div></div></div>
+      <div class="gt-r"><div class="l"><b>3 · API &amp; Content Modules</b><small>5–6 working days</small></div>
+        <div class="gt-t"><div class="gb" style="left:40%;width:20%;">D13–18</div></div></div>
+      <div class="gt-r"><div class="l"><b>4 · Push, Analytics, Share, Ads</b><small>2–3 working days</small></div>
+        <div class="gt-t"><div class="gb" style="left:60.4%;width:10%;">D19–21</div></div></div>
+      <div class="gt-r"><div class="l"><b>5 · QA, Device Testing &amp; Fixes</b><small>4–5 working days</small></div>
+        <div class="gt-t"><div class="gb g" style="left:70.4%;width:16.5%;">D22–26</div></div></div>
+      <div class="gt-r"><div class="l"><b>6 · Store Build &amp; Deployment</b><small>2–3 working days</small></div>
+        <div class="gt-t"><div class="gb d" style="left:87%;width:12.6%;">D27–30</div></div></div>
+    </div>
+
+    <table class="t mb4">
+      <thead><tr><th style="width:18mm">Phase</th><th style="width:54mm">Stage</th><th>Activities</th><th style="width:28mm">Duration</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td class="f">Requirement finalisation &amp; technical planning</td><td>Scope confirmation, API review, content-structure mapping, screen inventory, technical plan</td><td>2–3 days</td></tr>
+        <tr><td class="n">2</td><td class="f">UI implementation &amp; app development</td><td>All screens built in Flutter — home, categories, article, video, podcast, gallery, web stories, search, navigation</td><td>10–12 days</td></tr>
+        <tr><td class="n">3</td><td class="f">API integration &amp; content modules</td><td>Endpoint integration, content mapping, pagination, caching, error and empty states</td><td>5–6 days</td></tr>
+        <tr><td class="n">4</td><td class="f">Push, analytics, sharing &amp; ad integration</td><td>FCM setup and routing, Firebase Analytics events, share layer, advertising placement slots</td><td>2–3 days</td></tr>
+        <tr><td class="n">5</td><td class="f">QA, device testing &amp; bug fixing</td><td>The thirteen testing passes on page 16, defect resolution and regression verification</td><td>4–5 days</td></tr>
+        <tr><td class="n">6</td><td class="f">Store build preparation &amp; deployment assistance</td><td>Release builds, signing, store records, listing configuration, submission</td><td>2–3 days</td></tr>
+      </tbody>
+    </table>
+
+    <div class="co">
+      <span class="ci">!</span>
+      <p><strong>Timelines depend on:</strong> timely API and CMS access · content and API readiness · client feedback turnaround · store account availability · developer account approvals · third-party integrations. Delays in any of these shift the schedule by a corresponding amount, and store review time sits outside the development window entirely.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>18</b></span></div>
+</section>
+
+<!-- ══════════ 19 DELIVERABLES & SUPPORT ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">17 · Deliverables &amp; Support</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">17</span> Deliverables &amp; Post-Launch Support</div>
+    <h1 class="st">What You Receive</h1>
+    <div class="srule"></div>
+
+    <div class="g g3 mb5" style="gap:3mm;">
+      <div class="card o"><h3 class="mini">Applications</h3><ul class="chk mt2"><li>Android application</li><li>iOS application</li><li>QA-tested production builds</li></ul></div>
+      <div class="card o"><h3 class="mini">Code &amp; Integration</h3><ul class="chk mt2"><li>Flutter source code</li><li>API integration</li><li>WordPress CMS integration</li></ul></div>
+      <div class="card o"><h3 class="mini">Services</h3><ul class="chk mt2"><li>Push notification integration</li><li>Firebase Analytics integration</li><li>Advertising-ready placements</li></ul></div>
+      <div class="card o"><h3 class="mini">Content Modules</h3><ul class="chk mt2"><li>News and category modules</li><li>Search</li><li>Content sharing</li></ul></div>
+      <div class="card o"><h3 class="mini">Media Modules</h3><ul class="chk mt2"><li>Video</li><li>Podcast</li><li>Photo gallery</li><li>Web Stories</li></ul></div>
+      <div class="card o"><h3 class="mini">Release &amp; Handover</h3><ul class="chk mt2"><li>Play Store deployment assistance</li><li>App Store deployment assistance</li><li>Basic technical documentation</li><li>30 days post-launch support</li></ul></div>
+    </div>
+
+    <h2 class="blk" style="margin-top:0;">Post-Launch Support</h2>
+    <div class="g g2" style="gap:4mm;">
+      <div class="card ink">
+        <div style="font-family:var(--fh);font-size:7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--org);">Included</div>
+        <div style="font-family:var(--fh);font-size:20pt;font-weight:800;letter-spacing:-.03em;margin:2mm 0 3mm;">30 Days Basic Support</div>
+        <ul class="chk">
+          <li style="color:rgba(255,255,255,.8);">Bug fixes related to delivered functionality</li>
+          <li style="color:rgba(255,255,255,.8);">Minor configuration support</li>
+          <li style="color:rgba(255,255,255,.8);">Deployment support</li>
+          <li style="color:rgba(255,255,255,.8);">Basic technical troubleshooting</li>
+        </ul>
+        <p class="xxs mt3 mb0" style="color:rgba(255,255,255,.6);">The support period begins from the date of store deployment.</p>
+      </div>
+      <div>
+        <div class="card soft mb3">
+          <h3 class="mini">Outside the Support Window</h3>
+          <p class="xs mb0">New features, major UI changes, third-party integrations and scope additions are <strong>separately estimated</strong> and quoted before any work begins. Support covers correcting what was delivered — not extending it.</p>
+        </div>
+        <div class="card soft">
+          <h3 class="mini">Ongoing Maintenance</h3>
+          <p class="xs mb0">AMC and ongoing maintenance can be discussed separately after the support period concludes. This would typically cover OS version compatibility, store policy updates, library updates and continued technical support. <strong>No AMC charge is proposed in this document.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">i</span>
+      <p><strong>Why OS compatibility matters later.</strong> Android and iOS both release major versions annually, and each can introduce changes that affect notification behaviour, permissions or store requirements. This is the usual reason a maintenance arrangement becomes worth discussing once the first year is under way.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>19</b></span></div>
+</section>
+<!-- ══════════ 20 COMMERCIAL ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">18 · Commercial Proposal</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">18</span> Commercial Proposal</div>
+    <h1 class="st">Platform Pricing &amp;<br>Combined Package</h1>
+    <div class="srule"></div>
+    <p class="ssub">Each application is individually priced. A combined package price applies when both are developed together as one coordinated mobile application project.</p>
+
+    <div class="g g3 mb5" style="gap:4mm;">
+      <div class="pcard">
+        <div class="pl">Android</div>
+        <div class="pv">₹1,50,000</div>
+        <div class="pg">+ GST</div>
+        <div class="pd">Standalone platform price for the Android application, developed and submitted to Google Play.</div>
+      </div>
+      <div class="pcard">
+        <div class="pl">iOS</div>
+        <div class="pv">₹2,25,000</div>
+        <div class="pg">+ GST</div>
+        <div class="pd">Standalone platform price for the iOS application, developed and submitted to the Apple App Store.</div>
+      </div>
+      <div class="pcard feat">
+        <span class="ptag">COMBINED</span>
+        <div class="pl">Android + iOS</div>
+        <div class="pv">₹3,25,000</div>
+        <div class="pg">+ GST</div>
+        <div class="pd">Package price for developing both applications together as a single coordinated project.</div>
+      </div>
+    </div>
+
+    <table class="pr mb4">
+      <thead><tr><th>Scope</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td class="i">Android App<small>Standalone platform price</small></td><td class="a">₹1,50,000 + GST</td></tr>
+        <tr><td class="i">iOS App<small>Standalone platform price</small></td><td class="a">₹2,25,000 + GST</td></tr>
+        <tr class="tot"><td>Android + iOS Combined Package</td><td class="a">₹3,25,000 + GST</td></tr>
+      </tbody>
+    </table>
+
+    <div class="co mb5">
+      <span class="ci">!</span>
+      <p><strong>The Android and iOS prices above are individual platform prices. The ₹3,25,000 figure is the special combined project package price for developing both applications together.</strong></p>
+    </div>
+
+    <h2 class="blk" style="margin-top:0;">Why the Combined Package Is Priced Differently</h2>
+    <div class="g g3" style="gap:3.4mm;">
+      <div class="card soft">
+        <h3 class="mini">Shared Flutter Architecture</h3>
+        <p class="xxs mb0">Screens, navigation, state handling and component library are written once in a single Dart codebase and compiled for both platforms, rather than being built twice.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Common API Integration</h3>
+        <p class="xxs mb0">The integration layer connecting to the WordPress CMS — endpoint mapping, content models, caching and pagination — is built once and serves both applications.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">One Coordinated Project</h3>
+        <p class="xxs mb0">A single requirement phase, one design pass, one QA cycle covering both platforms and one coordinated release — rather than two separate project runs.</p>
+      </div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">i</span>
+      <p><strong>All figures are exclusive of GST.</strong> Hosting and server infrastructure, app store developer account fees, and third-party or platform subscription charges are additional and are detailed on pages 22 and 23.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>20</b></span></div>
+</section>
+
+<!-- ══════════ 21 PAYMENT TERMS ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">19 · Payment Terms</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">19</span> Payment Terms</div>
+    <h1 class="st">Two Payments</h1>
+    <div class="srule"></div>
+    <p class="ssub">A simple two-stage structure tied to project commencement and store deployment.</p>
+
+    <div class="card ink mb5" style="padding:5.5mm;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:6mm;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--fh);font-size:7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--org);">Project Cost — Combined Android + iOS Package</div>
+          <p style="margin:2.4mm 0 0;font-size:8.6pt;color:rgba(255,255,255,.7);">Payment schedule below applies to the combined package. Standalone platform engagements follow the same 50 / 50 structure on their respective amounts.</p>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--fh);font-size:24pt;font-weight:800;letter-spacing:-.04em;line-height:1;">₹3,25,000</div>
+          <div style="font-family:var(--fh);font-size:9pt;font-weight:700;color:rgba(255,255,255,.6);margin-top:1.5mm;">+ GST</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div class="payc">
+        <div class="p">50<span style="font-size:16pt;">%</span></div>
+        <div class="s">Advance</div>
+        <div class="d">Payable at project commencement. Requirement finalisation, technical planning and development begin on receipt.</div>
+        <div class="m">₹1,62,500 + GST</div>
+      </div>
+      <div class="payc">
+        <div class="p">50<span style="font-size:16pt;">%</span></div>
+        <div class="s">Final Payment</div>
+        <div class="d">Payable post-store deployment, on completion of the agreed deployment and submission process for the applications.</div>
+        <div class="m">₹1,62,500 + GST</div>
+      </div>
+    </div>
+
+    <div class="co mb5">
+      <span class="ci">i</span>
+      <p><strong>Definition of "post-store deployment".</strong> This refers to completion of the agreed deployment and submission process for the applications — production builds generated, store records configured, and the applications submitted to Google Play and the Apple App Store. It is not conditional on store approval, since review outcomes and timelines are controlled by Google and Apple and lie outside our control.</p>
+    </div>
+
+    <h2 class="blk" style="margin-top:0;">Payment Details</h2>
+    <div class="g g2" style="gap:4mm;">
+      <div class="card soft">
+        <h3 class="mini">Invoicing</h3>
+        <ul class="dot mt2">
+          <li>Payments by NEFT, RTGS or UPI</li>
+          <li>GST invoice issued against each payment</li>
+          <li>Payment due within 7 days of invoice date</li>
+          <li>TDS deductible as applicable under Indian tax law</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Scope &amp; Handover</h3>
+        <ul class="dot mt2">
+          <li>Project commences on receipt of the advance</li>
+          <li>Final invoice raised on completion of store submission</li>
+          <li>Flutter source code handover on final payment</li>
+          <li>30-day support window begins from store deployment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">!</span>
+      <p><strong>Hosting, developer account fees and third-party subscription charges are not part of this payment schedule.</strong> They are separate costs payable by the client, either directly to the relevant provider or as separately invoiced pass-through amounts.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>21</b></span></div>
+</section>
+
+<!-- ══════════ 22 HOSTING ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">20 · Hosting &amp; Infrastructure</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">20</span> Hosting &amp; Infrastructure — Additional</div>
+    <h1 class="st">Server Infrastructure<br>Is Not Included</h1>
+    <div class="srule"></div>
+
+    <div class="card fill mb5" style="padding:5mm;">
+      <p class="mb0" style="font-family:var(--fh);font-weight:700;font-size:11pt;color:#fff;line-height:1.4;">Hosting and server infrastructure charges are NOT included in the application development cost.</p>
+    </div>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div>
+        <h2 class="blk" style="margin-top:0;">Recommended Initial Infrastructure</h2>
+        <div class="card">
+          <div class="g g2" style="gap:0 4mm;">
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Type</span><strong>Cloud VPS</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>CPU</span><strong>4 vCPU</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Memory</span><strong>8 GB RAM</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Storage</span><strong>160 GB NVMe SSD</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>OS</span><strong>Ubuntu Linux</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Web server</span><strong>NGINX</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Runtime</span><strong>PHP 8.x</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Database</span><strong>MariaDB / MySQL</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>Cache</span><strong>Redis</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;border-bottom:1px dotted var(--line);font-size:8.6pt;"><span>CDN</span><strong>Cloudflare</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;font-size:8.6pt;"><span>Security</span><strong>SSL</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:1.6mm 0;font-size:8.6pt;"><span>Backups</span><strong>Automated — recommended</strong></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="blk" style="margin-top:0;">Estimated Hosting Cost</h2>
+        <div class="card" style="padding:5mm;">
+          <div style="font-family:var(--fh);font-size:24pt;font-weight:800;color:var(--org);letter-spacing:-.035em;line-height:1.1;">₹3,500 <span style="font-size:13pt;color:var(--ink);">–</span> ₹6,000</div>
+          <div style="font-family:var(--fh);font-size:9.5pt;font-weight:700;margin-top:1mm;">per month</div>
+          <div class="dv" style="margin:3.4mm 0;"></div>
+          <p class="xs mb0"><strong>This is an estimated range.</strong> Actual costs may vary and are billed separately by the hosting provider, payable by the client.</p>
+        </div>
+        <div class="card soft mt3">
+          <h3 class="mini">Actual Cost Depends On</h3>
+          <div class="chips mt2">
+            <span class="chip">Traffic</span><span class="chip">Number of users</span><span class="chip">API requests</span><span class="chip">Storage requirements</span><span class="chip">Image / media volume</span><span class="chip">Video delivery</span><span class="chip">Bandwidth</span><span class="chip">Backup requirements</span><span class="chip">Hosting provider</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="co dark">
+      <span class="ci">!</span>
+      <p><strong>Do not read hosting as included.</strong> The ₹3,25,000 combined package covers application development only. Hosting is a recurring operating cost, billed separately and payable by the client for as long as the platform runs. <strong>If the Shivsena Live website is hosted on the same server, that infrastructure may already be provisioned</strong> — in which case the applications consume API capacity from the existing server rather than requiring a second one. This should be confirmed before hosting is procured separately.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>22</b></span></div>
+</section>
+
+<!-- ══════════ 23 THIRD PARTY ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">21 · Third-Party &amp; Platform Costs</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">21</span> Third-Party &amp; Platform Costs</div>
+    <h1 class="st">Additional &amp; Payable<br>by the Client</h1>
+    <div class="srule"></div>
+    <p class="ssub">The development fee covers development and integration work — not third-party subscription fees. The following are additional and payable by the client where applicable.</p>
+
+    <table class="t mb5">
+      <thead><tr><th style="width:62mm">Item</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="f">Google Play Developer Account</td><td>One-time registration fee payable to Google; account must be held in the client's name</td></tr>
+        <tr><td class="f">Apple Developer Account</td><td>Annual fee payable to Apple; organisation accounts may require additional verification</td></tr>
+        <tr><td class="f">Hosting / server</td><td>Recurring infrastructure cost as detailed on page 22</td></tr>
+        <tr><td class="f">Firebase paid services, if applicable</td><td>Free tiers cover typical messaging and analytics usage; charges apply only beyond those limits</td></tr>
+        <tr><td class="f">Paid APIs</td><td>Any third-party API requiring a paid plan</td></tr>
+        <tr><td class="f">SMS / OTP services</td><td>Applicable only if such functionality is added later; not part of this scope</td></tr>
+        <tr><td class="f">Premium plugins / services</td><td>Any paid plugin or service required on the CMS or application side</td></tr>
+        <tr><td class="f">Video streaming infrastructure</td><td>Dedicated streaming or transcoding infrastructure, if required beyond standard embeds</td></tr>
+        <tr><td class="f">CDN charges where applicable</td><td>Content delivery network usage beyond any included free tier</td></tr>
+        <tr><td class="f">Domain-related costs</td><td>Domain registration, renewal and related services</td></tr>
+        <tr><td class="f">Paid advertising / ad-network charges</td><td>Ad network fees, ad serving costs and campaign spend</td></tr>
+        <tr><td class="f">Other third-party subscription charges</td><td>Any further external service subscribed to during or after the project</td></tr>
+      </tbody>
+    </table>
+
+    <div class="g g2" style="gap:4mm;">
+      <div class="co">
+        <span class="ci">i</span>
+        <p><strong>What the development fee covers.</strong> Development and integration of the services listed above into the applications — configuring Firebase, wiring the API, preparing store submissions. It does not cover the subscription or account fees charged by those third parties.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Accounts in the Client's Name</h3>
+        <p class="xs mb0">We recommend all third-party accounts — Play Console, Apple Developer, Firebase, hosting and domain — are registered in the client's name with access shared to our team. This ensures the client retains full ownership and control of the applications and their associated services.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>23</b></span></div>
+</section>
+
+<!-- ══════════ 24 ASSUMPTIONS ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">22 · Assumptions &amp; Dependencies</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">22</span> Project Assumptions &amp; Dependencies</div>
+    <h1 class="st">What This Proposal<br>Assumes</h1>
+    <div class="srule"></div>
+    <p class="ssub">Stated plainly so that both sides share the same expectations before work begins.</p>
+
+    <div class="g g2" style="gap:4mm;">
+      <div>
+        <h2 class="blk" style="margin-top:0;">Client Provides</h2>
+        <div class="card">
+          <ul class="chk">
+            <li>Required <strong>CMS and API access</strong></li>
+            <li><strong>Google Play Developer Account</strong> access</li>
+            <li><strong>Apple Developer Account</strong> access</li>
+            <li>Required <strong>Firebase project</strong> access and configuration</li>
+            <li><strong>Branding assets</strong> — logo, fonts and approved visual assets</li>
+            <li>Required <strong>third-party credentials</strong> where applicable</li>
+          </ul>
+        </div>
+        <div class="card soft mt3">
+          <h3 class="mini">Platform Assumption</h3>
+          <p class="xs mb0">The existing <strong>WordPress CMS will remain the primary content management system</strong> for the duration of the project and thereafter. The applications are architected on that basis.</p>
+        </div>
+      </div>
+      <div>
+        <h2 class="blk" style="margin-top:0;">Scope &amp; Conditions</h2>
+        <div class="card">
+          <ul class="chk">
+            <li><strong>Content creation and daily news publishing are not included</strong> in this scope</li>
+            <li><strong>Store approval depends on platform policies</strong> set by Google and Apple</li>
+            <li><strong>Hosting and server charges are additional</strong> — see page 22</li>
+            <li><strong>Third-party service charges are additional</strong> — see page 23</li>
+            <li><strong>Major changes after scope approval may affect timeline and cost</strong>, and will be estimated before work proceeds</li>
+          </ul>
+        </div>
+        <div class="card soft mt3">
+          <h3 class="mini">The Dependency That Matters Most</h3>
+          <p class="xs mb0">API and content-structure readiness is the single largest determinant of schedule. If content types such as video, podcast, gallery or web story are not yet exposed through the API, those modules can be built but cannot be populated until the CMS side is complete.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="co mt5">
+      <span class="ci">→</span>
+      <p><strong>Change management.</strong> Requests falling outside the scope defined in this document will be estimated and quoted in writing before any work is undertaken. No work will be invoiced that has not been approved in advance.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>24</b></span></div>
+</section>
+
+<!-- ══════════ 25 OUT OF SCOPE ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">23 · Out of Scope</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">23</span> Out of Scope</div>
+    <h1 class="st">Explicitly Not Included</h1>
+    <div class="srule"></div>
+    <p class="ssub">Clear exclusions prevent disputes later. Any item below can be quoted separately if required.</p>
+
+    <div class="g g3" style="gap:4mm;">
+      <div class="card">
+        <h3 class="mini">Content &amp; Production</h3>
+        <ul class="x mt2">
+          <li>Daily news / content uploading</li>
+          <li>Content writing</li>
+          <li>Graphic design / content production</li>
+          <li>Video production</li>
+          <li>Podcast production</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="mini">Marketing</h3>
+        <ul class="x mt2">
+          <li>Digital marketing</li>
+          <li>Social media management</li>
+          <li>Paid advertising management</li>
+        </ul>
+        <div class="dv" style="margin:3mm 0;"></div>
+        <h3 class="mini">Infrastructure</h3>
+        <ul class="x mt2">
+          <li>Custom video streaming infrastructure</li>
+          <li>SMS / OTP infrastructure</li>
+          <li>Hosting / server charges</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="mini">Systems &amp; Accounts</h3>
+        <ul class="x mt2">
+          <li>Custom CRM</li>
+          <li>Custom ERP</li>
+          <li>User subscription / payment system</li>
+          <li>Paid membership system</li>
+          <li>Advanced user accounts unless specifically added</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="g g2 mt4" style="gap:4mm;">
+      <div class="card soft">
+        <h3 class="mini">Charges Not Included</h3>
+        <ul class="x mt2">
+          <li>Third-party subscription charges</li>
+          <li>App store developer account fees</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <h3 class="mini">Scope Changes</h3>
+        <ul class="x mt2">
+          <li>Major changes after approval</li>
+          <li>Features not explicitly mentioned in the agreed scope</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="co dark mt5">
+      <span class="ci">i</span>
+      <p><strong>On the separation of projects.</strong> This proposal covers mobile application development only. The Shivsena Live website and news portal — including its design, CMS build, SEO and content structure — is a separate project with its own scope, timeline and commercial terms.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>25</b></span></div>
+</section>
+
+<!-- ══════════ 26 COMMERCIAL SUMMARY ══════════ -->
+<section class="page">
+  <div class="phead"><div class="l"><div class="mk"></div><div class="b">Futuready Media</div></div><div class="r">24 · Commercial Summary</div></div>
+  <div class="pbody">
+    <div class="stag"><span class="n">24</span> Commercial Summary</div>
+    <h1 class="st">Everything on One Page</h1>
+    <div class="srule"></div>
+
+    <table class="pr mb5">
+      <thead><tr><th>Scope</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td class="i">Android App<small>Standalone platform price</small></td><td class="a">₹1,50,000 + GST</td></tr>
+        <tr><td class="i">iOS App<small>Standalone platform price</small></td><td class="a">₹2,25,000 + GST</td></tr>
+        <tr class="tot"><td>Android + iOS Combined Package</td><td class="a">₹3,25,000 + GST</td></tr>
+        <tr><td class="i">Hosting<small>Recurring, billed separately by the hosting provider</small></td><td class="a" style="color:var(--org-d);">₹3,500 – ₹6,000 / month<br><span style="font-family:var(--fb);font-weight:400;font-size:7.8pt;color:var(--muted);">estimated · additional</span></td></tr>
+        <tr><td class="i">Third-party / platform charges<small>Developer accounts, paid APIs, CDN, domain and other subscriptions</small></td><td class="a" style="color:var(--org-d);">Additional<br><span style="font-family:var(--fb);font-weight:400;font-size:7.8pt;color:var(--muted);">as applicable</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="g g2 mb5" style="gap:4mm;">
+      <div class="card o">
+        <h3 class="mini" style="font-size:11pt;">Payment Schedule</h3>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:2.6mm 0;border-bottom:1px dotted var(--line);">
+          <span style="font-family:var(--fh);font-weight:700;font-size:9.4pt;">50% at project start</span>
+          <strong style="font-family:var(--fh);font-size:10pt;">₹1,62,500 + GST</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:2.6mm 0;">
+          <span style="font-family:var(--fh);font-weight:700;font-size:9.4pt;">50% post-store deployment</span>
+          <strong style="font-family:var(--fh);font-size:10pt;">₹1,62,500 + GST</strong>
+        </div>
+        <p class="xxs mt2 mb0">Figures shown for the combined package. Standalone engagements follow the same structure on their respective amounts.</p>
+      </div>
+      <div class="card soft">
+        <h3 class="mini" style="font-size:11pt;">At a Glance</h3>
+        <ul class="chk mt2">
+          <li><strong>Timeline:</strong> 25–30 working days</li>
+          <li><strong>Platforms:</strong> Android and iOS</li>
+          <li><strong>Framework:</strong> Flutter, shared codebase</li>
+          <li><strong>Content source:</strong> existing WordPress CMS via API</li>
+          <li><strong>Support:</strong> 30 days post-launch included</li>
+          <li><strong>Validity:</strong> 30 days from the cover date</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="co">
+      <span class="ci">!</span>
+      <p><strong>Reading the commercials correctly.</strong> ₹1,50,000 and ₹2,25,000 are individual platform prices applicable if only one application is commissioned. <strong>₹3,25,000 is the combined package price for both applications developed together</strong> — it is not a sum of the two standalone figures. All amounts are exclusive of GST, and hosting and third-party charges remain additional.</p>
+    </div>
+  </div>
+  <div class="pfoot"><span>Confidential · Futuready Media</span><span>Page <b>26</b></span></div>
+</section>
+
+<!-- ══════════ 27 CLOSING ══════════ -->
+<section class="page closing">
+  <div class="cv-bg"><div class="cv-grid"></div><i class="g1"></i><i class="g2"></i></div>
+  <div class="ci2">
+    <div style="display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:14mm;">
+      <div style="width:30px;height:30px;background:var(--org);border-radius:7px;position:relative;">
+        <span style="position:absolute;top:9px;right:9px;width:11px;height:11px;background:#fff;border-radius:2px;display:block;"></span>
+      </div>
+      <div style="font-family:var(--fh);font-weight:800;font-size:10.5pt;letter-spacing:.2em;text-transform:uppercase;">Futuready Media</div>
+    </div>
+
+    <h1>Thank <span class="o">You</span></h1>
+    <div style="width:70px;height:4.5px;background:var(--org);border-radius:3px;margin:8mm auto;"></div>
+
+    <p style="font-size:11.5pt;color:rgba(255,255,255,.76);max-width:142mm;margin:0 auto;line-height:1.66;">
+      Shivsena Live will provide a unified mobile experience across Android and iOS while allowing the editorial team to continue managing content through the existing WordPress CMS. The proposed architecture is designed to provide a scalable foundation for future content, engagement and monetization requirements.
+    </p>
+
+    <div style="display:inline-flex;align-items:center;gap:10px;background:var(--org);color:#fff;padding:4mm 9mm;border-radius:100px;font-family:var(--fh);font-weight:800;font-size:10pt;letter-spacing:.04em;margin-top:11mm;">
+      Schedule a Proposal Walkthrough
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);max-width:152mm;margin:16mm auto 0;border-top:1px solid rgba(255,255,255,.17);padding-top:8mm;text-align:left;">
+      <div>
+        <div style="font-family:var(--fh);font-size:6.7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:3mm;">Prepared By</div>
+        <div style="font-family:var(--fh);font-size:10pt;font-weight:800;">Futuready Media</div>
+        <div style="font-size:8pt;color:rgba(255,255,255,.55);margin-top:1mm;">Mumbai, Maharashtra, India</div>
+      </div>
+      <div>
+        <div style="font-family:var(--fh);font-size:6.7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:3mm;">Contact</div>
+        <div style="font-size:8.5pt;color:rgba(255,255,255,.8);line-height:1.9;">
+          hello@futureadymedia.com<br>
+          +91 — [ Phone Number ]<br>
+          futureadymedia.com
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--fh);font-size:6.7pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:3mm;">Proposal</div>
+        <div style="font-size:8.5pt;color:rgba(255,255,255,.8);line-height:1.9;">
+          Version 1.0<br>
+          04 August 2026<br>
+          Valid 30 days
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:13mm;font-family:var(--fh);font-weight:600;">
+      Confidential — Mobile Application Development Proposal
+    </p>
+  </div>
+  <div class="cv-strip"><i></i><i></i><i></i></div>
+</section>
+
+</body>
+</html>
